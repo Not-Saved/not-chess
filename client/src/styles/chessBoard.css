@@ -1,30 +1,27 @@
 :root {
-	--nc-square-size: 80px;
-	--nc-piece-size: 60px;
+	--nc-square-size: 8vh;
+	--nc-piece-size: 6vh;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 768) {
 	:root {
-		--nc-square-size: 7.5vw;
-		--nc-piece-size: 5.5vw;
+		--nc-square-size: 6.5vw;
+		--nc-piece-size: 4.5vw;
 	}
 }
 
-@media only screen and (max-width: 520px) {
+@media only screen and (max-width: 580px) {
 	:root {
 		--nc-square-size: 10vw;
 		--nc-piece-size: 8vw;
-	}
-	.nc-chessgrid {
-		position: relative;
-		top: 120px !important;
 	}
 }
 
 .nc-chessgrid {
 	display: inline-grid;
 	position: relative;
-	top: 80px;
+	top: 50vh !important;
+	transform: translateY(-50%);
 	grid-template-columns: repeat(8, var(--nc-square-size));
 	grid-template-rows: repeat(8, var(--nc-square-size));
 	border: 5px solid black;
