@@ -1,0 +1,59 @@
+:root {
+	--nc-square-size: 80px;
+	--nc-piece-size: 60px;
+}
+
+@media only screen and (max-width: 850px) {
+	:root {
+		--nc-square-size: 7.5vw;
+		--nc-piece-size: 5.5vw;
+	}
+}
+
+@media only screen and (max-width: 520px) {
+	:root {
+		--nc-square-size: 10vw;
+		--nc-piece-size: 8vw;
+	}
+	.nc-chessgrid {
+		position: relative;
+		top: 120px !important;
+	}
+}
+
+.nc-chessgrid {
+	display: inline-grid;
+	position: relative;
+	top: 80px;
+	grid-template-columns: repeat(8, var(--nc-square-size));
+	grid-template-rows: repeat(8, var(--nc-square-size));
+	border: 5px solid black;
+	padding: 0px;
+}
+
+.nc-piece {
+	font-size: var(--nc-piece-size);
+	text-align: center;
+	line-height: var(--nc-square-size);
+	height: var(--nc-square-size);
+	width: var(--nc-square-size);
+	height: var(--nc-square-size);
+	cursor: pointer;
+	user-select: none;
+}
+
+.nc-piece.nc-black {
+	color: green;
+}
+
+.nc-piece.nc-white {
+	color: red;
+}
+
+.nc-square.nc-black {
+	background-color: black;
+}
+
+.nc-square.nc-white {
+	background-color: white;
+}

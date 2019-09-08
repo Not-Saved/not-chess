@@ -1,0 +1,57 @@
+.game-card .player {
+	font-size: 24px !important;
+}
+
+.game-card .player .sub.header {
+	font-size: 16px !important;
+}
+
+.game-card .sub.text {
+	font-size: 16px !important;
+}
+
+.game-card .main.icon {
+	font-size: 55px;
+}
+
+.game-card .top.right.angle {
+	position: absolute;
+	display: none;
+	top: -15px;
+	right: -3px;
+	z-index: 10;
+}
+
+@media only screen and (max-width: 520px) {
+	.game-card .player {
+		font-size: 14px !important;
+	}
+
+	.game-card .player .sub.header {
+		position: relative;
+		bottom: 6px;
+		font-size: 10px !important;
+	}
+
+	.game-card .sub.text {
+		font-size: 10px !important;
+	}
+
+	.game-card .main.icon {
+		font-size: 32px;
+	}
+	.game-card .sub.icon {
+		font-size: 8px !important;
+	}
+	.game-card .eleven.wide.column {
+		padding: 4px 10px;
+	}
+
+	.game-card .top.right.angle {
+		display: none;
+	}
+
+	.game-card .footer {
+		display: none;
+	}
+}

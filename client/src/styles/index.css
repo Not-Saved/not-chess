@@ -1,0 +1,11 @@
+.zero-margin {
+	margin: 0px !important;
+}
+
+.zero-padding {
+	padding: 0px !important;
+}
+
+.clickable.icon {
+	cursor: pointer;
+}
