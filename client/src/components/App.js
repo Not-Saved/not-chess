@@ -55,7 +55,7 @@ const App = () => {
 const GameList = props => {
 	const { height } = useWindowDimentions();
 	return (
-		<div className="scrolling" style={{ maxHeight: height - 96 }}>
+		<div className="scrolling" style={{ maxHeight: height - 106 }}>
 			<div>
 				<GameCard game={game1} />
 				<GameCard game={game2} />
