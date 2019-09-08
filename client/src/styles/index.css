@@ -20,3 +20,37 @@
 .scrolling::-webkit-scrollbar {
 	display: none;
 }
+
+.main.footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	height: 35px;
+	box-shadow: 1px 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.menu.icon {
+	font-size: 25px;
+}
+
+.menu {
+	font-size: 0px !important;
+	height: 100%;
+}
+
+.menu .item {
+	font-size: 20px !important;
+	padding: 10px !important;
+}
+.menu.text {
+	font-size: 16px !important;
+}
+.menu.icon {
+	font-size: 25px !important;
+}
+
+@media only screen and (max-width: 420px) {
+	.menu.text {
+		display: none;
+	}
+}
