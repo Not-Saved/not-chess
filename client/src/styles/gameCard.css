@@ -25,7 +25,20 @@
 	display: none;
 }
 
-@media only screen and (max-width: 520px) {
+@media only screen and (max-height: 750px) {
+	.game-card .footer {
+		display: none;
+	}
+	.game-card .bottom.left.angle {
+		font-size: 16px !important;
+		display: inherit;
+		position: absolute;
+		left: -5px;
+		bottom: -12px;
+	}
+}
+
+@media only screen and (max-width: 580px) {
 	.game-card .player {
 		font-size: 14px !important;
 	}

@@ -80,8 +80,8 @@ const getSquareString = square => {
 	);
 };
 
-const getSquareArray = square => {
+/*const getSquareArray = square => {
 	return [parseInt(square[0].charCodeAt(0) - 97), 8 - parseInt(square[1])];
-};
+};*/
 
 export default ChessBoard;

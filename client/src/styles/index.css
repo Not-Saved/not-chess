@@ -9,3 +9,14 @@
 .clickable.icon {
 	cursor: pointer;
 }
+
+.scrolling {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow: auto;
+	padding: 1px;
+}
+
+.scrolling::-webkit-scrollbar {
+	display: none;
+}

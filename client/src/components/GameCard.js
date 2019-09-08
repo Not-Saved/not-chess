@@ -8,7 +8,7 @@ const GameCard = ({
 	game: { id, date, whitePlayer, blackPlayer, moves },
 	history
 }) => {
-	const [open, setOpen] = useState(true);
+	const [open] = useState(true);
 
 	const renderTopRightIcon = () => {
 		/*const iconName = open ? "up angle" : "down angle";
@@ -25,7 +25,7 @@ const GameCard = ({
 				<div className="top right angle">
 					<i
 						className={`external fitted clickable icon`}
-						onClick={() => history.push("/chess")}
+						onClick={() => history.push(`/chess/${id}`)}
 					/>
 				</div>
 				<div className="bottom left angle">

@@ -1,9 +1,10 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import ChessBoard from "./ChessBoard";
 import GameCard from "./GameCard";
 
 import Chess from "chess.js";
+import Menu from "./Menu";
 const chess = new Chess();
 
 const game1 = {
@@ -37,28 +38,30 @@ const App = () => {
 	return (
 		<div
 			className="ui container centered text"
-			style={{ paddingTop: "20px" }}
+			style={{ paddingTop: "10px" }}
 		>
-			<HashRouter>
+			<BrowserRouter>
+				<Menu />
 				<Route exact path="/" component={GameList} />
 				<Route
-					exact
 					path="/chess"
 					render={() => <ChessBoard game={chess} />}
 				/>
-			</HashRouter>
+			</BrowserRouter>
 		</div>
 	);
 };
 
 const GameList = props => {
 	return (
-		<>
-			<GameCard game={game1} />
-			<GameCard game={game2} />
-			<GameCard game={game3} />
-			<GameCard game={game1} />
-		</>
+		<div className="scrolling" style={{ maxHeight: "704px" }}>
+			<div>
+				<GameCard game={game1} />
+				<GameCard game={game2} />
+				<GameCard game={game3} />
+				<GameCard game={game3} />
+			</div>
+		</div>
 	);
 };
 

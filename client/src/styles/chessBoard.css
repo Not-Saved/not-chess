@@ -20,7 +20,7 @@
 .nc-chessgrid {
 	display: inline-grid;
 	position: relative;
-	top: 50vh !important;
+	top: 42vh !important;
 	transform: translateY(-50%);
 	grid-template-columns: repeat(8, var(--nc-square-size));
 	grid-template-rows: repeat(8, var(--nc-square-size));
