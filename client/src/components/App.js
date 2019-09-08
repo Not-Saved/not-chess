@@ -5,11 +5,9 @@ import GameCard from "./GameCard";
 
 import Chess from "chess.js";
 const chess = new Chess();
-chess.move("a3");
-chess.move("a5");
 
 const game1 = {
-	id: 5,
+	id: 533,
 	date: new Date(),
 	whitePlayer: { name: "Sabrina" },
 	blackPlayer: { name: "Loris", host: true },

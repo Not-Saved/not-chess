@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
-import Chess from "chess.js";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 
 import Card from "./Card";
 import "../styles/gameCard.css";
 
 const GameCard = ({
-	game: { id, date, whitePlayer, blackPlayer, moves, fen }
+	game: { id, date, whitePlayer, blackPlayer, moves },
+	history
 }) => {
 	const [open, setOpen] = useState(true);
 
 	const renderTopRightIcon = () => {
-		const iconName = open ? "up angle" : "down angle";
+		/*const iconName = open ? "up angle" : "down angle";
 		return (
 			<div className="top right angle">
 				<i
@@ -18,6 +19,20 @@ const GameCard = ({
 					onClick={() => setOpen(!open)}
 				/>
 			</div>
+		);*/
+		return (
+			<>
+				<div className="top right angle">
+					<i
+						className={`external fitted clickable icon`}
+						onClick={() => history.push("/chess")}
+					/>
+				</div>
+				<div className="bottom left angle">
+					<i className="hashtag fitted icon" />
+					<span className="sub text"> {id}</span>
+				</div>
+			</>
 		);
 	};
 
@@ -138,4 +153,4 @@ const GameCard = ({
 	);
 };
 
-export default GameCard;
+export default withRouter(GameCard);
