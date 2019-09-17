@@ -19,13 +19,17 @@
 
 .nc-chessgrid {
 	display: inline-grid;
-	position: relative;
-	top: 42vh !important;
-	transform: translateY(-50%);
 	grid-template-columns: repeat(8, var(--nc-square-size));
 	grid-template-rows: repeat(8, var(--nc-square-size));
 	border: 5px solid black;
 	padding: 0px;
+}
+
+.nc-grid-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 
 .nc-piece {

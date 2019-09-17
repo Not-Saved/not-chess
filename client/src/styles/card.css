@@ -1,8 +1,9 @@
 .nc-card {
-	margin: 0px 0px 13px 0px;
 	display: flex;
 	width: 100%;
-	box-shadow: 1px 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+	background-color: white;
+	border: 1px solid #d4d4d5;
+	margin: 10px 0px;
 }
 
 .nc-corners {

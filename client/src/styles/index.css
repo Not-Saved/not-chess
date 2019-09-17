@@ -14,7 +14,12 @@
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	overflow: auto;
-	padding: 1px;
+}
+
+.background {
+	background-color: #f8f8f8;
+	box-shadow: 0px 0px 2px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+	z-index: -1;
 }
 
 .scrolling::-webkit-scrollbar {
@@ -26,7 +31,9 @@
 	width: 100%;
 	bottom: 0;
 	height: 40px;
+	background-color: white;
 	box-shadow: 1px 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+	z-index: 10;
 }
 
 .menu.icon {

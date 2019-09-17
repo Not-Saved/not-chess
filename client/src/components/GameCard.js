@@ -84,65 +84,81 @@ const GameCard = ({
 		}
 	};
 
+	const renderPlayer = (player, color) => {
+		let text = (
+			<h2 className="ui header">
+				<div className="player">
+					<span className="name">{player.name}</span>
+					<div className="sub header">
+						<span>{color}</span>
+					</div>
+				</div>
+			</h2>
+		);
+
+		let icon = (
+			<i className="big icons">
+				<i className="main small user circle fitted icon " />
+				{player.host ? (
+					<i className="chess king fitted top right corner sub icon" />
+				) : null}
+			</i>
+		);
+
+		if (player.name) {
+			if (color === "White") {
+				return (
+					<div className="ui two column center aligned grid zero-margin middle aligned">
+						<div
+							className="eleven wide column right aligned player"
+							style={{ padding: "0px 10px" }}
+						>
+							{text}
+						</div>
+						<div className="five wide column zero-padding">
+							{icon}
+						</div>
+					</div>
+				);
+			} else {
+				return (
+					<div className="ui two column center aligned grid zero-margin middle aligned">
+						<div className="five wide column zero-padding">
+							{icon}
+						</div>
+						<div
+							className="eleven wide column left aligned player"
+							style={{ padding: "0px 10px" }}
+						>
+							{text}
+						</div>
+					</div>
+				);
+			}
+		}
+		return null;
+	};
+
 	return (
 		<Card>
 			<div className="game-card" style={{ position: "relative" }}>
 				<div style={{ position: "relative" }}>
 					{renderTopRightIcon()}
-					<div className="ui two column center aligned grid zero-margin">
+					<div
+						className="ui two column center middle aligned grid zero-margin"
+						style={{ padding: "10px" }}
+					>
 						<div
 							className="column"
 							style={{ padding: "0px 20px 0px 0px" }}
 						>
-							<div className="ui two column center aligned grid zero-margin middle aligned">
-								<div className="eleven wide column right aligned player">
-									<h2 className="ui header">
-										<div className="player">
-											<span className="name">
-												{whitePlayer.name}
-											</span>
-											<div className="sub header">
-												<span>White</span>
-											</div>
-										</div>
-									</h2>
-								</div>
-								<div className="five wide column zero-padding">
-									<i className="big icons">
-										<i className="main small user circle fitted icon " />
-										{whitePlayer.host ? (
-											<i className="chess king fitted top left corner sub icon" />
-										) : null}
-									</i>
-								</div>
-							</div>
+							{renderPlayer(whitePlayer, "White")}
 						</div>
 						<div
 							className="column"
 							style={{ padding: "0px 0px 0px 20px" }}
 						>
-							<div className="ui two column center aligned grid zero-margin middle aligned">
-								<div className="five wide column zero-padding">
-									<i className="big icons">
-										<i className="main small user circle fitted icon " />
-										{blackPlayer.host ? (
-											<i className="chess king fitted top right corner sub icon" />
-										) : null}
-									</i>
-								</div>
-								<div className="eleven wide column left aligned player">
-									<h2 className="ui header">
-										<div className="player">
-											<span className="name">
-												{blackPlayer.name}
-											</span>
-											<div className="sub header">
-												<span>Black</span>
-											</div>
-										</div>
-									</h2>
-								</div>
-							</div>
+							{renderPlayer(blackPlayer, "Black")}
 						</div>
 					</div>
 					<div className="ui vertical divider">VS</div>

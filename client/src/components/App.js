@@ -37,13 +37,17 @@ const game3 = {
 };
 
 const App = () => {
+	const { height } = useWindowDimentions();
 	return (
 		<BrowserRouter>
 			<Menu />
-			<div className="ui container centered text">
-				<Route exact path="/" component={GameList} />
+			<div
+				className="ui container centered background"
+				style={{ height: height - 92 }}
+			>
+				<Route exact path="/" render={() => <GameList />} />
 				<Route
-					path="/chess"
+					path="/chess/:id"
 					render={() => <ChessBoard game={chess} />}
 				/>
 			</div>
@@ -55,16 +59,20 @@ const App = () => {
 const GameList = props => {
 	const { height } = useWindowDimentions();
 	return (
-		<div className="scrolling" style={{ maxHeight: height - 106 }}>
-			<div>
-				<GameCard game={game1} />
-				<GameCard game={game2} />
-				<GameCard game={game3} />
-				<GameCard game={game3} />
-				<GameCard game={game3} />
-				<GameCard game={game3} />
-				<GameCard game={game3} />
-			</div>
+		<div
+			className="ui container centered text scrolling"
+			style={{ maxHeight: height - 94 }}
+		>
+			<GameCard game={game1} />
+			<GameCard game={game2} />
+			<GameCard game={game3} />
+			<GameCard game={game3} />
+			<GameCard game={game3} />
+			<GameCard game={game3} />
+			<GameCard game={game3} />
+			<GameCard game={game2} />
+			<GameCard game={game1} />
+			<GameCard game={game3} />
 		</div>
 	);
 };

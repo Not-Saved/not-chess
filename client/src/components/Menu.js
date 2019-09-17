@@ -13,15 +13,13 @@ const Menu = ({ location }) => {
 	};
 
 	return (
-		<div className="ui secondary pointing huge menu">
-			<Link to="/" className={`${isActive("")} item`}>
-				<i className="home menu fitted icon"></i>
-				<span className="menu text">Home</span>
-			</Link>
-			<Link to="/chess" className={`${isActive("chess")} item`}>
-				<i className="chess menu fitted icon"></i>
-				<span className="menu text">Chess</span>
-			</Link>
+		<div className="ui secondary pointing huge menu" style={{ margin: 0 }}>
+			<div>
+				<Link to="/" className={`${isActive("")} item`}>
+					<i className="home menu fitted icon"></i>
+					<span className="menu text">Home</span>
+				</Link>
+			</div>
 			<div className="right menu">
 				<Link to="/logout" className={`${isActive("logout")} item`}>
 					<i className="sign-out menu fitted icon"></i>

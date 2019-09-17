@@ -62,13 +62,10 @@ const ChessBoard = ({ game }) => {
 	};
 
 	return (
-		<div
-			style={{
-				display: "flex",
-				justifyContent: "center"
-			}}
-		>
-			<div className="nc-chessgrid">{renderSquares()}</div>
+		<div className="nc-grid-container">
+			<div>
+				<div className="nc-chessgrid">{renderSquares()}</div>
+			</div>
 		</div>
 	);
 };
