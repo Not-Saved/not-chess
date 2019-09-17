@@ -3,10 +3,33 @@
 	--nc-piece-size: 6vh;
 }
 
-@media only screen and (max-width: 780px) {
+@media screen and (max-width: 500px) {
 	:root {
-		--nc-square-size: 10vw;
-		--nc-piece-size: 8vw;
+		--nc-square-size: 6vh;
+		--nc-piece-size: 4vh;
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	:root {
+		--nc-square-size: 8vh;
+		--nc-piece-size: 6vh;
+	}
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
+	@media screen and (max-width: 500px) {
+		:root {
+			--nc-square-size: 6vw;
+			--nc-piece-size: 4vw;
+		}
+	}
+
+	@media screen and (max-width: 1200px) {
+		:root {
+			--nc-square-size: 9vw;
+			--nc-piece-size: 7vw;
+		}
 	}
 }
 
