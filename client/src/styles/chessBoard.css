@@ -3,14 +3,7 @@
 	--nc-piece-size: 6vh;
 }
 
-@media only screen and (max-width: 768) {
-	:root {
-		--nc-square-size: 6.5vw;
-		--nc-piece-size: 4.5vw;
-	}
-}
-
-@media only screen and (max-width: 580px) {
+@media only screen and (max-width: 780px) {
 	:root {
 		--nc-square-size: 10vw;
 		--nc-piece-size: 8vw;
