@@ -30,7 +30,9 @@ const ChessGame = ({ location: { state: game } }) => {
 			className="chess-game"
 		>
 			{renderCorners()}
-			<ChessBoard game={chessJsGame} />
+			<div style={{ height: "100%" }} className="animate">
+				<ChessBoard game={chessJsGame} />
+			</div>
 		</div>
 	);
 };

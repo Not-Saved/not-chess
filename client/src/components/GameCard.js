@@ -5,20 +5,30 @@ import Card from "./Card";
 import "../styles/gameCard.css";
 
 const GameCard = ({ game, history }) => {
-	const renderCorners = () => {
-		return (
-			<>
+	const renderTopRight = () => {
+		if (game.whitePlayer.name && game.blackPlayer.name) {
+			return (
 				<div className="top right angle">
 					<i
 						className={`external fitted clickable icon`}
 						onClick={() => history.push(`/chess/${game.id}`, game)}
 					/>
 				</div>
-				<div className="bottom left angle">
-					<i className="hashtag fitted icon" />
-					<span className="sub text"> {game.id}</span>
-				</div>
-			</>
+			);
+		}
+		return (
+			<div className="top right angle">
+				<i className={`user times fitted icon`} />
+			</div>
+		);
+	};
+
+	const renderBottomLeft = () => {
+		return (
+			<div className="bottom left angle">
+				<i className="hashtag fitted icon" />
+				<span className="sub text"> {game.id}</span>
+			</div>
 		);
 	};
 
@@ -89,53 +99,46 @@ const GameCard = ({ game, history }) => {
 		);
 
 		const icon = direction => {
-			if (player.name)
+			return (
+				<div className="six wide center aligned column zero-padding">
+					<i className="big icons">
+						<i className="main small user circle fitted icon" />
+						{player.host ? (
+							<i
+								className={`chess king fitted top ${direction} corner sub icon`}
+							/>
+						) : null}
+					</i>
+				</div>
+			);
+		};
+
+		if (player.name) {
+			if (color === "White") {
 				return (
-					<div className="six wide center aligned column zero-padding">
-						<i className="big icons">
-							<i className="main small user circle fitted icon " />
-							{player.host ? (
-								<i
-									className={`chess king fitted top ${direction} corner sub icon`}
-								/>
-							) : null}
-						</i>
+					<div className="ui middle aligned grid zero-margin ">
+						{playerHeader("right")}
+						{icon("left")}
 					</div>
 				);
-			else {
+			} else {
 				return (
-					<div className="six wide center aligned column zero-padding">
-						<i className="big icons">
-							<i className="main small circle outline fitted icon"></i>
-							<i className="join small plus fitted icon"></i>
-						</i>
+					<div className="ui middle aligned grid zero-margin">
+						{icon("right")}
+						{playerHeader("left")}
 					</div>
 				);
 			}
-		};
-
-		if (color === "White") {
-			return (
-				<div className="ui two column middle aligned grid zero-margin ">
-					{playerHeader("right")}
-					{icon("left")}
-				</div>
-			);
-		} else {
-			return (
-				<div className="ui two column middle aligned grid zero-margin">
-					{icon("right")}
-					{playerHeader("left")}
-				</div>
-			);
 		}
+		return null;
 	};
 
 	return (
 		<Card>
 			<div className="game-card" style={{ position: "relative" }}>
 				<div style={{ position: "relative" }}>
-					{renderCorners()}
+					{renderTopRight()}
+					{renderBottomLeft()}
 					<div
 						className="ui two column grid zero-margin"
 						style={{ padding: "10px" }}

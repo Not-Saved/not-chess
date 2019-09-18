@@ -74,7 +74,7 @@
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
 	:root {
 		--nc-square-size: 6vh;
 		--nc-piece-size: 4vh;
