@@ -30,9 +30,9 @@ const Menu = ({ location }) => {
 				<i className="home menu fitted icon"></i>
 				<span className="menu text">Home</span>
 			</Link>
-			<Link to="/my-games" className={`${isActive("my-games")} item`}>
+			<Link to="/games" className={`${isActive("games")} item`}>
 				<i className="chess menu fitted icon"></i>
-				<span className="menu text">My Games</span>
+				<span className="menu text">Games</span>
 			</Link>
 			<div className="right menu">{renderLogout()}</div>
 		</div>

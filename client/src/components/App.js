@@ -7,6 +7,7 @@ import Chess from "chess.js";
 import Menu from "./Menu";
 import Footer from "./Footer";
 import ChessGame from "./ChessGame";
+import Home from "./Home";
 const chess = new Chess();
 const chess2 = new Chess();
 chess2.move("a3");
@@ -47,8 +48,8 @@ const App = () => {
 				className="ui container centered background"
 				style={{ height: height - 92 }}
 			>
-				<Route exact path="/" render={() => <GameList />} />
-				<Route exact path="/my-games" render={() => <GameList />} />
+				<Route exact path="/" render={() => <Home />} />
+				<Route exact path="/games" render={() => <GameList />} />
 				<Route
 					path="/chess/:id"
 					render={() => <ChessGame game={chess} />}

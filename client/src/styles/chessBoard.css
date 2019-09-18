@@ -1,6 +1,70 @@
 :root {
-	--nc-square-size: 8.5vh;
-	--nc-piece-size: 6.5vh;
+	--nc-square-size: 8vh;
+	--nc-piece-size: 6vh;
+}
+
+.nc-chessgrid {
+	display: inline-grid;
+	grid-template-columns: repeat(8, var(--nc-square-size));
+	grid-template-rows: repeat(8, var(--nc-square-size));
+	border: 0.2em solid black;
+	padding: 0px;
+}
+
+.nc-grid-container {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.nc-piece {
+	font-size: var(--nc-piece-size);
+	text-align: center;
+	line-height: var(--nc-square-size);
+	height: var(--nc-square-size);
+	width: var(--nc-square-size);
+	height: var(--nc-square-size);
+	cursor: pointer;
+	user-select: none;
+}
+
+.nc-piece.nc-black {
+	color: rgb(175, 49, 66);
+}
+
+.nc-piece.nc-white {
+	color: rgb(57, 113, 158);
+}
+
+.nc-square.nc-black {
+	background-color: rgb(26, 26, 26);
+}
+
+.nc-square.nc-white {
+	background-color: rgb(235, 235, 235);
+}
+
+.nc-grid-border {
+	padding: 0.5vmin;
+	border: 0.5vmin solid;
+}
+
+.nc-corner-border {
+	padding: 0.8vmin;
+	background: linear-gradient(to right, black 0.3vmin, transparent 0px) 0 0,
+		linear-gradient(to bottom, black 0.3vmin, transparent 0px) 0 0,
+		linear-gradient(to left, black 0.3vmin, transparent 0px) 100% 100%,
+		linear-gradient(to top, black 0.3vmin, transparent 0px) 100% 100%,
+		linear-gradient(to right, black 0.3vmin, transparent 0px) 0% 100%,
+		linear-gradient(to bottom, black 0.3vmin, transparent 0px) 100% 0,
+		linear-gradient(to left, black 0.3vmin, transparent 0px) 100% 0%,
+		linear-gradient(to top, black 0.3vmin, transparent 0px) 0% 100%;
+
+	background-repeat: no-repeat;
+	background-size: calc(var(--nc-square-size) * 1.5)
+		calc(var(--nc-square-size) * 1.5);
 }
 
 @media screen and (max-width: 1080px) {
@@ -31,48 +95,4 @@
 			--nc-piece-size: 7.5vw;
 		}
 	}
-}
-
-.nc-chessgrid {
-	display: inline-grid;
-	grid-template-columns: repeat(8, var(--nc-square-size));
-	grid-template-rows: repeat(8, var(--nc-square-size));
-	border: 5px solid black;
-	padding: 0px;
-}
-
-.nc-grid-container {
-	display: flex;
-	position: relative;
-	justify-content: center;
-	align-items: center;
-
-	height: 100%;
-}
-
-.nc-piece {
-	font-size: var(--nc-piece-size);
-	text-align: center;
-	line-height: var(--nc-square-size);
-	height: var(--nc-square-size);
-	width: var(--nc-square-size);
-	height: var(--nc-square-size);
-	cursor: pointer;
-	user-select: none;
-}
-
-.nc-piece.nc-black {
-	color: green;
-}
-
-.nc-piece.nc-white {
-	color: red;
-}
-
-.nc-square.nc-black {
-	background-color: black;
-}
-
-.nc-square.nc-white {
-	background-color: white;
 }

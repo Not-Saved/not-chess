@@ -63,8 +63,10 @@ const ChessBoard = ({ game }) => {
 
 	return (
 		<div className="nc-grid-container">
-			<div>
-				<div className="nc-chessgrid">{renderSquares()}</div>
+			<div className="nc-grid-border">
+				<div className="nc-corner-border">
+					<div className="nc-chessgrid">{renderSquares()}</div>
+				</div>
 			</div>
 		</div>
 	);

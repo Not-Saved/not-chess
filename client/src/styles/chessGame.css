@@ -34,11 +34,21 @@
 	}
 
 	.chess-game .top.left.angle {
-		top: 22px;
+		top: 17px;
 	}
 
 	.chess-game .bottom.right.angle {
 		bottom: 5px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.chess-game .top.left.angle {
+		left: 8px;
+	}
+
+	.chess-game .bottom.right.angle {
+		right: 8px;
 	}
 }
 
