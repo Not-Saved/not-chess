@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import ChessBoard from "./ChessBoard";
 import GameCard from "./GameCard";
 import useWindowDimentions from "../util/useWindowsDimensions";
 
 import Chess from "chess.js";
 import Menu from "./Menu";
 import Footer from "./Footer";
+import ChessGame from "./ChessGame";
 const chess = new Chess();
+const chess2 = new Chess();
+chess2.move("a3");
 
 const game1 = {
 	id: 533,
@@ -15,7 +17,7 @@ const game1 = {
 	whitePlayer: { name: "Sabrina" },
 	blackPlayer: { name: "Loris", host: true },
 	moves: chess.history(),
-	fen: chess.fen()
+	fen: chess2.fen()
 };
 
 const game2 = {
@@ -46,9 +48,10 @@ const App = () => {
 				style={{ height: height - 92 }}
 			>
 				<Route exact path="/" render={() => <GameList />} />
+				<Route exact path="/my-games" render={() => <GameList />} />
 				<Route
 					path="/chess/:id"
-					render={() => <ChessBoard game={chess} />}
+					render={() => <ChessGame game={chess} />}
 				/>
 			</div>
 			<Footer />
@@ -59,21 +62,23 @@ const App = () => {
 const GameList = props => {
 	const { height } = useWindowDimentions();
 	return (
-		<div
-			className="ui container centered text scrolling"
-			style={{ maxHeight: height - 94 }}
-		>
-			<GameCard game={game1} />
-			<GameCard game={game2} />
-			<GameCard game={game3} />
-			<GameCard game={game3} />
-			<GameCard game={game3} />
-			<GameCard game={game3} />
-			<GameCard game={game3} />
-			<GameCard game={game2} />
-			<GameCard game={game1} />
-			<GameCard game={game3} />
-		</div>
+		<>
+			<div
+				className="ui container centered text scrolling"
+				style={{ maxHeight: height - 94 }}
+			>
+				<GameCard game={game1} />
+				<GameCard game={game2} />
+				<GameCard game={game3} />
+				<GameCard game={game3} />
+				<GameCard game={game3} />
+				<GameCard game={game3} />
+				<GameCard game={game3} />
+				<GameCard game={game2} />
+				<GameCard game={game1} />
+				<GameCard game={game3} />
+			</div>
+		</>
 	);
 };
 

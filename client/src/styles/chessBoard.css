@@ -1,13 +1,6 @@
 :root {
-	--nc-square-size: 8vh;
-	--nc-piece-size: 6vh;
-}
-
-@media screen and (max-width: 500px) {
-	:root {
-		--nc-square-size: 6vh;
-		--nc-piece-size: 4vh;
-	}
+	--nc-square-size: 8.5vh;
+	--nc-piece-size: 6.5vh;
 }
 
 @media screen and (max-width: 1080px) {
@@ -17,18 +10,25 @@
 	}
 }
 
-@media screen and (max-aspect-ratio: 1/1) {
-	@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) {
+	:root {
+		--nc-square-size: 6vh;
+		--nc-piece-size: 4vh;
+	}
+}
+
+@media screen and (max-aspect-ratio: 14/16) {
+	@media screen and (max-width: 1200px) {
 		:root {
-			--nc-square-size: 6vw;
-			--nc-piece-size: 4vw;
+			--nc-square-size: 8vw;
+			--nc-piece-size: 6vw;
 		}
 	}
 
-	@media screen and (max-width: 1200px) {
+	@media screen and (max-width: 440px) {
 		:root {
-			--nc-square-size: 9vw;
-			--nc-piece-size: 7vw;
+			--nc-square-size: 9.5vw;
+			--nc-piece-size: 7.5vw;
 		}
 	}
 }
@@ -43,8 +43,10 @@
 
 .nc-grid-container {
 	display: flex;
+	position: relative;
 	justify-content: center;
 	align-items: center;
+
 	height: 100%;
 }
 

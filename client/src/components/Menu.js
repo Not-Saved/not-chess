@@ -12,20 +12,29 @@ const Menu = ({ location }) => {
 		return active.split("/")[1] === string ? "active" : "";
 	};
 
-	return (
-		<div className="ui secondary pointing huge menu" style={{ margin: 0 }}>
-			<div>
-				<Link to="/" className={`${isActive("")} item`}>
-					<i className="home menu fitted icon"></i>
-					<span className="menu text">Home</span>
-				</Link>
-			</div>
-			<div className="right menu">
+	const renderLogout = () => {
+		if (true) {
+			return (
 				<Link to="/logout" className={`${isActive("logout")} item`}>
 					<i className="sign-out menu fitted icon"></i>
 					<span className="menu text">Logout</span>
 				</Link>
-			</div>
+			);
+		}
+		return null;
+	};
+
+	return (
+		<div className="ui secondary pointing huge menu" style={{ margin: 0 }}>
+			<Link to="/" className={`${isActive("")} item`}>
+				<i className="home menu fitted icon"></i>
+				<span className="menu text">Home</span>
+			</Link>
+			<Link to="/my-games" className={`${isActive("my-games")} item`}>
+				<i className="chess menu fitted icon"></i>
+				<span className="menu text">My Games</span>
+			</Link>
+			<div className="right menu">{renderLogout()}</div>
 		</div>
 	);
 };
