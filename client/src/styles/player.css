@@ -1,0 +1,70 @@
+.player .main.flexbox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+.player .secondary.flexbox {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	height: 30px;
+}
+
+.player .text {
+	font-size: 27px;
+	height: 48px;
+	line-height: 48px;
+}
+
+.player .player.circular.image {
+	height: 48px;
+	width: 48px;
+}
+
+.player .turn.icon {
+	font-size: 22px;
+}
+
+.divider-margin {
+	margin: 5px 0px !important;
+}
+
+@media screen and (max-width: 990px), (max-height: 600px) {
+	.player .text {
+		font-size: 18px;
+		height: 35px;
+		line-height: 35px;
+	}
+
+	.player .player.circular.image {
+		height: 35px;
+		width: 35px;
+	}
+
+	.player .turn.icon {
+		font-size: 15px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.player .text {
+		font-size: 14px;
+		height: 25px;
+		line-height: 25px;
+	}
+
+	.player .player.circular.image {
+		height: 25px;
+		width: 25px;
+	}
+
+	.player .turn.icon {
+		font-size: 11px;
+	}
+
+	.divider-margin {
+		margin: 1px 0px !important;
+	}
+}

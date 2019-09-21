@@ -6,8 +6,8 @@ import useWindowDimentions from "../util/useWindowsDimensions";
 import Chess from "chess.js";
 import Menu from "./Menu";
 import Footer from "./Footer";
-import ChessGame from "./ChessGame";
 import Home from "./Home";
+import ChessGameController from "./chessGame/ChessGameController";
 const chess = new Chess();
 const chess2 = new Chess();
 chess2.move("a3");
@@ -15,8 +15,8 @@ chess2.move("a3");
 const game1 = {
 	id: 533,
 	date: new Date(),
-	whitePlayer: { name: "Sabrina" },
-	blackPlayer: { name: "Loris", host: true },
+	whitePlayer: { name: "Sabrina", icon: "kristy.png" },
+	blackPlayer: { name: "Loris", host: true, icon: "daniel.jpg" },
 	moves: chess.history(),
 	fen: chess2.fen()
 };
@@ -24,8 +24,8 @@ const game1 = {
 const game2 = {
 	id: 2,
 	date: new Date(),
-	whitePlayer: { name: "Loris", host: true },
-	blackPlayer: { name: "Mark" },
+	whitePlayer: { name: "Loris", host: true, icon: "daniel.jpg" },
+	blackPlayer: { name: "Mark", icon: "matthew.png" },
 	moves: chess.history(),
 	fen: chess.fen()
 };
@@ -33,8 +33,8 @@ const game2 = {
 const game3 = {
 	id: 2,
 	date: new Date(),
-	whitePlayer: { name: "Tom", host: true },
-	blackPlayer: { name: "Mark" },
+	whitePlayer: { name: "Tom", host: true, icon: "patrick.png" },
+	blackPlayer: { name: "Mark", icon: "matthew.png" },
 	moves: chess.history(),
 	fen: chess.fen()
 };
@@ -51,8 +51,8 @@ const App = () => {
 				<Route exact path="/" render={() => <Home />} />
 				<Route exact path="/games" render={() => <GameList />} />
 				<Route
-					path="/chess/:id"
-					render={() => <ChessGame game={chess} />}
+					path="/games/:id"
+					render={() => <ChessGameController />}
 				/>
 			</div>
 			<Footer />

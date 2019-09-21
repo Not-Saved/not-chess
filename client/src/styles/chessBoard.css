@@ -26,7 +26,6 @@
 	height: var(--nc-square-size);
 	width: var(--nc-square-size);
 	height: var(--nc-square-size);
-	cursor: pointer;
 	user-select: none;
 }
 
@@ -44,6 +43,24 @@
 
 .nc-square.nc-white {
 	background-color: rgb(235, 235, 235);
+}
+
+.nc-black.nc-piece.nc-move-highlight {
+	background-color: rgb(175, 49, 66, 0.53);
+	cursor: pointer;
+}
+
+.nc-white.nc-piece.nc-move-highlight {
+	background-color: rgb(57, 113, 158, 0.5);
+	cursor: pointer;
+}
+
+.nc-black.nc-piece-highlight {
+	background-color: rgb(175, 49, 66, 0.5);
+}
+
+.nc-white.nc-piece-highlight {
+	background-color: rgb(57, 113, 158, 0.5);
 }
 
 .nc-grid-border {

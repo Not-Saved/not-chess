@@ -11,7 +11,7 @@ const GameCard = ({ game, history }) => {
 				<div className="top right angle">
 					<i
 						className={`external fitted clickable icon`}
-						onClick={() => history.push(`/chess/${game.id}`, game)}
+						onClick={() => history.push(`/games/${game.id}`, game)}
 					/>
 				</div>
 			);
@@ -98,17 +98,14 @@ const GameCard = ({ game, history }) => {
 			</div>
 		);
 
-		const icon = direction => {
+		const icon = () => {
 			return (
 				<div className="six wide center aligned column zero-padding">
-					<i className="big icons">
-						<i className="main small user circle fitted icon" />
-						{player.host ? (
-							<i
-								className={`chess king fitted top ${direction} corner sub icon`}
-							/>
-						) : null}
-					</i>
+					<img
+						src={`/${player.icon}`}
+						className="ui circular middle aligned main image"
+						alt=""
+					/>
 				</div>
 			);
 		};
@@ -145,13 +142,13 @@ const GameCard = ({ game, history }) => {
 					>
 						<div
 							className="center aligned column"
-							style={{ padding: "0px 20px 0px 0px" }}
+							style={{ padding: "0px 1em 0px 0px" }}
 						>
 							{renderPlayer(game.whitePlayer, "White")}
 						</div>
 						<div
 							className="middle aligned column"
-							style={{ padding: "0px 0px 0px 20px" }}
+							style={{ padding: "0px 0px 0px 1em" }}
 						>
 							{renderPlayer(game.blackPlayer, "Black")}
 						</div>

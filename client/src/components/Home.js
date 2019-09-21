@@ -11,11 +11,11 @@ const Home = () => {
 				height: "100%"
 			}}
 		>
-			<h1 class="ui icon header">
-				<i class="	settings icon"></i>
-				<div class="content">
+			<h1 className="ui icon header">
+				<i className="	settings icon"></i>
+				<div className="content">
 					Welcome back!
-					<div class="sub header">Work in progress...</div>
+					<div className="sub header">Work in progress...</div>
 				</div>
 			</h1>
 		</div>
