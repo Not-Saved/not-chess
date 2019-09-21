@@ -46,21 +46,21 @@
 }
 
 .nc-black.nc-piece.nc-move-highlight {
-	background-color: rgb(175, 49, 66, 0.53);
+	background-color: rgb(175, 49, 66, 0.4);
 	cursor: pointer;
 }
 
 .nc-white.nc-piece.nc-move-highlight {
-	background-color: rgb(57, 113, 158, 0.5);
+	background-color: rgb(57, 113, 158, 0.4);
 	cursor: pointer;
 }
 
 .nc-black.nc-piece-highlight {
-	background-color: rgb(175, 49, 66, 0.5);
+	background-color: rgb(175, 49, 66, 0.4);
 }
 
 .nc-white.nc-piece-highlight {
-	background-color: rgb(57, 113, 158, 0.5);
+	background-color: rgb(57, 113, 158, 0.4);
 }
 
 .nc-grid-border {

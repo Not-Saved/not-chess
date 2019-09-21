@@ -25,12 +25,12 @@
 @media screen and (max-width: 500px) {
 	.chess-game .top.left.angle {
 		left: 4vw;
-		top: 8px;
+		top: 5vw;
 	}
 
 	.chess-game .bottom.right.angle {
 		right: 4vw;
-		bottom: 8px;
+		bottom: 5vw;
 	}
 }
 

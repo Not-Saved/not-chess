@@ -50,18 +50,18 @@
 
 @media screen and (max-width: 500px) {
 	.player .text {
-		font-size: 14px;
-		height: 25px;
-		line-height: 25px;
+		font-size: 20px;
+		height: 30px;
+		line-height: 30px;
 	}
 
 	.player .player.circular.image {
-		height: 25px;
-		width: 25px;
+		height: 30px;
+		width: 30px;
 	}
 
 	.player .turn.icon {
-		font-size: 11px;
+		font-size: 16px;
 	}
 
 	.divider-margin {
