@@ -2,6 +2,7 @@ import React from "react";
 
 import Card from "../Card";
 import "../../styles/gameCard.css";
+import { getGameStateString } from "../../util";
 
 const GameCard = ({ game, onClick }) => {
 	const renderTopRight = () => {
@@ -63,7 +64,7 @@ const GameCard = ({ game, onClick }) => {
 						<div>
 							<i className="hourglass icon" />
 							<span className="sub text">
-								{Math.floor(game.moves.length / 2 + 1)}
+								{getGameStateString(game.state)}
 							</span>
 						</div>
 					</div>

@@ -4,6 +4,7 @@ import { Modal } from "semantic-ui-react";
 import Card from "../Card";
 
 import "../../styles/gameModal.css";
+import { getGameStateString } from "../../util";
 
 const GameModal = ({ history, open, setOpen, game, setGame }) => {
 	const onClose = () => {
@@ -198,9 +199,7 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 										<h5 className="ui tiny icon header">
 											<i className="hourglass half sub fitted icon"></i>
 											<div className="sub text content">
-												{Math.floor(
-													game.moves.length / 2 + 1
-												)}
+												{getGameStateString(game.state)}
 											</div>
 										</h5>
 									</div>
