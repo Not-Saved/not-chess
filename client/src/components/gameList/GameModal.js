@@ -79,16 +79,24 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 								style={{ margin: "8px 14px 14px 14px" }}
 							></div>
 							<div
-								className="grid three column row"
+								className="grid three column center aligned row "
 								style={{ position: "relative", padding: 0 }}
 							>
 								<div
 									className="grid seven wide column"
-									style={{ paddingRight: 0 }}
+									style={{
+										paddingRight: 0
+									}}
 								>
 									<h2 className="ui icon header">
 										{game.whitePlayer.name ? (
-											<div className="player icon">
+											<div
+												className="player icon"
+												style={{
+													display: "flex",
+													justifyContent: "center"
+												}}
+											>
 												<img
 													src={`/${game.whitePlayer.icon}`}
 													className="ui circular image"
@@ -130,7 +138,13 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 								>
 									<h2 className="ui icon header">
 										{game.blackPlayer.name ? (
-											<div className="player icon">
+											<div
+												className="player icon"
+												style={{
+													display: "flex",
+													justifyContent: "center"
+												}}
+											>
 												<img
 													src={`/${game.blackPlayer.icon}`}
 													className="ui circular image"
