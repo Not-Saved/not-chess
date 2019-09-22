@@ -61,8 +61,8 @@
 		width: 32px;
 		font-size: 32px;
 	}
-	.game-card .join.icon {
-		font-size: 16px;
+	.game-card .empty.icon {
+		font-size: 20px;
 	}
 	.game-card .sub.icon {
 		font-size: 8px !important;

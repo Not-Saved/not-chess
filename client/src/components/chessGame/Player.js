@@ -15,11 +15,13 @@ const Player = ({ position, turn, player, playerField }) => {
 						style={{ marginRight: 7 }}
 					/>
 
-					<div className="text">{player.name}</div>
+					<div className="text" style={{ marginRight: 7 }}>
+						{player.name}
+					</div>
 
 					<div className="text">
 						<i
-							className="hourglass half turn icon"
+							className="hourglass half turn fitted icon"
 							style={{ visibility }}
 						></i>
 					</div>
@@ -32,11 +34,13 @@ const Player = ({ position, turn, player, playerField }) => {
 				<div className="main flexbox">
 					<div className="text">
 						<i
-							className="hourglass half turn icon"
+							className="hourglass half turn fitted icon"
 							style={{ visibility }}
 						></i>
 					</div>
-					<div className="text">{player.name}</div>
+					<div className="text" style={{ marginLeft: 7 }}>
+						{player.name}
+					</div>
 					<img
 						src={`/${player.icon}`}
 						className="ui circular player middle aligned image"

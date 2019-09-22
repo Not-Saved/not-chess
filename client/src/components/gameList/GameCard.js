@@ -1,17 +1,18 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 
-import Card from "./Card";
-import "../styles/gameCard.css";
+import Card from "../Card";
+import "../../styles/gameCard.css";
 
-const GameCard = ({ game, history }) => {
+const GameCard = ({ game, onClick }) => {
 	const renderTopRight = () => {
 		if (game.whitePlayer.name && game.blackPlayer.name) {
 			return (
 				<div className="top right angle">
 					<i
-						className={`external fitted clickable icon`}
-						onClick={() => history.push(`/games/${game.id}`, game)}
+						className={`lock fitted icon`}
+						style={{
+							visibility: game.locked ? "visible" : "hidden"
+						}}
 					/>
 				</div>
 			);
@@ -110,8 +111,8 @@ const GameCard = ({ game, history }) => {
 			);
 		};
 
-		if (player.name) {
-			if (color === "White") {
+		if (color === "White") {
+			if (player.name) {
 				return (
 					<div className="ui middle aligned grid zero-margin ">
 						{playerHeader("right")}
@@ -121,18 +122,53 @@ const GameCard = ({ game, history }) => {
 			} else {
 				return (
 					<div className="ui middle aligned grid zero-margin">
+						<div className="ten wide center aligned column zero-padding"></div>
+						<div className="six wide center aligned column zero-padding">
+							<i
+								className={`plus ${
+									window.innerWidth > 500
+										? "circular inverted"
+										: "grey"
+								} empty fitted icon`}
+							/>
+						</div>
+					</div>
+				);
+			}
+		} else {
+			if (player.name) {
+				return (
+					<div className="ui middle aligned grid zero-margin">
 						{icon("right")}
 						{playerHeader("left")}
 					</div>
 				);
+			} else {
+				return (
+					<div className="ui middle aligned grid zero-margin">
+						<div className="six wide center aligned column zero-padding">
+							<i
+								className={`plus ${
+									window.innerWidth > 500
+										? "circular inverted"
+										: "grey"
+								} empty fitted icon`}
+							/>
+						</div>
+						<div className="ten wide center aligned column zero-padding"></div>
+					</div>
+				);
 			}
 		}
-		return null;
 	};
 
 	return (
 		<Card>
-			<div className="game-card" style={{ position: "relative" }}>
+			<div
+				className="game-card"
+				style={{ position: "relative", cursor: "pointer" }}
+				onClick={onClick}
+			>
 				<div style={{ position: "relative" }}>
 					{renderTopRight()}
 					{renderBottomLeft()}
@@ -141,7 +177,7 @@ const GameCard = ({ game, history }) => {
 						style={{ padding: "10px" }}
 					>
 						<div
-							className="center aligned column"
+							className="middle aligned column"
 							style={{ padding: "0px 1em 0px 0px" }}
 						>
 							{renderPlayer(game.whitePlayer, "White")}
@@ -161,4 +197,4 @@ const GameCard = ({ game, history }) => {
 	);
 };
 
-export default withRouter(GameCard);
+export default GameCard;

@@ -93,8 +93,8 @@
 
 @media screen and (max-width: 550px) {
 	:root {
-		--nc-square-size: 6vh;
-		--nc-piece-size: 4vh;
+		--nc-square-size: 6.5vh;
+		--nc-piece-size: 4.5vh;
 	}
 }
 
@@ -108,8 +108,8 @@
 
 	@media screen and (max-width: 440px) {
 		:root {
-			--nc-square-size: 9.5vw;
-			--nc-piece-size: 7.5vw;
+			--nc-square-size: 10.5vw;
+			--nc-piece-size: 8.5vw;
 		}
 	}
 }
