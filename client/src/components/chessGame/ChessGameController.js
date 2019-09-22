@@ -19,14 +19,18 @@ const ChessGameController = ({ location: { state: game } }) => {
 		if (chessJsGame) {
 			const newChessJsGame = new Chess(chessJsGame.fen());
 			if (newChessJsGame.in_checkmate()) {
-				setWinner(game.winner);
+				const winnerColor =
+					newChessJsGame.turn() === "w"
+						? "blackPlayer"
+						: "whitePlayer";
+				game.winner = setWinner(game[winnerColor]);
 				return;
 			}
 			if (newChessJsGame.game_over()) {
 				setWinner("draw");
 				return;
 			}
-			if (chessJsGame.turn() !== playingColor) {
+			if (newChessJsGame.turn() !== playingColor) {
 				const moves = newChessJsGame.moves();
 				const move = moves[Math.floor(Math.random() * moves.length)];
 				newChessJsGame.move(move);
