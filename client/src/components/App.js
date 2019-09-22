@@ -24,7 +24,7 @@ const App = () => {
 					render={() => <GameListController />}
 				/>
 				<Route
-					path="/games/:id"
+					path="/game/:id"
 					render={() => <ChessGameController />}
 				/>
 			</div>

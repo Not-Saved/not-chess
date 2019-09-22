@@ -1,0 +1,89 @@
+.win.modal {
+	width: 35vw;
+	font-size: 18px;
+	color: #000;
+}
+
+.nc-win-modal {
+	display: inline-block !important;
+}
+
+.main.layout {
+	padding: 40px 0px 20px 0px;
+}
+
+.main.layout .ui.header .circular.image {
+	height: 150px;
+	width: 150px;
+}
+
+.main.layout .ui.header .content {
+	font-size: 32px;
+	margin: 5px 0px 0px 0px;
+}
+
+.main.layout .ui.header .sub.header {
+	font-size: 18px;
+	margin: 5px 0px 0px 0px;
+}
+
+.back .ui.header {
+	font-size: 19px;
+}
+
+@media screen and (max-width: 1300px) {
+	.win.modal {
+		width: 60vw;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.win.modal {
+		width: 90vw;
+	}
+
+	.main.layout {
+		padding: 50px 40px 20px 40px;
+	}
+
+	.main.layout .ui.header .circular.image {
+		height: 120px;
+		width: 120px;
+	}
+
+	.main.layout .ui.header .content {
+		font-size: 28px;
+		margin: 5px 0px 0px 0px;
+	}
+
+	.main.layout .ui.header .sub.header {
+		font-size: 16px;
+		margin: 5px 0px 0px 0px;
+	}
+
+	.back .ui.header {
+		font-size: 15px;
+	}
+}
+
+@media screen and (max-height: 400px) {
+	.win.modal {
+		height: 95vh;
+		width: 70vw;
+	}
+
+	.main.layout .ui.header .circular.image {
+		height: 120px;
+		width: 120px;
+	}
+
+	.main.layout .ui.header .content {
+		font-size: 28px;
+		margin: 5px 0px 0px 0px;
+	}
+
+	.main.layout .ui.header .sub.header {
+		font-size: 16px;
+		margin: 5px 0px 0px 0px;
+	}
+}

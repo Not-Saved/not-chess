@@ -12,7 +12,7 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 	};
 	const onWatch = e => {
 		e.stopPropagation();
-		history.push(`/games/${game.id}`, game);
+		history.push(`/game/${game.id}`, game);
 	};
 	if (game) {
 		return (

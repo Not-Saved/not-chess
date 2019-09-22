@@ -30,15 +30,22 @@ export default GameListController;
 
 const chess = new Chess();
 const chess2 = new Chess();
+chess2.move("e3");
+chess2.move("f6");
 chess2.move("a3");
+chess2.move("f5");
+chess2.move("a4");
+chess2.move("g5");
+chess2.move({ from: "d1", to: "h5" });
 
 const game1 = {
 	id: 533,
 	date: new Date(),
-	whitePlayer: {},
+	whitePlayer: { name: "Sabrina", icon: "elyse.png" },
 	blackPlayer: { name: "Loris", host: true, icon: "daniel.jpg" },
 	moves: chess.history(),
-	fen: chess2.fen()
+	fen: chess2.fen(),
+	winner: "whitePlayer"
 };
 
 const game2 = {

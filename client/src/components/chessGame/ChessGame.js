@@ -21,6 +21,7 @@ const ChessGame = ({
 						player={game[otherPlayerField]}
 						playerField={otherPlayerField}
 						turn={chessJsGame.turn()}
+						winner={game.winner}
 						position="up"
 					/>
 				</div>
@@ -29,6 +30,7 @@ const ChessGame = ({
 						player={game[playerField]}
 						playerField={playerField}
 						turn={chessJsGame.turn()}
+						winner={game.winner}
 						position="down"
 					/>
 				</div>

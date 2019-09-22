@@ -1,9 +1,13 @@
 import React from "react";
 import "../../styles/player.css";
 
-const Player = ({ position, turn, player, playerField }) => {
+const Player = ({ position, turn, player, playerField, winner }) => {
+	if (winner) turn = null;
 	let playerColor = playerField === "whitePlayer" ? "w" : "b";
-	let visibility = playerColor === turn ? "visible" : "hidden";
+	let visibility =
+		winner === playerField || playerColor === turn ? "visible" : "hidden";
+	let icon = winner === playerField ? "trophy" : "hourglass half";
+
 	if (position === "up") {
 		return (
 			<div className="player">
@@ -21,7 +25,7 @@ const Player = ({ position, turn, player, playerField }) => {
 
 					<div className="text">
 						<i
-							className="hourglass half turn fitted icon"
+							className={`${icon} turn fitted icon`}
 							style={{ visibility }}
 						></i>
 					</div>
@@ -34,7 +38,7 @@ const Player = ({ position, turn, player, playerField }) => {
 				<div className="main flexbox">
 					<div className="text">
 						<i
-							className="hourglass half turn fitted icon"
+							className={`${icon} turn fitted icon`}
 							style={{ visibility }}
 						></i>
 					</div>
