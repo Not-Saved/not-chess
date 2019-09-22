@@ -1,12 +1,15 @@
 import React from "react";
 import "../../styles/player.css";
 
-const Player = ({ position, turn, player, playerField, winner }) => {
-	if (winner) turn = null;
-	let playerColor = playerField === "whitePlayer" ? "w" : "b";
-	let visibility =
-		winner === playerField || playerColor === turn ? "visible" : "hidden";
-	let icon = winner === playerField ? "trophy" : "hourglass half";
+const Player = ({ position, turn, player, winner }) => {
+	let visibility = "hidden";
+	let icon = "hourglass half";
+	if (winner) {
+		turn = null;
+		visibility = player.color === winner.color ? "visible" : "hidden";
+		icon = winner.color === player.color ? "trophy" : icon;
+	}
+	visibility = player.color === turn ? "visible" : visibility;
 
 	if (position === "up") {
 		return (

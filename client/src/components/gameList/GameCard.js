@@ -5,21 +5,14 @@ import "../../styles/gameCard.css";
 
 const GameCard = ({ game, onClick }) => {
 	const renderTopRight = () => {
-		if (game.whitePlayer.name && game.blackPlayer.name) {
-			return (
-				<div className="top right angle">
-					<i
-						className={`lock fitted icon`}
-						style={{
-							visibility: game.locked ? "visible" : "hidden"
-						}}
-					/>
-				</div>
-			);
-		}
 		return (
 			<div className="top right angle">
-				<i className={`user times fitted icon`} />
+				<i
+					className={`lock fitted icon`}
+					style={{
+						visibility: game.locked ? "visible" : "hidden"
+					}}
+				/>
 			</div>
 		);
 	};

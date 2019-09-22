@@ -41,29 +41,32 @@ chess2.move({ from: "d1", to: "h5" });
 const game1 = {
 	id: 533,
 	date: new Date(),
-	whitePlayer: { name: "Sabrina", icon: "elyse.png" },
-	blackPlayer: { name: "Loris", host: true, icon: "daniel.jpg" },
+	whitePlayer: { name: "Sabrina", icon: "elyse.png", color: "w" },
+	blackPlayer: { name: "Loris", host: true, icon: "daniel.jpg", color: "b" },
 	moves: chess.history(),
 	fen: chess2.fen(),
-	winner: "whitePlayer"
+	winner: { name: "Sabrina", icon: "elyse.png", color: "w" },
+	state: "CHECKMATE"
 };
 
 const game2 = {
 	id: 2,
 	date: new Date(),
-	whitePlayer: { name: "Loris", host: true, icon: "daniel.jpg" },
+	whitePlayer: { name: "Loris", host: true, icon: "daniel.jpg", color: "w" },
 	blackPlayer: {},
 	moves: chess.history(),
-	fen: chess.fen()
+	fen: chess.fen(),
+	state: "NEW"
 };
 
 const game3 = {
 	id: 2,
 	date: new Date(),
-	whitePlayer: { name: "Tom", host: true, icon: "patrick.png" },
-	blackPlayer: { name: "Mark", icon: "matthew.png" },
+	whitePlayer: { name: "Tom", host: true, icon: "patrick.png", color: "w" },
+	blackPlayer: { name: "Mark", icon: "matthew.png", color: "b" },
 	moves: chess.history(),
-	fen: chess.fen()
+	fen: chess.fen(),
+	state: "IN_PROGRESS"
 };
 
 const games = [game1, game2, game3, game2, game3, game2];

@@ -26,15 +26,22 @@ const WinModal = ({ history, open, setOpen, game, winner }) => {
 						}}
 					>
 						<h2 className="ui icon header">
-							<img
-								src={`/${game[winner].icon}`}
-								className="ui circular image"
-								alt={""}
-							/>
+							{winner !== "draw" ? (
+								<img
+									src={`/${winner.icon}`}
+									className="ui circular image"
+									alt={""}
+								/>
+							) : (
+								<i
+									className="handshake outline
+								icon"
+								></i>
+							)}
 							<div className="content">
-								{`${game[winner].name} wins!`}
+								{winner.name ? `${winner.name} wins!` : "Draw!"}
 								<div className="sub header">
-									{`The game was ended in ${game.moves.length} half-moves.`}
+									{`The game ended in ${game.moves.length} half-moves.`}
 								</div>
 							</div>
 						</h2>

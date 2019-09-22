@@ -18,10 +18,12 @@ const ChessGameController = ({ location: { state: game } }) => {
 	useEffect(() => {
 		if (chessJsGame) {
 			const newChessJsGame = new Chess(chessJsGame.fen());
+			if (newChessJsGame.in_checkmate()) {
+				setWinner(game.winner);
+				return;
+			}
 			if (newChessJsGame.game_over()) {
-				const player =
-					newChessJsGame.turn === "b" ? "blackPlayer" : "whitePlayer";
-				setWinner(player);
+				setWinner("draw");
 				return;
 			}
 			if (chessJsGame.turn() !== playingColor) {
@@ -32,7 +34,7 @@ const ChessGameController = ({ location: { state: game } }) => {
 				setTimeout(() => setChessJsGame(newChessJsGame), 250);
 			}
 		}
-	}, [chessJsGame, playingColor]);
+	}, [chessJsGame, playingColor, game]);
 
 	if (chessJsGame) {
 		return (
