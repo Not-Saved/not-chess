@@ -1,17 +1,9 @@
-import React, { useContext } from "react";
-import { withRouter } from "react-router-dom";
+import React from "react";
 
-import { UserContext } from "context";
 import Card from "components/Card";
 import "styles/home.css";
 
-const Login = ({ history }) => {
-	const { user } = useContext(UserContext);
-
-	if (user) {
-		history.push("/");
-	}
-
+const Login = () => {
 	return (
 		<div
 			style={{
@@ -70,4 +62,4 @@ const Login = ({ history }) => {
 	);
 };
 
-export default withRouter(Login);
+export default Login;

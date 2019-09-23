@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { withRouter, Link } from "react-router-dom";
 
 import { UserContext } from "context";
+import useRedirect from "util/useRedirect";
 
-const Menu = ({ location }) => {
+const Menu = ({ location, history }) => {
 	const [active, setActive] = useState(location.pathname);
 	const { user, logout } = useContext(UserContext);
-
+	useRedirect(location.pathname, history);
 	useEffect(() => {
 		setActive(location.pathname);
 	}, [location.pathname]);
@@ -35,7 +36,8 @@ const Menu = ({ location }) => {
 		<div className="ui secondary pointing huge menu" style={{ margin: 0 }}>
 			<Link
 				to="/"
-				className={`${isActive("")} ${isActive("login")} item`}
+				className={`${isActive("")} ${isActive("login")} 
+					${isActive("setup")} item`}
 			>
 				<i className="home menu fitted icon"></i>
 				<span className="menu text">Home</span>
