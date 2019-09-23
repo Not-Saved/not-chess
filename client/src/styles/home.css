@@ -1,0 +1,21 @@
+.main.page {
+	width: 400px;
+}
+
+@media screen and (max-width: 450px) {
+	.main.page {
+		width: 90vw;
+	}
+
+	.login .ui.header {
+		font-size: 28px;
+	}
+
+	.login .ui.header .sub.header {
+		font-size: 14px;
+	}
+
+	.login .ui.button {
+		font-size: 15px;
+	}
+}

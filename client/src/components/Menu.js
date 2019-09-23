@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withRouter, Link } from "react-router-dom";
+
+import { UserContext } from "context";
 
 const Menu = ({ location }) => {
 	const [active, setActive] = useState(location.pathname);
+	const { user, logout } = useContext(UserContext);
 
 	useEffect(() => {
 		setActive(location.pathname);
@@ -13,12 +16,16 @@ const Menu = ({ location }) => {
 	};
 
 	const renderLogout = () => {
-		if (true) {
+		if (user) {
 			return (
-				<Link to="/logout" className={`${isActive("logout")} item`}>
+				<div
+					onClick={logout}
+					className={`item`}
+					style={{ cursor: "pointer" }}
+				>
 					<i className="sign-out menu fitted icon"></i>
 					<span className="menu text">Logout</span>
-				</Link>
+				</div>
 			);
 		}
 		return null;
@@ -26,7 +33,10 @@ const Menu = ({ location }) => {
 
 	return (
 		<div className="ui secondary pointing huge menu" style={{ margin: 0 }}>
-			<Link to="/" className={`${isActive("")} item`}>
+			<Link
+				to="/"
+				className={`${isActive("")} ${isActive("login")} item`}
+			>
 				<i className="home menu fitted icon"></i>
 				<span className="menu text">Home</span>
 			</Link>
