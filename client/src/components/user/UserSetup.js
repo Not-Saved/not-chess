@@ -9,8 +9,8 @@ import UserIcons from "./UserIcons";
 
 const UserSetup = ({ history }) => {
 	const { user, postUser } = useContext(UserContext);
-	const [icon, setIcon] = useState("patrick.png");
-	const [name, setName] = useState(user.userName);
+	const [icon, setIcon] = useState(user.icon || "patrick.png");
+	const [name, setName] = useState(user.userName || "");
 
 	return (
 		<div className="main page container">

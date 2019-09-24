@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { Popup } from "semantic-ui-react";
 
 import { UserContext } from "context";
 import useRedirect from "util/useRedirect";
