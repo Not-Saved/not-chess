@@ -1,6 +1,6 @@
 .chess-game .top.left.angle {
 	position: absolute;
-	top: 15px;
+	top: 65px;
 	left: 15px;
 	z-index: 10;
 }
@@ -8,29 +8,29 @@
 .chess-game .bottom.right.angle {
 	position: absolute;
 	right: 15px;
-	bottom: 15px;
+	bottom: 55px;
 	z-index: 10;
 }
 
 @media screen and (max-width: 990px), (max-height: 600px) {
 	.chess-game .top.left.angle {
-		top: 13px;
+		top: 63px;
 	}
 
 	.chess-game .bottom.right.angle {
-		bottom: 13px;
+		bottom: 53px;
 	}
 }
 
 @media screen and (max-width: 500px) {
 	.chess-game .top.left.angle {
 		left: 4vw;
-		top: 5vw;
+		top: calc(5vw + 50px);
 	}
 
 	.chess-game .bottom.right.angle {
 		right: 4vw;
-		bottom: 5vw;
+		bottom: calc(5vw + 40px);
 	}
 }
 
