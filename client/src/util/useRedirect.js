@@ -10,11 +10,11 @@ export default function useRedirect(location, history) {
 			if (!user) {
 				history.push("/login");
 			} else if (!user.setUp) {
-				history.push("/setup");
+				history.push("/user/settings");
 			}
 		} else if (location === "/login") {
 			if (user && !user.setUp) {
-				history.push("/setup");
+				history.push("/user/settings");
 			} else if (user) {
 				history.push("/");
 			}
