@@ -5,16 +5,8 @@ import "styles/home.css";
 
 const Home = () => {
 	return (
-		<div
-			style={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				textAlign: "center",
-				height: "100%"
-			}}
-		>
-			<div className="main page">
+		<div className="main page container">
+			<div className="main page content">
 				<Card>
 					<div style={{ padding: 15, marginTop: 9 }}>
 						<h1 className="ui icon header">

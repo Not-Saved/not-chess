@@ -27,10 +27,13 @@ module.exports = app => {
 
 	app.post("/api/current_user", requireLogin, async (req, res) => {
 		const { userName, icon } = req.body;
-		req.user.userName = userName;
-		req.user.icon = icon;
-
-		const user = await req.user.save();
-		res.send(user);
+		if (userName) req.user.userName = userName;
+		if (icon) req.user.icon = icon;
+		try {
+			const user = await req.user.save();
+			res.send(user);
+		} catch (e) {
+			res.status(400).send(e);
+		}
 	});
 };

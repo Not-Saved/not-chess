@@ -5,16 +5,8 @@ import "styles/home.css";
 
 const Login = () => {
 	return (
-		<div
-			style={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				textAlign: "center",
-				height: "100%"
-			}}
-		>
-			<div className="main page login">
+		<div className="main page container">
+			<div className="main page content login">
 				<Card>
 					<div style={{ padding: 15 }}>
 						<h1 className="ui icon header">

@@ -6,7 +6,7 @@ import Menu from "./Menu";
 import Footer from "./Footer";
 import Home from "./Home";
 import Login from "./Login";
-import UserSetup from "./UserSetup";
+import UserSetup from "./user/UserSetup";
 import GameListController from "./gameList/GameListController";
 import ChessGameController from "./chessGame/ChessGameController";
 
@@ -34,11 +34,15 @@ const App = () => {
 					className={`ui  ${
 						width > 480 ? "container" : ""
 					} background`}
-					style={{ height: height - 92 }}
+					style={{ height: height }}
 				>
 					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/login" render={() => <Login />} />
-					<Route exact path="/setup" render={() => <UserSetup />} />
+					<Route
+						exact
+						path="/user/settings"
+						render={() => <UserSetup />}
+					/>
 					<Route
 						exact
 						path="/games"
