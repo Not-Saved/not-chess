@@ -6,7 +6,7 @@ const UserIcons = ({ onClick }) => {
 			style={{
 				display: "inline-grid",
 				gridTemplateColumns: "repeat(4, 50px)",
-				gridTemplateRows: "repeat(2, 50px)"
+				gridTemplateRows: "repeat(4, 50px)"
 			}}
 		>
 			{icons.map(icon => (
@@ -31,13 +31,21 @@ const UserIcons = ({ onClick }) => {
 
 const icons = [
 	"patrick.png",
+	"eve.png",
+	"jenny.jpg",
+	"joe.jpg",
+	"mark.png",
 	"kristy.png",
 	"molly.png",
 	"matthew.png",
 	"daniel.jpg",
 	"elyse.png",
 	"elliot.jpg",
-	"helen.jpg"
+	"helen.jpg",
+	"nan.jpg",
+	"rachel.png",
+	"steve.jpg",
+	"stevie.jpg"
 ];
 
 export default UserIcons;
