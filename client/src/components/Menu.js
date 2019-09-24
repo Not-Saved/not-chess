@@ -20,42 +20,7 @@ const Menu = ({ location, history }) => {
 
 	const renderLogout = () => {
 		if (user && user.setUp) {
-			return (
-				<Popup
-					trigger={
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								textAlign: "center",
-								cursor: "pointer"
-							}}
-						>
-							<div
-								className="menu text"
-								style={{
-									height: "100%",
-									lineHeight: "50px",
-									fontSize: 20
-								}}
-							>
-								{user.userName}
-							</div>
-							<img
-								className="ui circular image"
-								src={`/${user.icon}`}
-								alt=""
-								style={{ height: 38, margin: "0px 10px" }}
-							></img>
-						</div>
-					}
-					basic
-					hoverable
-				>
-					<UserPopup history={history} logout={logout} />
-				</Popup>
-			);
+			return <UserPopup history={history} logout={logout} user={user} />;
 		}
 		if (user) {
 			return (

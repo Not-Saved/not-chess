@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { withRouter } from "react-router-dom";
 
 import { UserContext } from "context";
 import Card from "components/Card";
@@ -6,7 +7,7 @@ import "styles/home.css";
 import { Popup, Input } from "semantic-ui-react";
 import UserIcons from "./UserIcons";
 
-const UserSetup = () => {
+const UserSetup = ({ history }) => {
 	const { user, postUser } = useContext(UserContext);
 	const [icon, setIcon] = useState("patrick.png");
 	const [name, setName] = useState(user.userName);
@@ -89,9 +90,17 @@ const UserSetup = () => {
 						<div>
 							<button
 								className="ui fitted positive basic small button"
-								onClick={() =>
-									postUser({ userName: name, icon: icon })
-								}
+								onClick={async () => {
+									try {
+										await postUser({
+											userName: name,
+											icon: icon
+										});
+										history.push("/");
+									} catch (e) {
+										console.log(e);
+									}
+								}}
 							>
 								<i className="check icon"></i>
 								Confirm
@@ -104,4 +113,4 @@ const UserSetup = () => {
 	);
 };
 
-export default UserSetup;
+export default withRouter(UserSetup);
