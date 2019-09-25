@@ -14,7 +14,8 @@ const UserIcons = ({ onClick }) => {
 					src={`/${icon}`}
 					className="ui circular image"
 					key={icon}
-					name={icon}
+					value={icon}
+					name="icon"
 					onClick={onClick}
 					alt=""
 					style={{

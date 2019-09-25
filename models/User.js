@@ -14,7 +14,7 @@ userSchema.virtual("setUp").get(function() {
 });
 
 function userNameValidator(value) {
-	return value.length < 13 && value.length > 4;
+	return value.length < 11 && value.length > 3;
 }
 
 mongoose.model("users", userSchema);

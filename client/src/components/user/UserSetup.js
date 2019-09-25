@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 
 import { UserContext } from "context";
@@ -6,11 +6,31 @@ import Card from "components/Card";
 import "styles/home.css";
 import { Popup, Input } from "semantic-ui-react";
 import UserIcons from "./UserIcons";
+import useForm from "util/useForm";
 
 const UserSetup = ({ history }) => {
 	const { user, postUser } = useContext(UserContext);
-	const [icon, setIcon] = useState(user.icon || "patrick.png");
-	const [name, setName] = useState(user.userName || "");
+	const { values, errors, onChange, dirty } = useForm({
+		initialValues: {
+			userName: user.userName,
+			icon: user.icon
+		},
+		defaultValues: {
+			userName: "",
+			icon: "patrick.png"
+		},
+		validate: values => {
+			let errors = {};
+			if (!values.userName) errors.userName = "Can't be empty";
+			if (values.userName && values.userName.length < 4)
+				errors.userName = "Username too short";
+			if (values.userName && values.userName.length > 10)
+				errors.userName = "Username too long";
+			if (!/^[a-zA-Z]/.test(values.userName))
+				errors.userName = "Must start with a letter";
+			return errors;
+		}
+	});
 
 	return (
 		<div className="main page container">
@@ -43,7 +63,7 @@ const UserSetup = ({ history }) => {
 							<Popup
 								trigger={
 									<img
-										src={`/${icon}`}
+										src={`/${values.icon}`}
 										className="ui circular image item"
 										alt=""
 										style={{
@@ -62,9 +82,7 @@ const UserSetup = ({ history }) => {
 								on={"click"}
 								hoverable
 							>
-								<UserIcons
-									onClick={e => setIcon(e.target.name)}
-								/>
+								<UserIcons onClick={e => onChange(e)} />
 							</Popup>
 							<div
 								className="item"
@@ -73,28 +91,46 @@ const UserSetup = ({ history }) => {
 									height: "100%"
 								}}
 							>
-								<Input
-									type="text"
-									placeholder="Username"
-									value={name}
-									onChange={e => setName(e.target.value)}
-									style={{
-										fontSize: "14px",
-										width: "100%"
-									}}
-								/>
+								<Popup
+									trigger={
+										<Input
+											type="text"
+											name="userName"
+											placeholder="Username"
+											error={Boolean(
+												errors.userName && dirty
+											)}
+											value={values.userName}
+											onChange={onChange}
+											style={{
+												fontSize: "14px",
+												width: "100%"
+											}}
+										/>
+									}
+									open={Boolean(errors.userName && dirty)}
+									content={errors.userName}
+									position={"bottom left"}
+									offset="0px,-7px"
+									className="error popup"
+									hoverable
+								></Popup>
 							</div>
 						</div>
 
 						<div className="ui divider"></div>
 						<div>
 							<button
-								className="ui fitted positive basic small button"
+								className={`ui fitted basic small ${
+									Object.entries(errors).length
+										? "negative disabled"
+										: "positive"
+								} button`}
 								onClick={async () => {
 									try {
 										await postUser({
-											userName: name,
-											icon: icon
+											userName: values.userName,
+											icon: values.icon
 										});
 										history.push("/");
 									} catch (e) {
@@ -102,7 +138,13 @@ const UserSetup = ({ history }) => {
 									}
 								}}
 							>
-								<i className="check icon"></i>
+								<i
+									className={`${
+										Object.entries(errors).length
+											? "x"
+											: "check"
+									} icon`}
+								></i>
 								Confirm
 							</button>
 						</div>
