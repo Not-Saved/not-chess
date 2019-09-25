@@ -113,7 +113,7 @@ const UserSetup = ({ history }) => {
 									position={"bottom left"}
 									offset="0px,-7px"
 									className="error popup"
-									hoverable
+									popperDependencies={[window.innerHeight]}
 								></Popup>
 							</div>
 						</div>
