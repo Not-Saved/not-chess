@@ -21,11 +21,13 @@ const UserSetup = ({ history }) => {
 		},
 		validate: values => {
 			let errors = {};
-			if (!values.userName) errors.userName = "Can't be empty";
+			if (!values.userName) errors.userName = "Username can't be empty";
 			if (values.userName && values.userName.length < 4)
 				errors.userName = "Username too short";
 			if (values.userName && values.userName.length > 10)
 				errors.userName = "Username too long";
+			if (!/^[a-zA-Z0-9_]*$/.test(values.userName))
+				errors.userName = "Can't contain symbols";
 			if (!/^[a-zA-Z]/.test(values.userName))
 				errors.userName = "Must start with a letter";
 			return errors;
@@ -113,7 +115,10 @@ const UserSetup = ({ history }) => {
 									position={"bottom left"}
 									offset="0px,-7px"
 									className="error popup"
-									popperDependencies={[window.innerHeight]}
+									popperDependencies={[
+										window.innerHeight,
+										errors
+									]}
 								></Popup>
 							</div>
 						</div>
