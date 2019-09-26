@@ -1,39 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
-
-import { UserContext } from "context";
-import Card from "components/Card";
-import "styles/home.css";
 import { Popup, Input } from "semantic-ui-react";
+
+import Card from "components/Card";
 import UserIcons from "./UserIcons";
-import useForm from "util/useForm";
+import "styles/home.css";
 
-const UserSetup = ({ history }) => {
-	const { user, postUser } = useContext(UserContext);
-	const { values, errors, onChange, dirty } = useForm({
-		initialValues: {
-			userName: user.userName,
-			icon: user.icon
-		},
-		defaultValues: {
-			userName: "",
-			icon: "patrick.png"
-		},
-		validate: values => {
-			let errors = {};
-			if (!values.userName) errors.userName = "Username can't be empty";
-			if (values.userName && values.userName.length < 4)
-				errors.userName = "Username too short";
-			if (values.userName && values.userName.length > 10)
-				errors.userName = "Username too long";
-			if (!/^[a-zA-Z0-9_]*$/.test(values.userName))
-				errors.userName = "Can't contain symbols";
-			if (!/^[a-zA-Z]/.test(values.userName))
-				errors.userName = "Must start with a letter";
-			return errors;
-		}
-	});
-
+const UserSetup = ({ history, values, errors, dirty, onChange, postUser }) => {
 	return (
 		<div className="main page container">
 			<div className="main page content login">
@@ -81,6 +54,7 @@ const UserSetup = ({ history }) => {
 										? "right center"
 										: "top left"
 								}
+								popperDependencies={[window.innerHeight]}
 								on={"click"}
 								hoverable
 							>

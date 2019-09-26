@@ -6,12 +6,12 @@ import Menu from "./Menu";
 import Footer from "./Footer";
 import Home from "./Home";
 import Login from "./Login";
-import UserSetup from "./user/UserSetup";
 import GameListController from "./gameList/GameListController";
 import ChessGameController from "./chessGame/ChessGameController";
 
 import { UserContext } from "context";
 import useCurrentUser from "../util/useCurrentUser";
+import UserSetupController from "./user/UserSetupController";
 
 const App = () => {
 	const [userChecked, setUserChecked] = useState(false);
@@ -41,7 +41,7 @@ const App = () => {
 					<Route
 						exact
 						path="/user/settings"
-						render={() => <UserSetup />}
+						render={() => <UserSetupController />}
 					/>
 					<Route
 						exact

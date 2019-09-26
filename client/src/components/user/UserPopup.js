@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Popup } from "semantic-ui-react";
 
 const UserPopup = ({ history, user, logout }) => {
+	const [open, setOpen] = useState(false);
 	const renderContent = () => {
 		return (
 			<div>
@@ -31,7 +32,10 @@ const UserPopup = ({ history, user, logout }) => {
 				<div style={{ marginBottom: 5 }}>
 					<button
 						className="ui fluid basic button"
-						onClick={() => history.push("/user/settings")}
+						onClick={() => {
+							setOpen(false);
+							history.push("/user/settings");
+						}}
 					>
 						<i
 							className="user fitted icon"
@@ -41,7 +45,13 @@ const UserPopup = ({ history, user, logout }) => {
 					</button>
 				</div>
 				<div>
-					<button className="ui fluid button" onClick={logout}>
+					<button
+						className="ui fluid button"
+						onClick={() => {
+							setOpen(false);
+							logout();
+						}}
+					>
 						<i
 							className="sign-out fitted icon"
 							style={{ paddingRight: 10 }}
@@ -74,6 +84,9 @@ const UserPopup = ({ history, user, logout }) => {
 					></img>
 				</div>
 			}
+			open={open}
+			onOpen={() => setOpen(true)}
+			onClose={() => setOpen(false)}
 			position="top right"
 			hoverable
 			offset="-10px,-16px"

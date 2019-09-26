@@ -4,21 +4,27 @@ import _ from "lodash";
 const useForm = ({
 	initialValues = {},
 	defaultValues = {},
-	validate = () => {}
+	validate = () => {},
+	asyncValidate = async () => {}
 }) => {
 	validate = useCallback(validate, []);
+	asyncValidate = useCallback(asyncValidate, []);
+
 	const [values, setValues] = useState(
 		_.defaults(initialValues, defaultValues)
 	);
 	const [errors, setErrors] = useState({});
+	const [asyncErrors, setAsyncErrors] = useState({});
 	const [dirty, setDirty] = useState(false);
 
 	const validateValues = useCallback(
-		values => {
+		async values => {
 			values = _.pickBy(values, e => e);
 			setErrors(validate(values));
+			const asyncErrors = await asyncValidate(values);
+			setAsyncErrors(asyncErrors);
 		},
-		[validate]
+		[validate, asyncValidate]
 	);
 
 	const onChange = useCallback(
@@ -37,7 +43,7 @@ const useForm = ({
 		validateValues(values);
 	}, [values, validateValues]);
 
-	return { values, errors, onChange, dirty };
+	return { values, errors, asyncErrors, onChange, dirty };
 };
 
 export default useForm;
