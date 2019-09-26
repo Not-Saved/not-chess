@@ -3,7 +3,11 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
 	googleId: String,
-	userName: { type: String, validate: userNameValidator },
+	userName: {
+		type: String,
+		validate: userNameValidator,
+		index: { unique: true, dropDups: true }
+	},
 	icon: { type: String },
 	createdAt: { type: Date, default: Date.now() },
 	lastSignedIn: { type: Date, default: Date.now() }
