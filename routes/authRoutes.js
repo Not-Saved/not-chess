@@ -1,6 +1,9 @@
 const _ = require("lodash");
 const passport = require("passport");
 const requireLogin = require("../middlewares/requireLogin");
+const mongoose = require("mongoose");
+
+const User = mongoose.model("users");
 
 module.exports = app => {
 	app.get(
@@ -34,6 +37,19 @@ module.exports = app => {
 			res.send(user);
 		} catch (e) {
 			res.status(400).send(e);
+		}
+	});
+
+	app.post("/api/current_user/validate", requireLogin, async (req, res) => {
+		const { userName } = req.body;
+		try {
+			const response = await User.find({ userName: userName });
+			if (response.length) {
+				throw response;
+			}
+			res.send(response);
+		} catch (e) {
+			res.status(400).send({});
 		}
 	});
 };

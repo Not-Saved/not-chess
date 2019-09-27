@@ -8,8 +8,7 @@ const UserSetupController = () => {
 	const { user, postUser } = useContext(UserContext);
 	const userForm = useForm({
 		initialValues: {
-			userName: user.userName,
-			icon: user.icon
+			...user
 		},
 		defaultValues: {
 			userName: "",

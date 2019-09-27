@@ -47,9 +47,10 @@ const UserPopup = ({ history, user, logout }) => {
 				<div>
 					<button
 						className="ui fluid button"
-						onClick={() => {
+						onClick={async () => {
 							setOpen(false);
-							logout();
+							await logout();
+							history.push("/");
 						}}
 					>
 						<i
