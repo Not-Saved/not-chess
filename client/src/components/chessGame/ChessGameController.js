@@ -15,7 +15,7 @@ const ChessGameController = ({ location: { state } }) => {
 
 	useEffect(() => {
 		if (game) setChessJsGame(new Chess(game.fen));
-		setPlayingColor("");
+		setPlayingColor("w");
 	}, [game]);
 
 	useEffect(() => {
@@ -29,11 +29,14 @@ const ChessGameController = ({ location: { state } }) => {
 				setGame({ ...game, winner: game[winnerColor] });
 				setWinner(game[winnerColor]);
 				setWinOpen(true);
+			} else if (chessJsGame.game_over() && !winner) {
+				setWinner("draw");
+				setWinOpen(true);
 			} else if (newChessJsGame.turn() !== playingColor && !winner) {
 				const moves = newChessJsGame.moves();
 				const move = moves[Math.floor(Math.random() * moves.length)];
 				newChessJsGame.move(move);
-				setTimeout(() => setChessJsGame(newChessJsGame), 250);
+				setTimeout(() => setChessJsGame(newChessJsGame), 150);
 			}
 		}
 	}, [chessJsGame, playingColor, game, winner]);

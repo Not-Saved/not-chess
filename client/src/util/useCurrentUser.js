@@ -34,11 +34,11 @@ export default function useCurrentUser() {
 	}, []);
 
 	const logout = useCallback(async () => {
+		setUser(null);
 		await notChess({
 			method: "get",
 			url: "/logout"
 		});
-		setUser(null);
 	}, [setUser]);
 
 	return { user, getUser, postUser, validateUser, logout };

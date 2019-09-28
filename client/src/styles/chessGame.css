@@ -14,8 +14,8 @@
 
 .chess-game .top.right {
 	position: absolute;
-	right: 10px;
-	top: 56px;
+	right: 20px;
+	top: 65px;
 	z-index: 10;
 	font-size: 1.5em;
 }
@@ -30,8 +30,8 @@
 	}
 
 	.chess-game .top.right {
-		top: 60px;
-		right: 15px;
+		top: 65px;
+		right: 14px;
 		font-size: 1.2em;
 	}
 }

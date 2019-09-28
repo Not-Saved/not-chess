@@ -118,7 +118,17 @@ const GameCard = ({ game, onClick }) => {
 					<div className="ui middle aligned grid zero-margin">
 						<div className="ten wide center aligned column zero-padding"></div>
 						<div className="six wide center aligned column zero-padding">
-							<i className={`circle empty fitted icon`} />
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center"
+								}}
+							>
+								<i
+									className={`big grey user circle empty fitted icon`}
+								/>
+							</div>
 						</div>
 					</div>
 				);
@@ -135,7 +145,17 @@ const GameCard = ({ game, onClick }) => {
 				return (
 					<div className="ui middle aligned grid zero-margin">
 						<div className="six wide center aligned column zero-padding">
-							<i className={`circle empty fitted icon`} />
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center"
+								}}
+							>
+								<i
+									className={`big grey user circle empty fitted icon`}
+								/>
+							</div>
 						</div>
 						<div className="ten wide center aligned column zero-padding"></div>
 					</div>

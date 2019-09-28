@@ -24,7 +24,10 @@ const UserSetupController = () => {
 		asyncValidate: asyncValidate
 	});
 
-	return <UserSetup {...userForm} user={user} postUser={postUser} />;
+	if (user) {
+		return <UserSetup {...userForm} user={user} postUser={postUser} />;
+	}
+	return null;
 };
 
 const validate = values => {
