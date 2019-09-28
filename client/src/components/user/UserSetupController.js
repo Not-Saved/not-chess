@@ -5,7 +5,13 @@ import useForm from "util/useForm";
 import UserSetup from "./UserSetup";
 
 const UserSetupController = () => {
-	const { user, postUser } = useContext(UserContext);
+	const { user, postUser, validateUser } = useContext(UserContext);
+
+	const asyncValidate = async values => {
+		let errors = await validateUser(values);
+		return errors;
+	};
+
 	const userForm = useForm({
 		initialValues: {
 			...user
@@ -32,11 +38,6 @@ const validate = values => {
 		errors.userName = "Can't contain symbols";
 	if (!/^[a-zA-Z]/.test(values.userName))
 		errors.userName = "Must start with a letter";
-	return errors;
-};
-
-const asyncValidate = values => {
-	let errors = {};
 	return errors;
 };
 

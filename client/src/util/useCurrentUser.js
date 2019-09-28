@@ -24,6 +24,15 @@ export default function useCurrentUser() {
 		[setUser]
 	);
 
+	const validateUser = useCallback(async data => {
+		const response = await notChess({
+			method: "post",
+			url: "/current_user/validate",
+			data: data
+		});
+		return response.data;
+	}, []);
+
 	const logout = useCallback(async () => {
 		await notChess({
 			method: "get",
@@ -32,5 +41,5 @@ export default function useCurrentUser() {
 		setUser(null);
 	}, [setUser]);
 
-	return { user, getUser, postUser, logout };
+	return { user, getUser, postUser, validateUser, logout };
 }

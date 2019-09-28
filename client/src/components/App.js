@@ -15,7 +15,7 @@ import UserSetupController from "./user/UserSetupController";
 
 const App = () => {
 	const [userChecked, setUserChecked] = useState(false);
-	const { user, postUser, getUser, logout } = useCurrentUser();
+	const { user, postUser, getUser, logout, validateUser } = useCurrentUser();
 	const { height, width } = useWindowDimentions();
 
 	useEffect(() => {
@@ -27,7 +27,9 @@ const App = () => {
 
 	if (!userChecked) return null;
 	return (
-		<UserContext.Provider value={{ user, postUser, getUser, logout }}>
+		<UserContext.Provider
+			value={{ user, postUser, getUser, logout, validateUser }}
+		>
 			<BrowserRouter>
 				<Menu />
 				<div

@@ -6,7 +6,15 @@ import Card from "components/Card";
 import UserIcons from "./UserIcons";
 import "styles/home.css";
 
-const UserSetup = ({ history, values, errors, dirty, onChange, postUser }) => {
+const UserSetup = ({
+	history,
+	values,
+	errors,
+	dirty,
+	validating,
+	onChange,
+	postUser
+}) => {
 	return (
 		<div className="main page container">
 			<div className="main page content login">
@@ -57,6 +65,7 @@ const UserSetup = ({ history, values, errors, dirty, onChange, postUser }) => {
 								popperDependencies={[window.innerHeight]}
 								on={"click"}
 								hoverable
+								style={{ zIndex: 1901 }}
 							>
 								<UserIcons onClick={e => onChange(e)} />
 							</Popup>
@@ -76,7 +85,7 @@ const UserSetup = ({ history, values, errors, dirty, onChange, postUser }) => {
 											error={Boolean(
 												errors.userName && dirty
 											)}
-											value={values.userName}
+											value={String(values.userName)}
 											onChange={onChange}
 											style={{
 												fontSize: "14px",
@@ -91,7 +100,7 @@ const UserSetup = ({ history, values, errors, dirty, onChange, postUser }) => {
 									className="error popup"
 									popperDependencies={[
 										window.innerHeight,
-										errors
+										errors.userName
 									]}
 								></Popup>
 							</div>
@@ -100,11 +109,17 @@ const UserSetup = ({ history, values, errors, dirty, onChange, postUser }) => {
 						<div className="ui divider"></div>
 						<div>
 							<button
-								className={`ui fitted basic small ${
-									Object.entries(errors).length
-										? "negative disabled"
-										: "positive"
-								} button`}
+								className={(function() {
+									if (
+										Object.values(errors).length &&
+										!validating
+									)
+										return "ui fitted basic negative disabled small button";
+									else if (validating)
+										return "ui fitted basic disabled small button";
+									else
+										return "ui fitted basic positive small button";
+								})()}
 								onClick={async () => {
 									try {
 										await postUser({
@@ -118,11 +133,16 @@ const UserSetup = ({ history, values, errors, dirty, onChange, postUser }) => {
 								}}
 							>
 								<i
-									className={`${
-										Object.entries(errors).length
-											? "x"
-											: "check"
-									} icon`}
+									className={(function() {
+										if (
+											Object.values(errors).length &&
+											!validating
+										)
+											return "x icon";
+										else if (validating)
+											return "loading circle notch icon";
+										else return "check icon";
+									})()}
 								></i>
 								Confirm
 							</button>
