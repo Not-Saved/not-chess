@@ -50,7 +50,7 @@ const UserPopup = ({ history, user, logout }) => {
 						onClick={async () => {
 							setOpen(false);
 							await logout();
-							history.push("/");
+							window.location.href = "/";
 						}}
 					>
 						<i

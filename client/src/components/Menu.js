@@ -24,7 +24,10 @@ const Menu = ({ location, history }) => {
 		if (user) {
 			return (
 				<div
-					onClick={logout}
+					onClick={async () => {
+						await logout();
+						window.location.href = "/";
+					}}
 					className={`item`}
 					style={{ cursor: "pointer" }}
 				>
