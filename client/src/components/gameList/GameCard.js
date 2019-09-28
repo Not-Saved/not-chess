@@ -126,7 +126,7 @@ const GameCard = ({ game, onClick }) => {
 								}}
 							>
 								<i
-									className={`big grey user circle empty fitted icon`}
+									className={`big user circle empty fitted icon`}
 								/>
 							</div>
 						</div>
@@ -153,7 +153,7 @@ const GameCard = ({ game, onClick }) => {
 								}}
 							>
 								<i
-									className={`big grey user circle empty fitted icon`}
+									className={`big user circle empty fitted icon`}
 								/>
 							</div>
 						</div>
