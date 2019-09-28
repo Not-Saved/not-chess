@@ -3,7 +3,8 @@ import "../../styles/player.css";
 
 const Player = ({ position, turn, player, winner }) => {
 	let visibility = "hidden";
-	let icon = "hourglass half";
+	let icon = "play";
+
 	if (winner) {
 		turn = null;
 		visibility = player.color === winner.color ? "visible" : "hidden";
@@ -15,22 +16,20 @@ const Player = ({ position, turn, player, winner }) => {
 		return (
 			<div className="player">
 				<div className="main flexbox">
-					<img
-						src={`/${player.icon}`}
-						className="ui circular player middle aligned image"
-						alt=""
-						style={{ marginRight: 7 }}
-					/>
-
-					<div className="text" style={{ marginRight: 7 }}>
-						{player.name}
-					</div>
-
-					<div className="text">
+					<i className="icons">
+						<img
+							src={`/${player.icon}`}
+							className="ui circular player middle aligned image"
+							alt=""
+						/>
 						<i
-							className={`${icon} turn fitted icon`}
+							className={`top left corner ${icon} turn icon`}
 							style={{ visibility }}
-						></i>
+						/>
+					</i>
+
+					<div className="text" style={{ marginLeft: 7 }}>
+						{player.name}
 					</div>
 				</div>
 			</div>
@@ -39,21 +38,20 @@ const Player = ({ position, turn, player, winner }) => {
 		return (
 			<div className="player">
 				<div className="main flexbox">
-					<div className="text">
-						<i
-							className={`${icon} turn fitted icon`}
-							style={{ visibility }}
-						></i>
-					</div>
-					<div className="text" style={{ marginLeft: 7 }}>
+					<div className="text" style={{ marginRight: 7 }}>
 						{player.name}
 					</div>
-					<img
-						src={`/${player.icon}`}
-						className="ui circular player middle aligned image"
-						alt=""
-						style={{ marginLeft: 7 }}
-					/>
+					<i className="icons">
+						<img
+							src={`/${player.icon}`}
+							className="ui circular player middle aligned image"
+							alt=""
+						/>
+						<i
+							className={`top left corner ${icon} turn icon`}
+							style={{ visibility }}
+						/>
+					</i>
 				</div>
 			</div>
 		);

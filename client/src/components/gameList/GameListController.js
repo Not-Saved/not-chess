@@ -3,9 +3,12 @@ import Chess from "chess.js";
 
 import GameList from "./GameList";
 import GameModal from "./GameModal";
+import GameListFooter from "./GameListFooter";
+import NewGameModal from "./NewGameModal";
 
 const GameListController = props => {
 	const [open, setOpen] = useState(false);
+	const [openNew, setOpenNew] = useState(false);
 	const [selectedGame, setSelectedGame] = useState(null);
 
 	const openModal = (e, game) => {
@@ -21,7 +24,9 @@ const GameListController = props => {
 				game={selectedGame}
 				setGame={setSelectedGame}
 			/>
+			<NewGameModal open={openNew} setOpen={setOpenNew} />
 			<GameList games={games} openModal={openModal} />
+			<GameListFooter setOpen={setOpenNew} />
 		</>
 	);
 };
@@ -45,7 +50,6 @@ const game1 = {
 	blackPlayer: { name: "Loris", host: true, icon: "daniel.jpg", color: "b" },
 	moves: chess.history(),
 	fen: chess2.fen(),
-	winner: { name: "Sabrina", icon: "elyse.png", color: "w" },
 	state: "CHECKMATE"
 };
 

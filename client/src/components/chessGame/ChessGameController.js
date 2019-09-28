@@ -4,48 +4,46 @@ import Chess from "chess.js";
 
 import ChessGame from "./ChessGame";
 import WinModal from "./WinModal";
+import ChessGameFooter from "./ChessGameFooter";
 
-const ChessGameController = ({ location: { state: game } }) => {
+const ChessGameController = ({ location: { state } }) => {
 	const [winner, setWinner] = useState(null);
+	const [winOpen, setWinOpen] = useState(false);
+	const [game, setGame] = useState(state);
 	const [chessJsGame, setChessJsGame] = useState(null);
 	const [playingColor, setPlayingColor] = useState("");
 
 	useEffect(() => {
 		if (game) setChessJsGame(new Chess(game.fen));
-		setPlayingColor("w");
+		setPlayingColor("");
 	}, [game]);
 
 	useEffect(() => {
 		if (chessJsGame) {
 			const newChessJsGame = new Chess(chessJsGame.fen());
-			if (newChessJsGame.in_checkmate()) {
+			if (chessJsGame.in_checkmate() && !winner) {
 				const winnerColor =
 					newChessJsGame.turn() === "w"
 						? "blackPlayer"
 						: "whitePlayer";
-				game.winner = setWinner(game[winnerColor]);
-				return;
-			}
-			if (newChessJsGame.game_over()) {
-				setWinner("draw");
-				return;
-			}
-			if (newChessJsGame.turn() !== playingColor) {
+				setGame({ ...game, winner: game[winnerColor] });
+				setWinner(game[winnerColor]);
+				setWinOpen(true);
+			} else if (newChessJsGame.turn() !== playingColor && !winner) {
 				const moves = newChessJsGame.moves();
 				const move = moves[Math.floor(Math.random() * moves.length)];
 				newChessJsGame.move(move);
-				console.log(chessJsGame);
 				setTimeout(() => setChessJsGame(newChessJsGame), 250);
 			}
 		}
-	}, [chessJsGame, playingColor, game]);
+	}, [chessJsGame, playingColor, game, winner]);
 
 	if (chessJsGame) {
 		return (
 			<>
 				<WinModal
-					open={Boolean(winner)}
-					setOpen={setWinner}
+					open={winOpen}
+					setOpen={setWinOpen}
 					game={game}
 					winner={winner}
 				/>
@@ -56,6 +54,8 @@ const ChessGameController = ({ location: { state: game } }) => {
 					playerField="whitePlayer"
 					playingColor={playingColor}
 				/>
+
+				<ChessGameFooter />
 			</>
 		);
 	}

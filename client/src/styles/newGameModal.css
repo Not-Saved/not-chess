@@ -1,0 +1,17 @@
+.new.game.modal {
+	width: 20vw;
+	font-size: 18px;
+	color: #000;
+}
+
+@media screen and (max-width: 1300px) {
+	.new.game.modal {
+		width: 50vw;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.new.game.modal {
+		width: 90vw;
+	}
+}

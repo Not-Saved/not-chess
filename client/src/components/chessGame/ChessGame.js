@@ -16,7 +16,7 @@ const ChessGame = ({
 			playerField === "whitePlayer" ? "blackPlayer" : "whitePlayer";
 		return (
 			<>
-				<div className="top left angle">
+				<div className="top left">
 					<Player
 						player={game[otherPlayerField]}
 						playerField={otherPlayerField}
@@ -25,7 +25,7 @@ const ChessGame = ({
 						position="up"
 					/>
 				</div>
-				<div className="bottom right angle">
+				<div className="bottom right">
 					<Player
 						player={game[playerField]}
 						playerField={playerField}
@@ -34,6 +34,10 @@ const ChessGame = ({
 						position="down"
 					/>
 				</div>
+				<i
+					className="top right grey eye fitted icon"
+					style={{ visibility: playingColor ? "hidden" : "visible" }}
+				></i>
 			</>
 		);
 	};

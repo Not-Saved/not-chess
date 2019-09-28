@@ -105,7 +105,7 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 											</div>
 										) : (
 											<div className="icon container">
-												<i className="grey plus fitted player icon"></i>
+												<i className="grey plus circle fitted player icon"></i>
 											</div>
 										)}
 										<div className="content">
@@ -153,7 +153,7 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 											</div>
 										) : (
 											<div className="icon container">
-												<i className="grey plus fitted player icon"></i>
+												<i className="grey plus circle fitted player icon"></i>
 											</div>
 										)}
 										<div className="content">

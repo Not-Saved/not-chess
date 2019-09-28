@@ -1,0 +1,23 @@
+.chess.game.footer * {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.chess.game.footer .grid {
+	width: 100%;
+	height: 100%;
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr;
+	justify-items: center;
+	align-items: center;
+}
+
+.chess.game.footer .grid .left.item {
+	grid-column: 1;
+	justify-self: left;
+}
+
+.chess.game.footer .grid .right.item {
+	grid-column: 2;
+	justify-self: right;
+}

@@ -54,8 +54,8 @@ const App = () => {
 						path="/game/:id"
 						render={() => <ChessGameController />}
 					/>
+					<Footer />
 				</div>
-				<Footer />
 			</BrowserRouter>
 		</UserContext.Provider>
 	);

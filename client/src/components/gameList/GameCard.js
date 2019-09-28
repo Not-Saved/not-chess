@@ -40,13 +40,13 @@ const GameCard = ({ game, onClick }) => {
 				>
 					<div className="column zero-padding">
 						<div>
-							<i className="hashtag icon" />
+							<i className="hashtag sub icon" />
 							<span className="sub text">{game.id}</span>
 						</div>
 					</div>
 					<div className="column zero-padding">
 						<div>
-							<i className="calendar icon" />
+							<i className="calendar sub icon" />
 							<span className="sub text">
 								{game.date.toLocaleDateString()}
 							</span>
@@ -54,7 +54,7 @@ const GameCard = ({ game, onClick }) => {
 					</div>
 					<div className="column zero-padding">
 						<div>
-							<i className="clock icon" />
+							<i className="clock sub icon" />
 							<span className="sub text">
 								{game.date.toLocaleTimeString().slice(0, -3)}
 							</span>
@@ -62,7 +62,7 @@ const GameCard = ({ game, onClick }) => {
 					</div>
 					<div className="column zero-padding">
 						<div>
-							<i className="hourglass icon" />
+							<i className="hourglass sub icon" />
 							<span className="sub text">
 								{getGameStateString(game.state)}
 							</span>
@@ -118,13 +118,7 @@ const GameCard = ({ game, onClick }) => {
 					<div className="ui middle aligned grid zero-margin">
 						<div className="ten wide center aligned column zero-padding"></div>
 						<div className="six wide center aligned column zero-padding">
-							<i
-								className={`plus ${
-									window.innerWidth > 500
-										? "circular inverted"
-										: "grey"
-								} empty fitted icon`}
-							/>
+							<i className={`circle empty fitted icon`} />
 						</div>
 					</div>
 				);
@@ -141,13 +135,7 @@ const GameCard = ({ game, onClick }) => {
 				return (
 					<div className="ui middle aligned grid zero-margin">
 						<div className="six wide center aligned column zero-padding">
-							<i
-								className={`plus ${
-									window.innerWidth > 500
-										? "circular inverted"
-										: "grey"
-								} empty fitted icon`}
-							/>
+							<i className={`circle empty fitted icon`} />
 						</div>
 						<div className="ten wide center aligned column zero-padding"></div>
 					</div>

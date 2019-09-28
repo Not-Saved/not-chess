@@ -55,8 +55,11 @@ const WinModal = ({ history, open, setOpen, game, winner }) => {
 							onClick={() => history.push("/games")}
 							style={{ cursor: "pointer" }}
 						>
-							<i className="left angle icon fitted"></i>
-							<div className="content">Games</div>
+							<i
+								className="left angle icon fitted"
+								style={{ paddingRight: 7 }}
+							></i>
+							Games
 						</h3>
 					</div>
 				</Card>

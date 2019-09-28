@@ -7,11 +7,19 @@
 }
 
 .game-card .sub.text {
-	font-size: 16px !important;
+	font-size: 15px !important;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 0.6);
 }
-.game-card .join.icon {
-	font-size: 28px;
+
+.game-card .sub.icon {
+	color: rgba(0, 0, 0, 0.6);
 }
+
+.game-card .empty.icon {
+	font-size: 25px;
+}
+
 .game-card .main.circular.image {
 	height: 60px;
 	width: 60px;
@@ -62,7 +70,7 @@
 		font-size: 35px;
 	}
 	.game-card .empty.icon {
-		font-size: 20px;
+		font-size: 17px;
 	}
 	.game-card .sub.icon {
 		font-size: 8px !important;
