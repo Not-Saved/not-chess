@@ -1,6 +1,8 @@
 :root {
 	--nc-square-size: 8vh;
 	--nc-piece-size: 6vh;
+	--nc-black: rgb(175, 49, 66);
+	--nc-white: rgb(57, 113, 158);
 }
 
 .nc-chessgrid {
@@ -30,11 +32,11 @@
 }
 
 .nc-piece.nc-black {
-	color: rgb(175, 49, 66);
+	color: var(--nc-black);
 }
 
 .nc-piece.nc-white {
-	color: rgb(57, 113, 158);
+	color: var(--nc-white);
 }
 
 .nc-square.nc-black {
