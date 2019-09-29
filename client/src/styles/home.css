@@ -34,9 +34,6 @@
 	}
 }
 
-@media screen and (max-height: 350px) {
-}
-
 .error.popup::before {
 	background-color: #fff6f6 !important;
 }
