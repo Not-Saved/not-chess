@@ -9,7 +9,15 @@ import Loading from "components/Loading";
 import Empty from "./Empty";
 
 const GameListController = props => {
-	const { games, postGame, joinGame, gameState, setGameState } = useGames();
+	const {
+		games,
+		postGame,
+		joinGame,
+		gameState,
+		setGameState,
+		mine,
+		setMine
+	} = useGames();
 	const [open, setOpen] = useState(false);
 	const [openNew, setOpenNew] = useState(false);
 	const [selectedGame, setSelectedGame] = useState(null);
@@ -48,6 +56,8 @@ const GameListController = props => {
 				setOpen={setOpenNew}
 				gameState={gameState}
 				setGameState={setGameState}
+				mine={mine}
+				setMine={setMine}
 			/>
 		</>
 	);

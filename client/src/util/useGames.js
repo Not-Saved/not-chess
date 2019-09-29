@@ -1,19 +1,20 @@
 import { useState, useCallback, useEffect } from "react";
 import { notChess } from "../api";
 
-export default function useGames(initState = []) {
+export default function useGames(initGameState = [], initMine = false) {
 	const [games, setGames] = useState(null);
-	const [gameState, setGameState] = useState(initState);
+	const [gameState, setGameState] = useState(initGameState);
+	const [mine, setMine] = useState(initMine);
 
 	const getGames = useCallback(async () => {
 		setGames(null);
 		const response = await notChess({
 			method: "get",
 			url: "/games",
-			params: { state: gameState }
+			params: { state: gameState, mine: mine }
 		});
 		setGames(response.data);
-	}, [gameState]);
+	}, [gameState, mine]);
 
 	const postGame = useCallback(
 		async color => {
@@ -42,5 +43,14 @@ export default function useGames(initState = []) {
 		getGames();
 	}, [getGames]);
 
-	return { games, getGames, postGame, joinGame, gameState, setGameState };
+	return {
+		games,
+		getGames,
+		postGame,
+		joinGame,
+		gameState,
+		setGameState,
+		mine,
+		setMine
+	};
 }

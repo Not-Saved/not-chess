@@ -13,6 +13,16 @@ module.exports = app => {
 			if (req.query.state) {
 				query = { state: { $in: req.query.state } };
 			}
+
+			if (req.query.mine && req.query.mine === "true") {
+				query = {
+					...query,
+					$or: [
+						{ "whitePlayer._user": req.user.id },
+						{ "blackPlayer._user": req.user.id }
+					]
+				};
+			}
 			const games = await Game.find(query)
 				.skip(pageSize * (page - 1))
 				.limit(pageSize)

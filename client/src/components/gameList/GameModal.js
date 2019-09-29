@@ -92,13 +92,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 										paddingRight: 0
 									}}
 								>
-									<h2
-										className="ui icon header"
-										onClick={() => {
-											if (!game.whitePlayer._user)
-												onJoin();
-										}}
-									>
+									<h2 className="ui icon header">
 										{game.whitePlayer._user ? (
 											<div
 												className="player icon"
@@ -150,10 +144,6 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 								>
 									<h2
 										className="ui icon header"
-										onClick={() => {
-											if (!game.blackPlayer._user)
-												onJoin();
-										}}
 										style={{
 											cursor: game.blackPlayer._user
 												? ""

@@ -4,7 +4,7 @@ import Footer from "components/Footer";
 import GameFilter from "./GameFilter";
 import "styles/gameListFooter.css";
 
-const GameListFooter = ({ setOpen, gameState, setGameState }) => {
+const GameListFooter = ({ setOpen, ...rest }) => {
 	return (
 		<Footer style={{ zIndex: 12 }}>
 			<div
@@ -13,10 +13,7 @@ const GameListFooter = ({ setOpen, gameState, setGameState }) => {
 			>
 				<div className="grid">
 					<div className="left item">
-						<GameFilter
-							setGameState={setGameState}
-							gameState={gameState}
-						/>
+						<GameFilter {...rest} />
 					</div>
 					<div className="right item">
 						<button

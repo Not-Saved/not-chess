@@ -1,7 +1,7 @@
 import React from "react";
 import { Popup } from "semantic-ui-react";
 
-const GameFilter = ({ gameState, setGameState }) => {
+const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 	const renderTrigger = (
 		<button className="ui basic compact fluid button">
 			<i className="filter icon" style={{ paddingRight: 15 }}></i>
@@ -11,6 +11,14 @@ const GameFilter = ({ gameState, setGameState }) => {
 
 	const selected = state => {
 		return gameState.includes(state) ? "basic green" : "basic";
+	};
+
+	const mineActive = () => {
+		return mine ? "basic green" : "basic";
+	};
+
+	const toggleMine = () => {
+		setMine(!mine);
 	};
 
 	const onclick = state => {
@@ -35,7 +43,7 @@ const GameFilter = ({ gameState, setGameState }) => {
 				<h3
 					className="ui header"
 					style={{
-						marginBottom: 5,
+						marginBottom: 0,
 						textAlign: "center",
 						fontSize: 17
 					}}
@@ -44,9 +52,22 @@ const GameFilter = ({ gameState, setGameState }) => {
 				</h3>
 				<div
 					className="ui divider"
-					style={{ margin: "0px -5px 0px -5px" }}
+					style={{ margin: "7px -5px 7px -5px" }}
 				></div>
-				<div className="ui list" style={{ marginTop: 7 }}>
+				<div className="item">
+					<div
+						className={`ui large fluid ${mineActive()} label clickable`}
+						onClick={toggleMine}
+					>
+						<i className="user icon" style={{ minWidth: 20 }}></i>
+						My games
+					</div>
+				</div>
+				<div
+					className="ui divider"
+					style={{ margin: "7px -5px 7px -5px" }}
+				></div>
+				<div className="ui list" style={{ marginTop: 0 }}>
 					<div className="item">
 						<div
 							className={`ui large fluid ${selected(
@@ -54,7 +75,11 @@ const GameFilter = ({ gameState, setGameState }) => {
 							)} label clickable`}
 							onClick={() => onclick("NEW")}
 						>
-							<i className="hourglass start icon"></i> New
+							<i
+								className="hourglass start icon"
+								style={{ minWidth: 20 }}
+							></i>
+							New
 						</div>
 					</div>
 					<div className="item">
@@ -64,7 +89,11 @@ const GameFilter = ({ gameState, setGameState }) => {
 							)} label clickable`}
 							onClick={() => onclick("IN_PROGRESS")}
 						>
-							<i className="hourglass half icon"></i> In progress
+							<i
+								className="hourglass half icon"
+								style={{ minWidth: 20 }}
+							></i>
+							In progress
 						</div>
 					</div>
 					<div className="item">
@@ -74,7 +103,11 @@ const GameFilter = ({ gameState, setGameState }) => {
 							)} label clickable`}
 							onClick={() => onclick("CHECKMATE")}
 						>
-							<i className="hourglass end icon"></i> Checkmate
+							<i
+								className="hourglass end icon"
+								style={{ minWidth: 20 }}
+							></i>
+							Checkmate
 						</div>
 					</div>
 					<div className="item">
@@ -84,7 +117,11 @@ const GameFilter = ({ gameState, setGameState }) => {
 							)} label clickable`}
 							onClick={() => onclick("DRAW")}
 						>
-							<i className="hourglass end icon"></i> Draw
+							<i
+								className="handshake end icon"
+								style={{ minWidth: 20 }}
+							></i>
+							Draw
 						</div>
 					</div>
 				</div>
