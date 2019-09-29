@@ -36,7 +36,16 @@ const Menu = ({ location, history }) => {
 				</div>
 			);
 		}
-		return null;
+		return (
+			<div
+				onClick={() => history.push("/login")}
+				className={`${isActive("/login")} item`}
+				style={{ cursor: "pointer" }}
+			>
+				<i className="sign-in menu fitted icon"></i>
+				<span className="menu text">Login</span>
+			</div>
+		);
 	};
 
 	return (
@@ -47,7 +56,7 @@ const Menu = ({ location, history }) => {
 			>
 				<Link
 					to="/"
-					className={`${isActive("/")} ${isActive("/login")} 
+					className={`${isActive("/")} 
 					${isActive("/user/settings")} item`}
 				>
 					<i className="home menu fitted icon"></i>

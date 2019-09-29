@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { UserContext } from "context";
 import Card from "components/Card";
 import "styles/home.css";
+import Loading from "./Loading";
 
 const Login = () => {
 	const { user } = useContext(UserContext);
@@ -56,7 +57,7 @@ const Login = () => {
 			</div>
 		);
 	}
-	return null;
+	return <Loading />;
 };
 
 export default Login;

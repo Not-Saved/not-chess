@@ -1,6 +1,7 @@
 .game.list.footer * {
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	font-size: 15px !important;
 }
 
 .game.list.footer .grid {

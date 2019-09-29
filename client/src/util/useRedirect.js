@@ -7,9 +7,7 @@ export default function useRedirect(location, history) {
 
 	useEffect(() => {
 		if (location === "/") {
-			if (!user) {
-				history.push("/login");
-			} else if (!user.setUp) {
+			if (user && !user.setUp) {
 				history.push("/user/settings");
 			}
 		} else if (location === "/login") {
@@ -24,4 +22,10 @@ export default function useRedirect(location, history) {
 			}
 		}
 	}, [location, history, user]);
+
+	useEffect(() => {
+		if (!user) {
+			history.push("/login");
+		}
+	}, [history, user]);
 }

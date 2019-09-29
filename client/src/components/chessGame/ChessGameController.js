@@ -5,6 +5,7 @@ import Chess from "chess.js";
 import ChessGame from "./ChessGame";
 import WinModal from "./WinModal";
 import ChessGameFooter from "./ChessGameFooter";
+import Loading from "components/Loading";
 
 const ChessGameController = ({ location: { state } }) => {
 	const [winner, setWinner] = useState(null);
@@ -41,15 +42,9 @@ const ChessGameController = ({ location: { state } }) => {
 		}
 	}, [chessJsGame, playingColor, game, winner]);
 
-	if (chessJsGame) {
-		return (
-			<>
-				<WinModal
-					open={winOpen}
-					setOpen={setWinOpen}
-					game={game}
-					winner={winner}
-				/>
+	const renderChessGame = () => {
+		if (chessJsGame) {
+			return (
 				<ChessGame
 					game={game}
 					chessJsGame={chessJsGame}
@@ -57,12 +52,23 @@ const ChessGameController = ({ location: { state } }) => {
 					playerField="whitePlayer"
 					playingColor={playingColor}
 				/>
+			);
+		}
+		return <Loading />;
+	};
 
-				<ChessGameFooter />
-			</>
-		);
-	}
-	return null;
+	return (
+		<>
+			<WinModal
+				open={winOpen}
+				setOpen={setWinOpen}
+				game={game}
+				winner={winner}
+			/>
+			{renderChessGame()}
+			<ChessGameFooter />
+		</>
+	);
 };
 
 export default withRouter(ChessGameController);

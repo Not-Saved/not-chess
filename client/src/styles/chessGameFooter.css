@@ -1,6 +1,7 @@
 .chess.game.footer * {
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	font-size: 15px !important;
 }
 
 .chess.game.footer .grid {
