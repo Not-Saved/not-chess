@@ -6,13 +6,17 @@ import Card from "../Card";
 import "../../styles/gameModal.css";
 import { getGameStateString } from "../../util";
 
-const GameModal = ({ history, open, setOpen, game, setGame }) => {
+const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 	const onClose = () => {
 		setOpen(false);
 		setGame(null);
 	};
 	const onWatch = e => {
 		e.stopPropagation();
+		history.push(`/game/${game.id}`, game);
+	};
+	const onJoin = async () => {
+		await joinGame(game.id);
 		history.push(`/game/${game.id}`, game);
 	};
 	if (game) {
@@ -34,7 +38,7 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 								<h2 className="ui header">
 									<i className="hashtag big icon"></i>
 									<div className="content">
-										{`${game.id}`}
+										{`${game.gameId}`}
 									</div>
 								</h2>
 							</div>
@@ -52,8 +56,8 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 										onClick={onWatch}
 										style={{ width: "100%" }}
 										disabled={
-											!game.whitePlayer.name ||
-											!game.blackPlayer.name
+											!game.whitePlayer._user ||
+											!game.blackPlayer._user
 										}
 									>
 										<i className="eye icon"></i>
@@ -65,8 +69,8 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 										className="ui basic compact button"
 										style={{ width: "100%" }}
 										disabled={
-											!game.whitePlayer.name ||
-											!game.blackPlayer.name
+											!game.whitePlayer._user ||
+											!game.blackPlayer._user
 										}
 									>
 										<i className="star icon"></i>
@@ -88,8 +92,14 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 										paddingRight: 0
 									}}
 								>
-									<h2 className="ui icon header">
-										{game.whitePlayer.name ? (
+									<h2
+										className="ui icon header"
+										onClick={() => {
+											if (!game.whitePlayer._user)
+												onJoin();
+										}}
+									>
+										{game.whitePlayer._user ? (
 											<div
 												className="player icon"
 												style={{
@@ -98,7 +108,7 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 												}}
 											>
 												<img
-													src={`/${game.whitePlayer.icon}`}
+													src={`/${game.whitePlayer._user.icon}`}
 													className="ui circular image"
 													alt={""}
 												/>
@@ -109,7 +119,9 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 											</div>
 										)}
 										<div className="content">
-											{game.whitePlayer.name || (
+											{(game.whitePlayer._user &&
+												game.whitePlayer._user
+													.userName) || (
 												<div
 													style={{
 														color: "gray"
@@ -136,8 +148,19 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 									className="grid seven wide column"
 									style={{ paddingLeft: 0 }}
 								>
-									<h2 className="ui icon header">
-										{game.blackPlayer.name ? (
+									<h2
+										className="ui icon header"
+										onClick={() => {
+											if (!game.blackPlayer._user)
+												onJoin();
+										}}
+										style={{
+											cursor: game.blackPlayer._user
+												? ""
+												: "pointer"
+										}}
+									>
+										{game.blackPlayer._user ? (
 											<div
 												className="player icon"
 												style={{
@@ -146,7 +169,7 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 												}}
 											>
 												<img
-													src={`/${game.blackPlayer.icon}`}
+													src={`/${game.blackPlayer._user.icon}`}
 													className="ui circular image"
 													alt={""}
 												/>
@@ -157,7 +180,9 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 											</div>
 										)}
 										<div className="content">
-											{game.blackPlayer.name || (
+											{(game.blackPlayer._user &&
+												game.blackPlayer._user
+													.userName) || (
 												<div
 													style={{
 														color: "gray"
@@ -189,7 +214,9 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 										<h5 className="ui tiny icon header">
 											<i className="calendar sub fitted icon"></i>
 											<div className="sub text content">
-												{game.date.toLocaleDateString()}
+												{new Date(
+													game.createdAt
+												).toLocaleDateString()}
 											</div>
 										</h5>
 									</div>
@@ -200,7 +227,7 @@ const GameModal = ({ history, open, setOpen, game, setGame }) => {
 										<h5 className="ui tiny icon header">
 											<i className="clock sub fitted icon"></i>
 											<div className="sub text content">
-												{game.date
+												{new Date(game.createdAt)
 													.toLocaleTimeString()
 													.slice(0, -3)}
 											</div>

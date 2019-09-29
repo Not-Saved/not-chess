@@ -1,9 +1,10 @@
 import React from "react";
-import Footer from "components/Footer";
 
+import Footer from "components/Footer";
+import GameFilter from "./GameFilter";
 import "styles/gameListFooter.css";
 
-const GameListFooter = ({ setOpen }) => {
+const GameListFooter = ({ setOpen, gameState, setGameState }) => {
 	return (
 		<Footer style={{ zIndex: 12 }}>
 			<div
@@ -12,13 +13,10 @@ const GameListFooter = ({ setOpen }) => {
 			>
 				<div className="grid">
 					<div className="left item">
-						<button className="ui basic compact fluid button">
-							<i
-								className="filter icon"
-								style={{ paddingRight: 15 }}
-							></i>
-							<span style={{ fontWeight: "bold" }}>Filter</span>
-						</button>
+						<GameFilter
+							setGameState={setGameState}
+							gameState={gameState}
+						/>
 					</div>
 					<div className="right item">
 						<button

@@ -9,8 +9,8 @@ const userSchema = new Schema({
 		index: { unique: true, dropDups: true }
 	},
 	icon: { type: String },
-	createdAt: { type: Date, default: Date.now() },
-	lastSignedIn: { type: Date, default: Date.now() }
+	createdAt: { type: Date, default: () => Date.now() },
+	lastSignedIn: { type: Date, default: () => Date.now() }
 });
 
 userSchema.virtual("setUp").get(function() {

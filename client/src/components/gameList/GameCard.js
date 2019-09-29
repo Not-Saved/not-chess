@@ -22,7 +22,7 @@ const GameCard = ({ game, onClick }) => {
 		return (
 			<div className="bottom left angle">
 				<i className="hashtag fitted icon" />
-				<span className="sub text"> {game.id}</span>
+				<span className="sub text"> {game.gameId}</span>
 			</div>
 		);
 	};
@@ -41,14 +41,14 @@ const GameCard = ({ game, onClick }) => {
 					<div className="column zero-padding">
 						<div>
 							<i className="hashtag sub icon" />
-							<span className="sub text">{game.id}</span>
+							<span className="sub text">{game.gameId}</span>
 						</div>
 					</div>
 					<div className="column zero-padding">
 						<div>
 							<i className="calendar sub icon" />
 							<span className="sub text">
-								{game.date.toLocaleDateString()}
+								{new Date(game.createdAt).toLocaleDateString()}
 							</span>
 						</div>
 					</div>
@@ -56,7 +56,9 @@ const GameCard = ({ game, onClick }) => {
 						<div>
 							<i className="clock sub icon" />
 							<span className="sub text">
-								{game.date.toLocaleTimeString().slice(0, -3)}
+								{new Date(game.createdAt)
+									.toLocaleTimeString()
+									.slice(0, -3)}
 							</span>
 						</div>
 					</div>
@@ -74,22 +76,19 @@ const GameCard = ({ game, onClick }) => {
 	};
 
 	const renderPlayer = (player, color) => {
-		const text = (
-			<h2 className="ui header">
-				<div className="player">
-					<span className="name">{player.name}</span>
-					<div className="sub header">
-						<span>{color}</span>
-					</div>
-				</div>
-			</h2>
-		);
 		const playerHeader = direction => (
 			<div
 				className={`ten wide column ${direction} aligned player`}
 				style={{ padding: "0px 5px" }}
 			>
-				{player.name ? text : null}
+				<h2 className="ui header">
+					<div className="player">
+						<span className="name">{player._user.userName}</span>
+						<div className="sub header">
+							<span>{color}</span>
+						</div>
+					</div>
+				</h2>
 			</div>
 		);
 
@@ -97,7 +96,7 @@ const GameCard = ({ game, onClick }) => {
 			return (
 				<div className="six wide center aligned column zero-padding">
 					<img
-						src={`/${player.icon}`}
+						src={`/${player._user.icon}`}
 						className="ui circular middle aligned main image"
 						alt=""
 					/>
@@ -106,9 +105,9 @@ const GameCard = ({ game, onClick }) => {
 		};
 
 		if (color === "White") {
-			if (player.name) {
+			if (player._user) {
 				return (
-					<div className="ui middle aligned grid zero-margin ">
+					<div className="ui middle aligned grid zero-margin">
 						{playerHeader("right")}
 						{icon("left")}
 					</div>
@@ -116,7 +115,19 @@ const GameCard = ({ game, onClick }) => {
 			} else {
 				return (
 					<div className="ui middle aligned grid zero-margin">
-						<div className="ten wide center aligned column zero-padding"></div>
+						<div
+							className={`ten wide column right aligned player`}
+							style={{ padding: "0px 5px" }}
+						>
+							<h2 className="ui grey header">
+								<div className="player">
+									<span className="name">Join</span>
+									<div className="sub header">
+										<span>{color}</span>
+									</div>
+								</div>
+							</h2>
+						</div>
 						<div className="six wide center aligned column zero-padding">
 							<div
 								style={{
@@ -134,7 +145,7 @@ const GameCard = ({ game, onClick }) => {
 				);
 			}
 		} else {
-			if (player.name) {
+			if (player._user) {
 				return (
 					<div className="ui middle aligned grid zero-margin">
 						{icon("right")}
@@ -157,7 +168,19 @@ const GameCard = ({ game, onClick }) => {
 								/>
 							</div>
 						</div>
-						<div className="ten wide center aligned column zero-padding"></div>
+						<div
+							className={`ten wide column left aligned player`}
+							style={{ padding: "0px 5px" }}
+						>
+							<h2 className="ui grey header">
+								<div className="player">
+									<span className="name">Join</span>
+									<div className="sub header">
+										<span>{color}</span>
+									</div>
+								</div>
+							</h2>
+						</div>
 					</div>
 				);
 			}

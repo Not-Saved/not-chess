@@ -7,7 +7,7 @@ const UserPopup = ({ history, user, logout }) => {
 		return (
 			<div>
 				<h3
-					className="ui black header"
+					className="ui header"
 					style={{ marginBottom: 5, textAlign: "center" }}
 				>
 					<img
@@ -32,6 +32,9 @@ const UserPopup = ({ history, user, logout }) => {
 				<div style={{ marginBottom: 5 }}>
 					<button
 						className="ui fluid basic button"
+						style={{
+							fontWeight: "bold"
+						}}
 						onClick={() => {
 							setOpen(false);
 							history.push("/user/settings");
@@ -47,6 +50,7 @@ const UserPopup = ({ history, user, logout }) => {
 				<div>
 					<button
 						className="ui fluid button"
+						style={{ fontWeight: "bold" }}
 						onClick={async () => {
 							setOpen(false);
 							await logout();
@@ -81,7 +85,7 @@ const UserPopup = ({ history, user, logout }) => {
 						className="ui circular image"
 						src={`/${user.icon}`}
 						alt=""
-						style={{ height: 38, margin: "0px 10px" }}
+						style={{ height: 35, margin: "0px 13px" }}
 					></img>
 				</div>
 			}
@@ -90,7 +94,7 @@ const UserPopup = ({ history, user, logout }) => {
 			onClose={() => setOpen(false)}
 			position="top right"
 			hoverable
-			offset="-10px,-16px"
+			offset="-10px,-18px"
 		/>
 	);
 };

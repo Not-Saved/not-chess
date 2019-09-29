@@ -18,7 +18,7 @@ const Player = ({ position, turn, player, winner }) => {
 				<div className="main flexbox">
 					<i className="icons">
 						<img
-							src={`/${player.icon}`}
+							src={`/${player._user.icon}`}
 							className="ui circular player middle aligned image"
 							alt=""
 						/>
@@ -29,7 +29,7 @@ const Player = ({ position, turn, player, winner }) => {
 					</i>
 
 					<div className="text" style={{ marginLeft: 7 }}>
-						{player.name}
+						{player._user.userName}
 					</div>
 				</div>
 			</div>
@@ -39,11 +39,11 @@ const Player = ({ position, turn, player, winner }) => {
 			<div className="player">
 				<div className="main flexbox">
 					<div className="text" style={{ marginRight: 7 }}>
-						{player.name}
+						{player._user.userName}
 					</div>
 					<i className="icons">
 						<img
-							src={`/${player.icon}`}
+							src={`/${player._user.icon}`}
 							className="ui circular player middle aligned image"
 							alt=""
 						/>

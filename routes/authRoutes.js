@@ -1,9 +1,5 @@
 const _ = require("lodash");
 const passport = require("passport");
-const requireLogin = require("../middlewares/requireLogin");
-const mongoose = require("mongoose");
-
-const User = mongoose.model("users");
 
 module.exports = app => {
 	app.get(

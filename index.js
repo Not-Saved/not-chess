@@ -4,12 +4,15 @@ const keys = require("./config/keys");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const mongoose = require("mongoose");
+const autoIncrement = require("mongoose-auto-increment");
+
 mongoose.plugin(require("./util/mongoosePlugins"));
+mongoose.connect(keys.mongoURI, { useFindAndModify: false });
+autoIncrement.initialize(mongoose.connection);
 
 require("./models/User");
+require("./models/Game");
 require("./services/passport");
-
-mongoose.connect(keys.mongoURI, { useFindAndModify: false });
 
 const app = express();
 
@@ -22,6 +25,7 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 require("./routes/currentUserRoutes")(app);
+require("./routes/gameRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));
