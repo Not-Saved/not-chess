@@ -38,7 +38,7 @@ const Footer = ({ children, className, style }) => {
 	};
 
 	return (
-		<div className={`main footer ${className}`} style={style}>
+		<div className={`main footer ${className}`} style={{ ...style }}>
 			<div style={{ width: "100%", height: "100%" }}>
 				{renderContent()}
 			</div>

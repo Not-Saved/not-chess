@@ -44,6 +44,12 @@
 	z-index: 10;
 }
 
+@media screen and (max-height: 350px) {
+	.main.footer {
+		display: none;
+	}
+}
+
 .menu.icon {
 	font-size: 25px;
 }
