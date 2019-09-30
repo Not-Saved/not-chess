@@ -24,7 +24,7 @@
 .game.modal .nc-corners {
 	width: 100%;
 	margin: 10px;
-	padding: 5px 0px;
+	padding: 5px 2px;
 
 	background: linear-gradient(to right, #d4d4d5 1px, transparent 0px) 0 0,
 		linear-gradient(to bottom, #d4d4d5 1px, transparent 0px) 0 0,

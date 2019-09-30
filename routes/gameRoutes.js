@@ -81,6 +81,7 @@ module.exports = app => {
 				: "whitePlayer";
 			game[color]["_user"] = req.user.id;
 			game.state = "IN_PROGRESS";
+			game.lastUpdated = Date.now();
 
 			game = await game.save();
 			game = await Game.populate(game, "whitePlayer._user");

@@ -33,7 +33,8 @@ const gameSchema = new Schema({
 		_user: { type: Schema.Types.ObjectId, ref: "users" },
 		color: { type: String }
 	},
-	createdAt: { type: Date, default: () => Date.now() }
+	createdAt: { type: Date, default: () => Date.now() },
+	lastUpdated: { type: Date, default: () => Date.now() }
 });
 
 gameSchema.plugin(autoIncrement.plugin, {

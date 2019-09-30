@@ -7,8 +7,9 @@ import "../../styles/newGameModal.css";
 
 const NewGameModal = ({ history, open, setOpen, postGame }) => {
 	const [color, setColor] = useState("white");
+	const [active, setActive] = useState("");
 
-	const active = state => {
+	const highLighted = state => {
 		return color === state ? iconColor() : null;
 	};
 
@@ -20,8 +21,15 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 	};
 
 	const onPost = async () => {
-		await postGame(color);
-		setOpen(false);
+		try {
+			setActive("active");
+			await postGame(color);
+			setActive("");
+			setOpen(false);
+		} catch (e) {
+			console.log(e);
+			setActive("");
+		}
 	};
 
 	return (
@@ -34,6 +42,12 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 		>
 			<Card className="new game modal card">
 				<div style={{ position: "relative" }}>
+					<div
+						className={`ui ${active} inverted dimmer`}
+						style={{ padding: 25 }}
+					>
+						<div className="ui loader"></div>
+					</div>
 					<div
 						className="ui center aligned grid"
 						style={{ margin: "0px" }}
@@ -108,8 +122,8 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 										className={`ui large fluid basic label clickable`}
 										onClick={() => setColor("white")}
 										style={{
-											color: active("white"),
-											borderColor: active("white")
+											color: highLighted("white"),
+											borderColor: highLighted("white")
 										}}
 									>
 										White
@@ -126,8 +140,8 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 										className={`ui large fluid basic label clickable`}
 										onClick={() => setColor("black")}
 										style={{
-											color: active("black"),
-											borderColor: active("black")
+											color: highLighted("black"),
+											borderColor: highLighted("black")
 										}}
 									>
 										Black

@@ -1,10 +1,10 @@
 .new.game.modal {
-	width: 20vw;
+	width: 25vw;
 	font-size: 18px;
 	color: #000;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1200px) {
 	.new.game.modal {
 		width: 50vw;
 	}

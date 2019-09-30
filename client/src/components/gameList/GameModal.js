@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Modal } from "semantic-ui-react";
 
@@ -9,6 +9,7 @@ import "../../styles/gameModal.css";
 
 const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 	const { user } = useContext(UserContext);
+	const [active, setActive] = useState("");
 
 	const onClose = () => {
 		setOpen(false);
@@ -20,8 +21,15 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 	};
 	const onJoin = async () => {
 		if (user && user.setUp) {
-			await joinGame(game.id);
-			history.push(`/game/${game.id}`);
+			try {
+				setActive("active");
+				await joinGame(game.id);
+				setActive("");
+				history.push(`/game/${game.id}`);
+			} catch (e) {
+				setActive("");
+				console.log(e);
+			}
 		}
 	};
 
@@ -101,6 +109,12 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 			>
 				<Card className="game modal card">
 					<div style={{ position: "relative" }}>
+						<div
+							className={`ui ${active} inverted dimmer`}
+							style={{ padding: 25 }}
+						>
+							<div className="ui loader"></div>
+						</div>
 						<div
 							className="ui center aligned grid"
 							style={{ margin: "0px" }}

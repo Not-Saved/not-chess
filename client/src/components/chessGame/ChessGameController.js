@@ -7,15 +7,19 @@ import WinModal from "./WinModal";
 import ChessGameFooter from "./ChessGameFooter";
 import Loading from "components/Loading";
 import useChessGame from "util/useChessGame";
+import DrawModal from "./DrawModal";
 
 const ChessGameController = ({ match: { params } }) => {
 	const [winOpen, setWinOpen] = useState(false);
+	const [drawOpen, setDrawOpen] = useState(false);
 	const { game, makeMove } = useChessGame(params.id);
 	const { user } = useContext(UserContext);
 
 	useEffect(() => {
-		if (game && ["DRAW", "CHECKMATE"].includes(game.state)) {
+		if (game && game.winner) {
 			setWinOpen(true);
+		} else if (game && game.state === "DRAW") {
+			setDrawOpen(true);
 		}
 	}, [game]);
 
@@ -56,6 +60,7 @@ const ChessGameController = ({ match: { params } }) => {
 	return (
 		<>
 			<WinModal open={winOpen} setOpen={setWinOpen} game={game} />
+			<DrawModal open={drawOpen} setOpen={setDrawOpen} game={game} />
 			{renderChessGame()}
 			<ChessGameFooter />
 		</>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Popup, Input } from "semantic-ui-react";
 
@@ -15,11 +15,24 @@ const UserSetup = ({
 	onChange,
 	postUser
 }) => {
+	const [active, setActive] = useState("");
+
 	return (
 		<div className="main page container">
 			<div className="main page content login">
-				<Card>
-					<div style={{ padding: "15px 15px 10px 15px" }}>
+				<Card cornerStyle={{ padding: 2 }}>
+					<div
+						style={{
+							padding: "15px 15px 10px 15px",
+							position: "relative"
+						}}
+					>
+						<div
+							className={`ui ${active} inverted dimmer`}
+							style={{ zIndex: 9 }}
+						>
+							<div className="ui loader"></div>
+						</div>
 						<h1 className="ui header">
 							<div
 								className="content"
@@ -93,7 +106,10 @@ const UserSetup = ({
 											}}
 										/>
 									}
-									open={Boolean(errors.userName && dirty)}
+									disabled={Boolean(
+										!errors.userName || !dirty
+									)}
+									on="focus"
 									content={errors.userName}
 									position={"bottom left"}
 									offset="0px,-7px"
@@ -122,13 +138,16 @@ const UserSetup = ({
 								})()}
 								onClick={async () => {
 									try {
+										setActive("active");
 										await postUser({
 											userName: values.userName,
 											icon: values.icon
 										});
+										setActive("");
 										history.push("/");
 									} catch (e) {
 										console.log(e);
+										setActive("");
 									}
 								}}
 							>

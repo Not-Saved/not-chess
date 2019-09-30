@@ -5,11 +5,11 @@ import Card from "../Card";
 
 import "../../styles/winModal.css";
 
-const WinModal = ({ history, open, setOpen, game }) => {
+const DrawModal = ({ history, open, setOpen, game }) => {
 	const onClose = () => {
 		setOpen(false);
 	};
-	if (game && game.winner) {
+	if (game && game.state === "DRAW") {
 		return (
 			<Modal
 				basic
@@ -25,13 +25,9 @@ const WinModal = ({ history, open, setOpen, game }) => {
 						}}
 					>
 						<h2 className="ui icon header">
-							<img
-								src={`/${game.winner._user.icon}`}
-								className="ui circular image"
-								alt={""}
-							/>
+							<i className="handshake outline icon"></i>
 							<div className="content">
-								{`${game.winner._user.userName} wins!`}
+								Draw!
 								<div className="sub header">
 									{`The game ended in ${game.moves.length} half-moves.`}
 								</div>
@@ -61,4 +57,4 @@ const WinModal = ({ history, open, setOpen, game }) => {
 	return null;
 };
 
-export default withRouter(WinModal);
+export default withRouter(DrawModal);

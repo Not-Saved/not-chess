@@ -11,46 +11,43 @@ module.exports = app => {
 			const id = req.params.id;
 			const move = req.body;
 
-			let game = await Game.findOne({ _id: id })
-				.populate("whitePlayer._user")
-				.populate("blackPlayer._user")
-				.populate("winner._user");
+			let game = await Game.findOne({ _id: id });
+
 			let chessJsGame = new Chess(game.fen);
+			const turn = chessJsGame.turn();
 
 			let player = null;
-			if (game.whitePlayer._user.id === req.user.id)
+			if (String(game.whitePlayer._user) === req.user.id)
 				player = game.whitePlayer;
-			if (game.blackPlayer._user.id === req.user.id)
+			if (String(game.blackPlayer._user) === req.user.id)
 				player = game.blackPlayer;
 
 			if (!player) throw "Not participating in current game";
-			if (chessJsGame.turn() !== player.color) throw "Not your turn";
+			if (turn !== player.color) throw "Not your turn";
 			if (!["NEW", "IN_PROGRESS"].includes(game.state)) throw "Game over";
 
 			let checkedMove = chessJsGame.move(move);
 			if (checkedMove) {
 				game.moves.push(checkedMove);
 				game.fen = chessJsGame.fen();
-				if (game.moves.length) {
-					game.state = "IN_PROGRESS";
-				}
+				game.lastUpdated = Date.now();
 				if (chessJsGame.in_checkmate()) {
 					const winnerField =
-						chessJsGame.turn() === "w"
-							? "blackPlayer"
-							: "whitePlayer";
+						turn === "b" ? "blackPlayer" : "whitePlayer";
 					game.winner = game[winnerField];
 					game.state = "CHECKMATE";
-				} else if (chessJsGame.in_draw()) {
+				} else if (
+					chessJsGame.in_draw() ||
+					chessJsGame.in_stalemate()
+				) {
 					game.state = "DRAW";
 				}
 			}
-			console.log("CHECKMATE: " + chessJsGame.in_checkmate());
-			console.log("STALEMATE: " + chessJsGame.in_stalemate());
-			console.log("DRAW: " + chessJsGame.in_draw());
-			console.log("THREFOLD: " + chessJsGame.in_threefold_repetition());
 
 			game = await game.save();
+			game = await Game.populate(game, "whitePlayer._user");
+			game = await Game.populate(game, "blackPlayer._user");
+			game = await Game.populate(game, "winner._user");
 			res.send(game);
 		} catch (e) {
 			res.send(e);

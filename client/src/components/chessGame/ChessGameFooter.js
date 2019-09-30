@@ -17,10 +17,7 @@ const ChessGameFooter = ({ history }) => {
 							className="ui basic compact fluid button"
 							onClick={() => history.push("/games")}
 						>
-							<i
-								className="left angle icon"
-								style={{ paddingRight: 15 }}
-							></i>
+							<i className="left angle icon"></i>
 							<span style={{ fontWeight: "bold" }}>Games</span>
 						</button>
 					</div>

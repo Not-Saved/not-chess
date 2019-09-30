@@ -68,6 +68,7 @@
 .nc-grid-border {
 	padding: 0.5vmin;
 	border: 0.5vmin solid;
+	margin-top: 5px;
 }
 
 .nc-corner-border {
