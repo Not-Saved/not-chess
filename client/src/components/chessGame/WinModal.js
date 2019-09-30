@@ -5,12 +5,11 @@ import Card from "../Card";
 
 import "../../styles/winModal.css";
 
-const WinModal = ({ history, open, setOpen, game, winner }) => {
+const WinModal = ({ history, open, setOpen, game }) => {
 	const onClose = () => {
 		setOpen(false);
 	};
-
-	if (winner) {
+	if (game && ["DRAW", "CHECKMATE"].includes(game.state)) {
 		return (
 			<Modal
 				basic
@@ -26,20 +25,19 @@ const WinModal = ({ history, open, setOpen, game, winner }) => {
 						}}
 					>
 						<h2 className="ui icon header">
-							{winner !== "draw" ? (
+							{game.state !== "DRAW" ? (
 								<img
-									src={`/${winner.icon}`}
+									src={`/${game.winner._user.icon}`}
 									className="ui circular image"
 									alt={""}
 								/>
 							) : (
-								<i
-									className="handshake outline
-								icon"
-								></i>
+								<i className="handshake outline icon"></i>
 							)}
 							<div className="content">
-								{winner.name ? `${winner.name} wins!` : "Draw!"}
+								{game.winner && game.winner._user.userName
+									? `${game.winner._user.userName} wins!`
+									: "Draw!"}
 								<div className="sub header">
 									{`The game ended in ${game.moves.length} half-moves.`}
 								</div>

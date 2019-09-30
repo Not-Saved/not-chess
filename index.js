@@ -26,6 +26,7 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 require("./routes/currentUserRoutes")(app);
 require("./routes/gameRoutes")(app);
+require("./routes/chessGameRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));

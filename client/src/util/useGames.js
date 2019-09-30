@@ -1,13 +1,12 @@
 import { useState, useCallback, useEffect } from "react";
 import { notChess } from "../api";
 
-export default function useGames(initGameState = [], initMine = false) {
+export default function useGames({ initGameState = [], initMine = false }) {
 	const [games, setGames] = useState(null);
 	const [gameState, setGameState] = useState(initGameState);
 	const [mine, setMine] = useState(initMine);
 
 	const getGames = useCallback(async () => {
-		setGames(null);
 		const response = await notChess({
 			method: "get",
 			url: "/games",
@@ -40,6 +39,7 @@ export default function useGames(initGameState = [], initMine = false) {
 	);
 
 	useEffect(() => {
+		setGames(null);
 		getGames();
 	}, [getGames]);
 

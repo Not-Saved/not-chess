@@ -1,55 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import Chess from "chess.js";
 
+import { UserContext } from "context";
 import ChessGame from "./ChessGame";
 import WinModal from "./WinModal";
 import ChessGameFooter from "./ChessGameFooter";
 import Loading from "components/Loading";
+import useChessGame from "util/useChessGame";
 
-const ChessGameController = ({ location: { state } }) => {
-	const [winner, setWinner] = useState(null);
+const ChessGameController = ({ match: { params } }) => {
 	const [winOpen, setWinOpen] = useState(false);
-	const [game, setGame] = useState(state);
-	const [chessJsGame, setChessJsGame] = useState(null);
-	const [playingColor, setPlayingColor] = useState("");
+	const { game, makeMove } = useChessGame(params.id);
+	const { user } = useContext(UserContext);
 
 	useEffect(() => {
-		if (game) setChessJsGame(new Chess(game.fen));
-		setPlayingColor("w");
+		if (game && ["DRAW", "CHECKMATE"].includes(game.state)) {
+			setWinOpen(true);
+		}
 	}, [game]);
 
-	useEffect(() => {
-		if (chessJsGame) {
-			const newChessJsGame = new Chess(chessJsGame.fen());
-			if (chessJsGame.in_checkmate() && !winner) {
-				const winnerColor =
-					newChessJsGame.turn() === "w"
-						? "blackPlayer"
-						: "whitePlayer";
-				setGame({ ...game, winner: game[winnerColor] });
-				setWinner(game[winnerColor]);
-				setWinOpen(true);
-			} else if (chessJsGame.game_over() && !winner) {
-				setWinner("draw");
-				setWinOpen(true);
-			} else if (newChessJsGame.turn() !== playingColor && !winner) {
-				const moves = newChessJsGame.moves();
-				const move = moves[Math.floor(Math.random() * moves.length)];
-				newChessJsGame.move(move);
-				setTimeout(() => setChessJsGame(newChessJsGame), 150);
-			}
-		}
-	}, [chessJsGame, playingColor, game, winner]);
+	const onMove = async move => {
+		await makeMove(move);
+	};
+
+	const findPlayer = () => {
+		let player = null;
+		if (!user) return player;
+		if (game.whitePlayer._user.id === user.id) player = game.whitePlayer;
+		if (game.blackPlayer._user.id === user.id) player = game.blackPlayer;
+		return player;
+	};
 
 	const renderChessGame = () => {
-		if (chessJsGame) {
+		if (game) {
+			const player = findPlayer();
+			const playingColor =
+				player && ["NEW", "IN_PROGRESS"].includes(game.state)
+					? player.color
+					: null;
+			const playerField =
+				player && player.color === "b" ? "blackPlayer" : "whitePlayer";
+
 			return (
 				<ChessGame
 					game={game}
-					chessJsGame={chessJsGame}
-					setChessJsGame={setChessJsGame}
-					playerField="whitePlayer"
+					onMove={onMove}
+					playerField={playerField}
 					playingColor={playingColor}
 				/>
 			);
@@ -59,12 +55,7 @@ const ChessGameController = ({ location: { state } }) => {
 
 	return (
 		<>
-			<WinModal
-				open={winOpen}
-				setOpen={setWinOpen}
-				game={game}
-				winner={winner}
-			/>
+			<WinModal open={winOpen} setOpen={setWinOpen} game={game} />
 			{renderChessGame()}
 			<ChessGameFooter />
 		</>

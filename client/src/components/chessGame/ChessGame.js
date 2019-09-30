@@ -1,16 +1,17 @@
 import React from "react";
-import ChessBoard from "./ChessBoard";
+import Chess from "chess.js";
 
-import "../../styles/chessGame.css";
+import ChessBoard from "./ChessBoard";
 import Player from "./Player";
+import "../../styles/chessGame.css";
 
 const ChessGame = ({
 	game,
-	chessJsGame,
-	setChessJsGame,
 	playerField = "whitePlayer",
-	playingColor
+	playingColor,
+	...rest
 }) => {
+	const chessJsGame = new Chess(game.fen);
 	const renderCorners = () => {
 		const otherPlayerField =
 			playerField === "whitePlayer" ? "blackPlayer" : "whitePlayer";
@@ -51,9 +52,9 @@ const ChessGame = ({
 			<div style={{ height: "100%" }} className="animate">
 				<ChessBoard
 					chessJsGame={chessJsGame}
-					setChessJsGame={setChessJsGame}
 					playerField={playerField}
 					playingColor={playingColor}
+					{...rest}
 				/>
 			</div>
 		</div>

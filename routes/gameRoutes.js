@@ -28,7 +28,8 @@ module.exports = app => {
 				.limit(pageSize)
 				.sort({ createdAt: -1 })
 				.populate("whitePlayer._user")
-				.populate("blackPlayer._user");
+				.populate("blackPlayer._user")
+				.populate("winner._user");
 			res.send(games);
 		} catch (e) {
 			res.send(e);
@@ -39,7 +40,8 @@ module.exports = app => {
 		try {
 			const game = await Game.findOne({ _id: req.params.id })
 				.populate("whitePlayer._user")
-				.populate("blackPlayer._user");
+				.populate("blackPlayer._user")
+				.populate("winner._user");
 			res.send(game);
 		} catch (e) {
 			res.status(404).send("Game not found!");
@@ -83,6 +85,7 @@ module.exports = app => {
 			game = await game.save();
 			game = await Game.populate(game, "whitePlayer._user");
 			game = await Game.populate(game, "blackPlayer._user");
+			game = await Game.populate(game, "winner._user");
 			res.send(game);
 		} catch (e) {
 			res.status(401).send(e);

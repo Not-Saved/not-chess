@@ -16,7 +16,19 @@ const gameSchema = new Schema({
 		type: String,
 		default: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 	},
-	moves: { type: [String], default: [] },
+	moves: {
+		type: [
+			{
+				color: String,
+				from: String,
+				to: String,
+				flags: String,
+				piece: String,
+				san: String
+			}
+		],
+		default: []
+	},
 	winner: {
 		_user: { type: Schema.Types.ObjectId, ref: "users" },
 		color: { type: String }

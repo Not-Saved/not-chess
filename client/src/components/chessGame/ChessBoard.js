@@ -4,22 +4,16 @@ import Chess from "chess.js";
 import Square from "./Square";
 import "../../styles/chessBoard.css";
 
-const ChessBoard = ({
-	chessJsGame,
-	setChessJsGame,
-	playingColor,
-	playerField
-}) => {
+const ChessBoard = ({ chessJsGame, onMove, playingColor, playerField }) => {
 	const [firstClick, setFirstClick] = useState(null);
 	const [secondClick, setSecondClick] = useState(null);
 	const rotation = playerField === "whitePlayer" ? 0 : 180;
 
 	useEffect(() => {
 		function makeMove(move) {
-			const newChessJsGame = new Chess(chessJsGame.fen());
-			const result = newChessJsGame.move(move);
+			const result = new Chess(chessJsGame.fen()).move(move);
 			if (result) {
-				setChessJsGame(newChessJsGame);
+				onMove(move);
 			}
 		}
 		if (firstClick && secondClick) {
@@ -27,7 +21,7 @@ const ChessBoard = ({
 			setFirstClick(null);
 			setSecondClick(null);
 		}
-	}, [firstClick, secondClick, chessJsGame, setChessJsGame]);
+	}, [firstClick, secondClick, chessJsGame, onMove]);
 
 	function move(e, squareString, piece) {
 		if (

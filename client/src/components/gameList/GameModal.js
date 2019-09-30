@@ -1,24 +1,95 @@
-import React from "react";
+import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 import { Modal } from "semantic-ui-react";
-import Card from "../Card";
 
-import "../../styles/gameModal.css";
+import { UserContext } from "context";
 import { getGameStateString } from "../../util";
+import Card from "../Card";
+import "../../styles/gameModal.css";
 
 const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
+	const { user } = useContext(UserContext);
+
 	const onClose = () => {
 		setOpen(false);
 		setGame(null);
 	};
 	const onWatch = e => {
 		e.stopPropagation();
-		history.push(`/game/${game.id}`, game);
+		history.push(`/game/${game.id}`);
 	};
 	const onJoin = async () => {
-		await joinGame(game.id);
-		history.push(`/game/${game.id}`, game);
+		if (user && user.setUp) {
+			await joinGame(game.id);
+			history.push(`/game/${game.id}`);
+		}
 	};
+
+	const renderPlayer = playerField => {
+		const player = game[playerField];
+		const color = player.color === "w" ? "White" : "Black";
+		const padding =
+			player.color === "w" ? "0px 0px 0px 5%" : "0px 5% 0px 0px";
+		const cursor = user && user.setUp ? "pointer" : "";
+
+		const renderIcon = () => {
+			if (player._user) {
+				return (
+					<div
+						className="player icon"
+						style={{
+							display: "flex",
+							justifyContent: "center"
+						}}
+					>
+						<img
+							src={`/${player._user.icon}`}
+							className="ui circular image"
+							alt={""}
+						/>
+					</div>
+				);
+			} else if (!user || !user.setUp) {
+				return (
+					<div className="icon container">
+						<i className="grey user circle fitted player icon"></i>
+					</div>
+				);
+			} else {
+				return (
+					<div className="icon container">
+						<i className="plus circle fitted player icon"></i>
+					</div>
+				);
+			}
+		};
+
+		const renderText = () => {
+			if (player._user) {
+				return player._user.userName;
+			} else if (!user || !user.setUp) {
+				return <div style={{ color: "gray" }}>$#*?@</div>;
+			}
+			return <div>Join</div>;
+		};
+
+		return (
+			<div className="grid seven wide column" style={{ padding }}>
+				<h2
+					className="ui icon header"
+					onClick={() => onJoin(player.color)}
+					style={{ cursor }}
+				>
+					{renderIcon()}
+					<div className="content">
+						{renderText()}
+						<div className="sub header">{color}</div>
+					</div>
+				</h2>
+			</div>
+		);
+	};
+
 	if (game) {
 		return (
 			<Modal
@@ -86,50 +157,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 								className="grid three column center aligned row "
 								style={{ position: "relative", padding: 0 }}
 							>
-								<div
-									className="grid seven wide column"
-									style={{
-										paddingRight: 0
-									}}
-								>
-									<h2 className="ui icon header">
-										{game.whitePlayer._user ? (
-											<div
-												className="player icon"
-												style={{
-													display: "flex",
-													justifyContent: "center"
-												}}
-											>
-												<img
-													src={`/${game.whitePlayer._user.icon}`}
-													className="ui circular image"
-													alt={""}
-												/>
-											</div>
-										) : (
-											<div className="icon container">
-												<i className="grey plus circle fitted player icon"></i>
-											</div>
-										)}
-										<div className="content">
-											{(game.whitePlayer._user &&
-												game.whitePlayer._user
-													.userName) || (
-												<div
-													style={{
-														color: "gray"
-													}}
-												>
-													Join
-												</div>
-											)}
-											<div className="sub header">
-												White
-											</div>
-										</div>
-									</h2>
-								</div>
+								{renderPlayer("whitePlayer")}
 								<div
 									className="grid two wide column"
 									style={{ padding: 0 }}
@@ -138,55 +166,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 										VS
 									</div>
 								</div>
-								<div
-									className="grid seven wide column"
-									style={{ paddingLeft: 0 }}
-								>
-									<h2
-										className="ui icon header"
-										style={{
-											cursor: game.blackPlayer._user
-												? ""
-												: "pointer"
-										}}
-									>
-										{game.blackPlayer._user ? (
-											<div
-												className="player icon"
-												style={{
-													display: "flex",
-													justifyContent: "center"
-												}}
-											>
-												<img
-													src={`/${game.blackPlayer._user.icon}`}
-													className="ui circular image"
-													alt={""}
-												/>
-											</div>
-										) : (
-											<div className="icon container">
-												<i className="grey plus circle fitted player icon"></i>
-											</div>
-										)}
-										<div className="content">
-											{(game.blackPlayer._user &&
-												game.blackPlayer._user
-													.userName) || (
-												<div
-													style={{
-														color: "gray"
-													}}
-												>
-													Join
-												</div>
-											)}
-											<div className="sub header">
-												Black
-											</div>
-										</div>
-									</h2>
-								</div>
+								{renderPlayer("blackPlayer")}
 							</div>
 							<div
 								className="ui divider"
