@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { Modal } from "semantic-ui-react";
 import Card from "../Card";
@@ -6,7 +6,7 @@ import Card from "../Card";
 import "../../styles/newGameModal.css";
 
 const NewGameModal = ({ history, open, setOpen, postGame }) => {
-	const [color, setColor] = useState("white");
+	const [color, setColor] = useState("w");
 	const [active, setActive] = useState("");
 
 	const highLighted = state => {
@@ -15,7 +15,7 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 
 	const iconColor = () => {
 		const style = getComputedStyle(document.body);
-		return color === "black"
+		return color === "b"
 			? style.getPropertyValue("--nc-black")
 			: style.getPropertyValue("--nc-white");
 	};
@@ -23,6 +23,7 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 	const onPost = async () => {
 		try {
 			setActive("active");
+			console.log(color);
 			await postGame(color);
 			setActive("");
 			setOpen(false);
@@ -120,10 +121,10 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 								>
 									<label
 										className={`ui large fluid basic label clickable`}
-										onClick={() => setColor("white")}
+										onClick={() => setColor("w")}
 										style={{
-											color: highLighted("white"),
-											borderColor: highLighted("white")
+											color: highLighted("w"),
+											borderColor: highLighted("w")
 										}}
 									>
 										White
@@ -138,10 +139,10 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 								>
 									<label
 										className={`ui large fluid basic label clickable`}
-										onClick={() => setColor("black")}
+										onClick={() => setColor("b")}
 										style={{
-											color: highLighted("black"),
-											borderColor: highLighted("black")
+											color: highLighted("b"),
+											borderColor: highLighted("b")
 										}}
 									>
 										Black

@@ -19,6 +19,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 		e.stopPropagation();
 		history.push(`/game/${game.id}`);
 	};
+
 	const onJoin = async () => {
 		if (user && user.setUp) {
 			try {
@@ -38,8 +39,8 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 		const color = player.color === "w" ? "White" : "Black";
 		const padding =
 			player.color === "w" ? "0px 0px 0px 5%" : "0px 5% 0px 0px";
-		const cursor = user && user.setUp ? "pointer" : "";
-
+		const cursor = user && user.setUp && !player._user ? "pointer" : "";
+		const onClick = player._user ? null : () => onJoin();
 		const renderIcon = () => {
 			if (player._user) {
 				return (
@@ -85,7 +86,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 			<div className="grid seven wide column" style={{ padding }}>
 				<h2
 					className="ui icon header"
-					onClick={() => onJoin(player.color)}
+					onClick={onClick}
 					style={{ cursor }}
 				>
 					{renderIcon()}
