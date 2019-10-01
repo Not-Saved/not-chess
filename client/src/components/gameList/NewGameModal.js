@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Modal } from "semantic-ui-react";
 import Card from "../Card";
@@ -43,10 +43,7 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 		>
 			<Card className="new game modal card">
 				<div style={{ position: "relative" }}>
-					<div
-						className={`ui ${active} inverted dimmer`}
-						style={{ padding: 25 }}
-					>
+					<div className={`ui ${active} inverted dimmer`}>
 						<div className="ui loader"></div>
 					</div>
 					<div

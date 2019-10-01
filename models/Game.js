@@ -16,6 +16,7 @@ const gameSchema = new Schema({
 		type: String,
 		default: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 	},
+	turn: { type: String, default: "w" },
 	moves: {
 		type: [
 			{

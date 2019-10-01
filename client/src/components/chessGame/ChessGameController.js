@@ -12,6 +12,7 @@ import DrawModal from "./DrawModal";
 const ChessGameController = ({ match: { params } }) => {
 	const [winOpen, setWinOpen] = useState(false);
 	const [drawOpen, setDrawOpen] = useState(false);
+	const [active, setActive] = useState("");
 	const { game, makeMove } = useChessGame(params.id);
 	const { user } = useContext(UserContext);
 
@@ -24,7 +25,9 @@ const ChessGameController = ({ match: { params } }) => {
 	}, [game]);
 
 	const onMove = async move => {
+		setActive("active");
 		await makeMove(move);
+		setActive(false);
 	};
 
 	const findPlayer = () => {
@@ -51,6 +54,7 @@ const ChessGameController = ({ match: { params } }) => {
 					onMove={onMove}
 					playerField={playerField}
 					playingColor={playingColor}
+					active={active}
 				/>
 			);
 		}

@@ -3,13 +3,23 @@ import { withRouter } from "react-router-dom";
 import { Modal } from "semantic-ui-react";
 
 import { UserContext } from "context";
-import { getGameStateString } from "../../util";
+import { getGameStateString, getGameStateIcon } from "../../util";
 import Card from "../Card";
 import "../../styles/gameModal.css";
 
 const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 	const { user } = useContext(UserContext);
 	const [active, setActive] = useState("");
+
+	const checkIfPlaying = () => {
+		let player = null;
+		if (!user) return Boolean(player);
+		if (game.whitePlayer._user && game.whitePlayer._user.id === user.id)
+			player = game.whitePlayer;
+		if (game.blackPlayer._user && game.blackPlayer._user.id === user.id)
+			player = game.blackPlayer;
+		return Boolean(player);
+	};
 
 	const onClose = () => {
 		setOpen(false);
@@ -21,7 +31,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 	};
 
 	const onJoin = async () => {
-		if (user && user.setUp) {
+		if (user && user.setUp && !checkIfPlaying()) {
 			try {
 				setActive("active");
 				await joinGame(game.id);
@@ -36,11 +46,14 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 
 	const renderPlayer = playerField => {
 		const player = game[playerField];
+		const playing = checkIfPlaying();
 		const color = player.color === "w" ? "White" : "Black";
 		const padding =
 			player.color === "w" ? "0px 0px 0px 5%" : "0px 5% 0px 0px";
-		const cursor = user && user.setUp && !player._user ? "pointer" : "";
+		const cursor =
+			user && user.setUp && !player._user && !playing ? "pointer" : "";
 		const onClick = player._user ? null : () => onJoin();
+
 		const renderIcon = () => {
 			if (player._user) {
 				return (
@@ -58,7 +71,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 						/>
 					</div>
 				);
-			} else if (!user || !user.setUp) {
+			} else if (!user || !user.setUp || playing) {
 				return (
 					<div className="icon container">
 						<i className="grey user circle fitted player icon"></i>
@@ -76,7 +89,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 		const renderText = () => {
 			if (player._user) {
 				return player._user.userName;
-			} else if (!user || !user.setUp) {
+			} else if (!user || !user.setUp || playing) {
 				return <div style={{ color: "gray" }}>$#*?@</div>;
 			}
 			return <div>Join</div>;
@@ -146,8 +159,17 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 											!game.blackPlayer._user
 										}
 									>
-										<i className="eye icon"></i>
-										Watch
+										{checkIfPlaying() ? (
+											<>
+												<i className="play icon"></i>
+												Play
+											</>
+										) : (
+											<>
+												<i className="eye icon"></i>
+												Watch
+											</>
+										)}
 									</button>
 								</div>
 								<div className="grid column">
@@ -194,25 +216,25 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 								<div className="grid three column row">
 									<div
 										className="grid column"
-										style={{ padding: 8 }}
+										style={{ padding: "7px 8px 0px 8px" }}
 									>
 										<h5 className="ui tiny icon header">
 											<i className="calendar sub fitted icon"></i>
 											<div className="sub text content">
 												{new Date(
-													game.createdAt
+													game.lastUpdated
 												).toLocaleDateString()}
 											</div>
 										</h5>
 									</div>
 									<div
 										className="grid column"
-										style={{ padding: 8 }}
+										style={{ padding: "7px 8px 0px 8px" }}
 									>
 										<h5 className="ui tiny icon header">
 											<i className="clock sub fitted icon"></i>
 											<div className="sub text content">
-												{new Date(game.createdAt)
+												{new Date(game.lastUpdated)
 													.toLocaleTimeString()
 													.slice(0, -3)}
 											</div>
@@ -220,10 +242,14 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 									</div>
 									<div
 										className="grid column"
-										style={{ padding: 8 }}
+										style={{ padding: "7px 8px 0px 8px" }}
 									>
 										<h5 className="ui tiny icon header">
-											<i className="hourglass half sub fitted icon"></i>
+											<i
+												className={`${getGameStateIcon(
+													game.state
+												)} sub fitted icon`}
+											></i>
 											<div className="sub text content">
 												{getGameStateString(game.state)}
 											</div>

@@ -1,18 +1,31 @@
 import React from "react";
 
 import Card from "../Card";
+import {
+	getGameStateString,
+	getGameStateIcon,
+	getTimeSinceUpdated
+} from "../../util";
 import "../../styles/gameCard.css";
-import { getGameStateString } from "../../util";
 
-const GameCard = ({ game, onClick }) => {
+const GameCard = ({ game, user, onClick }) => {
+	const getUserPlayer = () => {
+		let player = null;
+		if (!user) return player;
+		if (game.whitePlayer._user && game.whitePlayer._user.id === user.id)
+			player = game.whitePlayer;
+		if (game.blackPlayer._user && game.blackPlayer._user.id === user.id)
+			player = game.blackPlayer;
+		return player;
+	};
+
 	const renderTopRight = () => {
 		return (
 			<div className="top right angle">
 				<i
-					className={`lock fitted icon`}
-					style={{
-						visibility: game.locked ? "visible" : "hidden"
-					}}
+					className={`${getGameStateIcon(
+						game.state
+					)} grey fitted icon`}
 				/>
 			</div>
 		);
@@ -21,8 +34,14 @@ const GameCard = ({ game, onClick }) => {
 	const renderBottomLeft = () => {
 		return (
 			<div className="bottom left angle">
-				<i className="hashtag fitted icon" />
-				<span className="sub text"> {game.gameId}</span>
+				<i className="grey hashtag icon" />
+				<span className="sub text" style={{ marginRight: 10 }}>
+					{game.gameId}
+				</span>
+				<i className="grey clock icon" />
+				<span className="sub text">
+					{getTimeSinceUpdated(game.lastUpdated)}
+				</span>
 			</div>
 		);
 	};
@@ -48,7 +67,9 @@ const GameCard = ({ game, onClick }) => {
 						<div>
 							<i className="calendar sub icon" />
 							<span className="sub text">
-								{new Date(game.createdAt).toLocaleDateString()}
+								{new Date(
+									game.lastUpdated
+								).toLocaleDateString()}
 							</span>
 						</div>
 					</div>
@@ -56,7 +77,7 @@ const GameCard = ({ game, onClick }) => {
 						<div>
 							<i className="clock sub icon" />
 							<span className="sub text">
-								{new Date(game.createdAt)
+								{new Date(game.lastUpdated)
 									.toLocaleTimeString()
 									.slice(0, -3)}
 							</span>
@@ -64,7 +85,11 @@ const GameCard = ({ game, onClick }) => {
 					</div>
 					<div className="column zero-padding">
 						<div>
-							<i className="hourglass sub icon" />
+							<i
+								className={`${getGameStateIcon(
+									game.state
+								)} sub icon`}
+							/>
 							<span className="sub text">
 								{getGameStateString(game.state)}
 							</span>
@@ -76,16 +101,24 @@ const GameCard = ({ game, onClick }) => {
 	};
 
 	const renderPlayer = (player, color) => {
+		const userPlayer = getUserPlayer();
+		const colorString = color === "b" ? "Black" : "White";
+
 		const playerHeader = direction => (
 			<div
 				className={`ten wide column ${direction} aligned player`}
-				style={{ padding: "0px 5px" }}
+				style={{
+					padding:
+						direction === "left"
+							? "0px 0px 0px 7px"
+							: "0px 7px 0px 0px"
+				}}
 			>
 				<h2 className="ui header">
 					<div className="player">
 						<span className="name">{player._user.userName}</span>
 						<div className="sub header">
-							<span>{color}</span>
+							<span>{colorString}</span>
 						</div>
 					</div>
 				</h2>
@@ -95,16 +128,38 @@ const GameCard = ({ game, onClick }) => {
 		const icon = () => {
 			return (
 				<div className="six wide center aligned column zero-padding">
-					<img
-						src={`/${player._user.icon}`}
-						className="ui circular middle aligned main image"
-						alt=""
-					/>
+					<i className="big icons">
+						<img
+							src={`/${player._user.icon}`}
+							className="ui circular middle aligned main image"
+							alt=""
+						/>
+						<i
+							className="play top left corner turn icon"
+							style={{
+								visibility:
+									userPlayer &&
+									userPlayer.color === color &&
+									userPlayer.color === game.turn
+										? "visible"
+										: "hidden"
+							}}
+						></i>
+						<i
+							className="user bottom right corner my icon"
+							style={{
+								visibility:
+									userPlayer && userPlayer.color === color
+										? "visible"
+										: "hidden"
+							}}
+						></i>
+					</i>
 				</div>
 			);
 		};
 
-		if (color === "White") {
+		if (color === "w") {
 			if (player._user) {
 				return (
 					<div className="ui middle aligned grid zero-margin">
@@ -117,13 +172,13 @@ const GameCard = ({ game, onClick }) => {
 					<div className="ui middle aligned grid zero-margin">
 						<div
 							className={`ten wide column right aligned player`}
-							style={{ padding: "0px 5px" }}
+							style={{ padding: "0px 7px 0px 0px" }}
 						>
 							<h2 className="ui grey header">
 								<div className="player">
 									<span className="name">Join</span>
 									<div className="sub header">
-										<span>{color}</span>
+										<span>{colorString}</span>
 									</div>
 								</div>
 							</h2>
@@ -170,7 +225,7 @@ const GameCard = ({ game, onClick }) => {
 						</div>
 						<div
 							className={`ten wide column left aligned player`}
-							style={{ padding: "0px 5px" }}
+							style={{ padding: "0px 0px 0px 7px" }}
 						>
 							<h2 className="ui grey header">
 								<div className="player">
@@ -205,13 +260,13 @@ const GameCard = ({ game, onClick }) => {
 							className="middle aligned column"
 							style={{ padding: "0px 1em 0px 0px" }}
 						>
-							{renderPlayer(game.whitePlayer, "White")}
+							{renderPlayer(game.whitePlayer, "w")}
 						</div>
 						<div
 							className="middle aligned column"
 							style={{ padding: "0px 0px 0px 1em" }}
 						>
-							{renderPlayer(game.blackPlayer, "Black")}
+							{renderPlayer(game.blackPlayer, "b")}
 						</div>
 					</div>
 					<div className="ui vertical divider">VS</div>

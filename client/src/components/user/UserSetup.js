@@ -106,18 +106,12 @@ const UserSetup = ({
 											}}
 										/>
 									}
-									disabled={Boolean(
-										!errors.userName || !dirty
-									)}
-									on="focus"
+									open={Boolean(errors.userName && dirty)}
 									content={errors.userName}
 									position={"bottom left"}
 									offset="0px,-7px"
 									className="error popup"
-									popperDependencies={[
-										window.innerHeight,
-										errors.userName
-									]}
+									popperDependencies={[window.innerHeight]}
 								></Popup>
 							</div>
 						</div>

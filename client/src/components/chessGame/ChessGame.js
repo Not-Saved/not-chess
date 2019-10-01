@@ -9,6 +9,7 @@ const ChessGame = ({
 	game,
 	playerField = "whitePlayer",
 	playingColor,
+	active,
 	...rest
 }) => {
 	const chessJsGame = new Chess(game.fen);
@@ -50,6 +51,12 @@ const ChessGame = ({
 		>
 			{renderCorners()}
 			<div style={{ height: "100%" }} className="animate">
+				<div
+					className={`ui ${active} inverted dimmer`}
+					style={{ zIndex: 9 }}
+				>
+					<div className="ui loader"></div>
+				</div>
 				<ChessBoard
 					chessJsGame={chessJsGame}
 					playerField={playerField}

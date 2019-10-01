@@ -84,7 +84,12 @@ const ChessBoard = ({ chessJsGame, onMove, playingColor, playerField }) => {
 				style={{ transform: `rotate(${rotation}deg)` }}
 			>
 				<div className="nc-corner-border">
-					<div className="nc-chessgrid">{renderSquares()}</div>
+					<div
+						className="nc-chessgrid"
+						style={{ position: "relative" }}
+					>
+						{renderSquares()}
+					</div>
 				</div>
 			</div>
 		</div>

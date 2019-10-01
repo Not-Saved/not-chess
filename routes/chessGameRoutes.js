@@ -31,6 +31,8 @@ module.exports = app => {
 				game.moves.push(checkedMove);
 				game.fen = chessJsGame.fen();
 				game.lastUpdated = Date.now();
+				game.turn = chessJsGame.turn();
+
 				if (chessJsGame.in_checkmate()) {
 					const winnerField =
 						turn === "b" ? "blackPlayer" : "whitePlayer";
