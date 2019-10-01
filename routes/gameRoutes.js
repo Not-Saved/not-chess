@@ -26,7 +26,7 @@ module.exports = app => {
 			const games = await Game.find(query)
 				.skip(pageSize * (page - 1))
 				.limit(pageSize)
-				.sort({ createdAt: -1 })
+				.sort({ lastUpdated: -1 })
 				.populate("whitePlayer._user")
 				.populate("blackPlayer._user")
 				.populate("winner._user");
