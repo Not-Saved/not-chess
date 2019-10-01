@@ -22,11 +22,7 @@ const GameCard = ({ game, user, onClick }) => {
 	const renderTopRight = () => {
 		return (
 			<div className="top right angle">
-				<i
-					className={`${getGameStateIcon(
-						game.state
-					)} grey fitted icon`}
-				/>
+				<i className={`${getGameStateIcon(game.state)} fitted icon`} />
 			</div>
 		);
 	};
@@ -34,11 +30,7 @@ const GameCard = ({ game, user, onClick }) => {
 	const renderBottomLeft = () => {
 		return (
 			<div className="bottom left angle">
-				<i className="grey hashtag icon" />
-				<span className="sub text" style={{ marginRight: 10 }}>
-					{game.gameId}
-				</span>
-				<i className="grey clock icon" />
+				<i className="clock icon" />
 				<span className="sub text">
 					{getTimeSinceUpdated(game.lastUpdated)}
 				</span>
@@ -110,8 +102,8 @@ const GameCard = ({ game, user, onClick }) => {
 				style={{
 					padding:
 						direction === "left"
-							? "0px 0px 0px 7px"
-							: "0px 7px 0px 0px"
+							? "0px 0px 0px 5px"
+							: "0px 5px 0px 0px"
 				}}
 			>
 				<h2 className="ui header">
@@ -135,7 +127,7 @@ const GameCard = ({ game, user, onClick }) => {
 							alt=""
 						/>
 						<i
-							className="play top left corner turn icon"
+							className="play bottom left corner turn icon"
 							style={{
 								visibility:
 									userPlayer &&
@@ -146,7 +138,7 @@ const GameCard = ({ game, user, onClick }) => {
 							}}
 						></i>
 						<i
-							className="user bottom right corner my icon"
+							className="circle bottom right corner my icon"
 							style={{
 								visibility:
 									userPlayer && userPlayer.color === color
@@ -172,7 +164,7 @@ const GameCard = ({ game, user, onClick }) => {
 					<div className="ui middle aligned grid zero-margin">
 						<div
 							className={`ten wide column right aligned player`}
-							style={{ padding: "0px 7px 0px 0px" }}
+							style={{ padding: "0px 5px 0px 0px" }}
 						>
 							<h2 className="ui grey header">
 								<div className="player">
@@ -225,7 +217,7 @@ const GameCard = ({ game, user, onClick }) => {
 						</div>
 						<div
 							className={`ten wide column left aligned player`}
-							style={{ padding: "0px 0px 0px 7px" }}
+							style={{ padding: "0px 0px 0px 5px" }}
 						>
 							<h2 className="ui grey header">
 								<div className="player">
