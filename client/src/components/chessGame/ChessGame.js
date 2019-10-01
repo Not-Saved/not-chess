@@ -52,10 +52,10 @@ const ChessGame = ({
 			{renderCorners()}
 			<div style={{ height: "100%" }} className="animate">
 				<div
-					className={`ui ${active} inverted dimmer`}
-					style={{ zIndex: 9 }}
+					className={`ui ${active} dimmer`}
+					style={{ zIndex: 9, backgroundColor: "#00000000" }}
 				>
-					<div className="ui loader"></div>
+					<div className="ui big loader"></div>
 				</div>
 				<ChessBoard
 					chessJsGame={chessJsGame}
