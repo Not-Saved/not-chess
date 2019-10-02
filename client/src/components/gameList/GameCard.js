@@ -59,9 +59,7 @@ const GameCard = ({ game, user, onClick }) => {
 						<div>
 							<i className="calendar sub icon" />
 							<span className="sub text">
-								{new Date(
-									game.lastUpdated
-								).toLocaleDateString()}
+								{new Date(game.createdAt).toLocaleDateString()}
 							</span>
 						</div>
 					</div>
@@ -69,9 +67,7 @@ const GameCard = ({ game, user, onClick }) => {
 						<div>
 							<i className="clock sub icon" />
 							<span className="sub text">
-								{new Date(game.lastUpdated)
-									.toLocaleTimeString()
-									.slice(0, -3)}
+								{getTimeSinceUpdated(game.lastUpdated)}
 							</span>
 						</div>
 					</div>
@@ -223,7 +219,7 @@ const GameCard = ({ game, user, onClick }) => {
 								<div className="player">
 									<span className="name">Join</span>
 									<div className="sub header">
-										<span>{color}</span>
+										<span>{colorString}</span>
 									</div>
 								</div>
 							</h2>

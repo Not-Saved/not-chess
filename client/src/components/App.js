@@ -33,10 +33,14 @@ const App = () => {
 			<BrowserRouter>
 				<Menu />
 				<div
-					className={`ui  ${
+					className={`ui ${
 						width > 480 ? "container" : ""
 					} background`}
-					style={{ height: height }}
+					style={{
+						height: height,
+						paddingBottom: 40,
+						paddingTop: 50
+					}}
 				>
 					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/login" render={() => <Login />} />

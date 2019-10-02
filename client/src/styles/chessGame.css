@@ -1,6 +1,6 @@
 .chess-game .top.left {
 	position: absolute;
-	top: 65px;
+	top: 15px;
 	left: 15px;
 	z-index: 9;
 }
@@ -8,29 +8,24 @@
 .chess-game .bottom.right {
 	position: absolute;
 	right: 15px;
-	bottom: 55px;
+	bottom: 15px;
 	z-index: 9;
 }
 
 .chess-game .top.right {
 	position: absolute;
 	right: 20px;
-	top: 65px;
+	top: 15px;
 	z-index: 9;
 	font-size: 1.5em;
 }
 
 @media screen and (max-width: 990px), (max-height: 600px) {
-	.chess-game .top.left {
-		top: 63px;
-	}
-
 	.chess-game .bottom.right {
 		bottom: 53px;
 	}
 
 	.chess-game .top.right {
-		top: 65px;
 		right: 14px;
 		font-size: 1.2em;
 	}
@@ -39,12 +34,12 @@
 @media screen and (max-width: 500px) {
 	.chess-game .top.left {
 		left: 3vw;
-		top: calc(3vw + 50px);
+		top: calc(3vw);
 	}
 
 	.chess-game .bottom.right {
 		right: 3vw;
-		bottom: calc(3vw + 40px);
+		bottom: calc(3vw);
 	}
 }
 

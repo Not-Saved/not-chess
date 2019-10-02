@@ -17,7 +17,13 @@
 .scrolling {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	overflow: auto;
+}
+
+.flex.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 .background {

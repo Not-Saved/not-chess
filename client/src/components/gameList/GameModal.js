@@ -3,7 +3,11 @@ import { withRouter } from "react-router-dom";
 import { Modal } from "semantic-ui-react";
 
 import { UserContext } from "context";
-import { getGameStateString, getGameStateIcon } from "../../util";
+import {
+	getGameStateString,
+	getGameStateIcon,
+	getTimeSinceUpdated
+} from "../../util";
 import Card from "../Card";
 import "../../styles/gameModal.css";
 
@@ -222,7 +226,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 											<i className="calendar sub fitted icon"></i>
 											<div className="sub text content">
 												{new Date(
-													game.lastUpdated
+													game.createdAt
 												).toLocaleDateString()}
 											</div>
 										</h5>
@@ -234,9 +238,9 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 										<h5 className="ui tiny icon header">
 											<i className="clock sub fitted icon"></i>
 											<div className="sub text content">
-												{new Date(game.lastUpdated)
-													.toLocaleTimeString()
-													.slice(0, -3)}
+												{getTimeSinceUpdated(
+													game.lastUpdated
+												)}
 											</div>
 										</h5>
 									</div>

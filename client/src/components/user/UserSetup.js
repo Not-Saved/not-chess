@@ -17,10 +17,77 @@ const UserSetup = ({
 }) => {
 	const [active, setActive] = useState("");
 
+	const renderInfo = () => {
+		return (
+			<>
+				<div className="ui divider" style={{ marginTop: 0 }}></div>
+				<div className="ui horizontal list" style={{ margin: 0 }}>
+					<Popup
+						trigger={
+							<img
+								src={`/${values.icon}`}
+								className="ui circular image item"
+								alt=""
+								style={{
+									height: 69,
+									width: 69,
+									padding: 0,
+									cursor: "pointer"
+								}}
+							/>
+						}
+						position={
+							window.innerWidth > 450
+								? "right center"
+								: "top left"
+						}
+						popperDependencies={[window.innerHeight]}
+						on={"click"}
+						hoverable
+						style={{ zIndex: 1901 }}
+					>
+						<UserIcons onClick={e => onChange(e)} />
+					</Popup>
+					<div
+						className="item"
+						style={{
+							width: "60%",
+							height: "100%"
+						}}
+					>
+						<Popup
+							trigger={
+								<Input
+									type="text"
+									name="userName"
+									placeholder="Username"
+									error={Boolean(errors.userName && dirty)}
+									value={String(values.userName)}
+									onChange={onChange}
+									style={{
+										fontSize: "14px",
+										width: "100%"
+									}}
+								/>
+							}
+							open={Boolean(errors.userName && dirty)}
+							content={errors.userName}
+							position={"bottom left"}
+							offset="0px,-7px"
+							className="error popup"
+							popperDependencies={[window.innerHeight]}
+						></Popup>
+					</div>
+				</div>
+				<div className="ui divider"></div>
+			</>
+		);
+	};
+
 	return (
 		<div className="main page container">
 			<div className="main page content login">
-				<Card cornerStyle={{ padding: 2 }}>
+				<Card cornerStyle={{ padding: 2 }} style={{ margin: 0 }}>
 					<div
 						style={{
 							padding: "15px 15px 10px 15px",
@@ -33,7 +100,10 @@ const UserSetup = ({
 						>
 							<div className="ui loader"></div>
 						</div>
-						<h1 className="ui header">
+						<h1
+							className="ui header"
+							style={{ margin: 0, marginBottom: "10px" }}
+						>
 							<div
 								className="content"
 								style={{ marginBottom: "10px" }}
@@ -47,76 +117,7 @@ const UserSetup = ({
 								Please choose a username and an icon.
 							</div>
 						</h1>
-						<div
-							className="ui divider"
-							style={{ marginTop: 0 }}
-						></div>
-
-						<div
-							className="ui horizontal list"
-							style={{ margin: 0 }}
-						>
-							<Popup
-								trigger={
-									<img
-										src={`/${values.icon}`}
-										className="ui circular image item"
-										alt=""
-										style={{
-											height: 69,
-											width: 69,
-											padding: 0,
-											cursor: "pointer"
-										}}
-									/>
-								}
-								position={
-									window.innerWidth > 450
-										? "right center"
-										: "top left"
-								}
-								popperDependencies={[window.innerHeight]}
-								on={"click"}
-								hoverable
-								style={{ zIndex: 1901 }}
-							>
-								<UserIcons onClick={e => onChange(e)} />
-							</Popup>
-							<div
-								className="item"
-								style={{
-									width: "60%",
-									height: "100%"
-								}}
-							>
-								<Popup
-									trigger={
-										<Input
-											type="text"
-											name="userName"
-											placeholder="Username"
-											error={Boolean(
-												errors.userName && dirty
-											)}
-											value={String(values.userName)}
-											onChange={onChange}
-											style={{
-												fontSize: "14px",
-												width: "100%"
-											}}
-										/>
-									}
-									open={Boolean(errors.userName && dirty)}
-									content={errors.userName}
-									position={"bottom left"}
-									offset="0px,-7px"
-									className="error popup"
-									popperDependencies={[window.innerHeight]}
-								></Popup>
-							</div>
-						</div>
-
-						<div className="ui divider"></div>
+						{renderInfo()}
 						<div>
 							<button
 								className={(function() {

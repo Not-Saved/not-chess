@@ -29,7 +29,7 @@ const GameListController = props => {
 
 	const renderGames = () => {
 		if (games && games.length) {
-			return <GameList games={games} openModal={openModal} />;
+			return <GameList data={games} openModal={openModal} />;
 		}
 		if (games && !games.length) {
 			return <Empty />;

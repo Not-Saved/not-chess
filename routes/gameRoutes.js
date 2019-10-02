@@ -8,7 +8,7 @@ const Game = mongoose.model("games");
 module.exports = app => {
 	app.get("/api/games", async (req, res) => {
 		try {
-			const { pageSize = 20, page = 1 } = req.query;
+			const { pageSize = 1000, page = 1 } = req.query;
 			let query = {};
 			if (req.query.state) {
 				query = { state: { $in: req.query.state } };
@@ -60,6 +60,13 @@ module.exports = app => {
 		} catch (e) {
 			res.send(e);
 		}
+	});
+
+	app.post("/api/crazy", requireLogin, (req, res) => {
+		for (let index = 0; index < 200; index++) {
+			new Game({ whitePlayer: { _user: req.user.id } }).save();
+		}
+		res.send("Done");
 	});
 
 	app.post("/api/games/:id", requireLogin, gamesLimit, async (req, res) => {
