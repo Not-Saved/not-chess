@@ -7,12 +7,6 @@
 	margin: 12px 0px 0px 0px;
 }
 
-@media screen and (max-width: 580px) {
-	.nc-card {
-		margin: 6px 0px 0px 0px;
-	}
-}
-
 .nc-corners {
 	width: 100%;
 	margin: 10px;

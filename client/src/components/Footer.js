@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = ({ children, className, style }) => {
+const Footer = ({ children, className = "", style }) => {
 	const renderContent = () => {
 		if (children) {
 			return children;
