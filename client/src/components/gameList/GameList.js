@@ -12,7 +12,6 @@ const GameList = ({ data, openModal }) => {
 	const [cardHeight, setCardHeight] = useState(0);
 
 	useEffect(() => {
-		console.log(height);
 		const getGameCardHeight = (height, width) => {
 			if (width < 580) return 102;
 			if (height < 750) return 124;
@@ -23,8 +22,10 @@ const GameList = ({ data, openModal }) => {
 
 	const Row = ({ index, style }) => {
 		let game = data[index];
+		let myStyle = {};
+		if (index === data.length - 1) myStyle = { marginBottom: "12px" };
 		return (
-			<div key={index} style={{ ...style }}>
+			<div key={index} style={{ ...style, ...myStyle }}>
 				<GameCard
 					game={game}
 					user={user}
