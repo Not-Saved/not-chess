@@ -35,7 +35,7 @@ const validate = values => {
 	if (!values.userName) errors.userName = "Username can't be empty";
 	if (values.userName && values.userName.length < 4)
 		errors.userName = "Username too short";
-	if (values.userName && values.userName.length > 10)
+	if (values.userName && values.userName.length > 11)
 		errors.userName = "Username too long";
 	if (!/^[a-zA-Z0-9_]*$/.test(values.userName))
 		errors.userName = "Can't contain symbols";

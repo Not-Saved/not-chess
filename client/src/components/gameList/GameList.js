@@ -20,7 +20,7 @@ const GameList = ({ data, openModal }) => {
 		setCardHeight(getGameCardHeight(height, width));
 	}, [height, width]);
 
-	const Row = ({ index, style }) => {
+	const row = ({ index, style }) => {
 		let game = data[index];
 		let myStyle = {};
 		if (index === data.length - 1) myStyle = { marginBottom: "12px" };
@@ -47,7 +47,7 @@ const GameList = ({ data, openModal }) => {
 						className="List scrolling"
 						overscanCount={3}
 					>
-						{Row}
+						{row}
 					</List>
 				)}
 			</AutoSizer>

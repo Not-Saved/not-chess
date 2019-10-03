@@ -9,6 +9,7 @@ const userSchema = new Schema({
 		index: { unique: true, dropDups: true }
 	},
 	icon: { type: String },
+	superAdmin: Boolean,
 	createdAt: { type: Date, default: () => Date.now() },
 	lastSignedIn: { type: Date, default: () => Date.now() }
 });
@@ -18,7 +19,7 @@ userSchema.virtual("setUp").get(function() {
 });
 
 function userNameValidator(value) {
-	return value.length < 11 && value.length > 3;
+	return value.length < 12 && value.length > 3;
 }
 
 mongoose.model("users", userSchema);

@@ -12,6 +12,7 @@ import DrawModal from "./DrawModal";
 const ChessGameController = ({ match: { params } }) => {
 	const [winOpen, setWinOpen] = useState(false);
 	const [drawOpen, setDrawOpen] = useState(false);
+	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const [active, setActive] = useState("");
 	const { game, makeMove } = useChessGame(params.id);
 	const { user } = useContext(UserContext);
@@ -55,6 +56,8 @@ const ChessGameController = ({ match: { params } }) => {
 					playerField={playerField}
 					playingColor={playingColor}
 					active={active}
+					sidebarOpen={sidebarOpen}
+					setSidebarOpen={setSidebarOpen}
 				/>
 			);
 		}
@@ -66,7 +69,10 @@ const ChessGameController = ({ match: { params } }) => {
 			<WinModal open={winOpen} setOpen={setWinOpen} game={game} />
 			<DrawModal open={drawOpen} setOpen={setDrawOpen} game={game} />
 			{renderChessGame()}
-			<ChessGameFooter />
+			<ChessGameFooter
+				sidebarOpen={sidebarOpen}
+				setSidebarOpen={setSidebarOpen}
+			/>
 		</>
 	);
 };

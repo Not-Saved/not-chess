@@ -4,7 +4,7 @@ import Footer from "components/Footer";
 
 import "styles/chessGameFooter.css";
 
-const ChessGameFooter = ({ history }) => {
+const ChessGameFooter = ({ history, sidebarOpen, setSidebarOpen }) => {
 	return (
 		<Footer style={{ zIndex: 12 }}>
 			<div
@@ -21,6 +21,7 @@ const ChessGameFooter = ({ history }) => {
 							<span style={{ fontWeight: "bold" }}>Games</span>
 						</button>
 					</div>
+					<div className="right item"></div>
 				</div>
 			</div>
 		</Footer>

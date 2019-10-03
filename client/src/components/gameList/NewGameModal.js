@@ -23,7 +23,6 @@ const NewGameModal = ({ history, open, setOpen, postGame }) => {
 	const onPost = async () => {
 		try {
 			setActive("active");
-			console.log(color);
 			await postGame(color);
 			setActive("");
 			setOpen(false);

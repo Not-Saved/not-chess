@@ -25,7 +25,8 @@ const gameSchema = new Schema({
 				to: String,
 				flags: String,
 				piece: String,
-				san: String
+				san: String,
+				createdAt: { type: Date, default: () => Date.now() }
 			}
 		],
 		default: []
@@ -34,6 +35,7 @@ const gameSchema = new Schema({
 		_user: { type: Schema.Types.ObjectId, ref: "users" },
 		color: { type: String }
 	},
+	host: { type: Schema.Types.ObjectId, ref: "users" },
 	createdAt: { type: Date, default: () => Date.now() },
 	lastUpdated: { type: Date, default: () => Date.now() }
 });

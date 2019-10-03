@@ -1,7 +1,8 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { notChess } from "../api";
 
 export default function useGames({ initGameState = [], initMine = false }) {
+	const subscribed = useRef(true);
 	const [games, setGames] = useState(null);
 	const [gameState, setGameState] = useState(initGameState);
 	const [mine, setMine] = useState(initMine);
@@ -12,7 +13,7 @@ export default function useGames({ initGameState = [], initMine = false }) {
 			url: "/games",
 			params: { state: gameState, mine: mine }
 		});
-		setGames(response.data);
+		if (subscribed.current) setGames(response.data);
 	}, [gameState, mine]);
 
 	const postGame = useCallback(
@@ -38,16 +39,29 @@ export default function useGames({ initGameState = [], initMine = false }) {
 		[getGames]
 	);
 
+	const deleteGame = useCallback(
+		async id => {
+			await notChess({
+				method: "delete",
+				url: `/games/${id}`
+			});
+			await getGames();
+		},
+		[getGames]
+	);
+
 	useEffect(() => {
 		setGames(null);
 		getGames();
-	}, [getGames]);
+		return () => (subscribed.current = false);
+	}, [getGames, subscribed]);
 
 	return {
 		games,
 		getGames,
 		postGame,
 		joinGame,
+		deleteGame,
 		gameState,
 		setGameState,
 		mine,

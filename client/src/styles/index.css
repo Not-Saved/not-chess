@@ -24,12 +24,21 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	flex-flow: column;
 }
 
 .background {
 	background-color: #f8f8f8;
 	box-shadow: 0px 0px 2px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 	z-index: -1;
+}
+
+.foreground {
+	background-color: white;
+	box-shadow: 0px 0px 2px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+	height: calc(100% + 40px);
+	padding: 15px;
+	margin: 0px 10px;
 }
 
 .scrolling::-webkit-scrollbar {
@@ -82,6 +91,12 @@
 
 @media only screen and (max-width: 420px) {
 	.menu.text {
+		display: none;
+	}
+}
+
+@media only screen and (max-height: 260px) {
+	.main.footer {
 		display: none;
 	}
 }

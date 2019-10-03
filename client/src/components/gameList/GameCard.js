@@ -128,7 +128,8 @@ const GameCard = ({ game, user, onClick }) => {
 								visibility:
 									userPlayer &&
 									userPlayer.color === color &&
-									userPlayer.color === game.turn
+									userPlayer.color === game.turn &&
+									game.state !== "NEW"
 										? "visible"
 										: "hidden"
 							}}

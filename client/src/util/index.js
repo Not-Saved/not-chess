@@ -41,7 +41,9 @@ export function getTimeSinceUpdated(date) {
 	timeDiff = timeDiff / 7;
 	if (timeDiff < 4) return `${Math.floor(timeDiff)}w`;
 	//DATE
+	timeDiff = timeDiff / 12;
 	const dateStringParts = date.toDateString().split(" ");
 	const dateString = `${dateStringParts[1]} ${dateStringParts[2]}`;
-	return `${dateString}`;
+	if (timeDiff < 12) return `${dateString}`;
+	return `> 1y`;
 }

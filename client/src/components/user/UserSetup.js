@@ -84,6 +84,53 @@ const UserSetup = ({
 		);
 	};
 
+	const renderButton = () => {
+		return (
+			<button
+				className={(function() {
+					if (Object.values(errors).length && !validating)
+						return "ui fitted basic negative disabled small button";
+					else if (validating)
+						return "ui fitted basic disabled small button";
+					else return "ui fitted basic positive small button";
+				})()}
+				onClick={async () => {
+					try {
+						setActive("active");
+						await postUser({
+							userName: values.userName,
+							icon: values.icon
+						});
+						setActive("");
+						history.push("/");
+					} catch (e) {
+						console.log(e);
+						setActive("");
+					}
+				}}
+			>
+				<i
+					className={(function() {
+						if (Object.values(errors).length && !validating)
+							return "x icon";
+						else if (validating) return "loading circle notch icon";
+						else return "check icon";
+					})()}
+				></i>
+				Confirm
+			</button>
+		);
+	};
+
+	if (window.innerHeight < 260) {
+		return (
+			<div className="foreground" style={{ textAlign: "center" }}>
+				<div>{renderInfo()}</div>
+				<div>{renderButton()}</div>
+				<div className="ui divider"></div>
+			</div>
+		);
+	}
 	return (
 		<div className="main page container">
 			<div className="main page content login">
@@ -118,49 +165,7 @@ const UserSetup = ({
 							</div>
 						</h1>
 						{renderInfo()}
-						<div>
-							<button
-								className={(function() {
-									if (
-										Object.values(errors).length &&
-										!validating
-									)
-										return "ui fitted basic negative disabled small button";
-									else if (validating)
-										return "ui fitted basic disabled small button";
-									else
-										return "ui fitted basic positive small button";
-								})()}
-								onClick={async () => {
-									try {
-										setActive("active");
-										await postUser({
-											userName: values.userName,
-											icon: values.icon
-										});
-										setActive("");
-										history.push("/");
-									} catch (e) {
-										console.log(e);
-										setActive("");
-									}
-								}}
-							>
-								<i
-									className={(function() {
-										if (
-											Object.values(errors).length &&
-											!validating
-										)
-											return "x icon";
-										else if (validating)
-											return "loading circle notch icon";
-										else return "check icon";
-									})()}
-								></i>
-								Confirm
-							</button>
-						</div>
+						<div>{renderButton()}</div>
 					</div>
 				</Card>
 			</div>

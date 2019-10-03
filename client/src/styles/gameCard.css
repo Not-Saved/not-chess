@@ -25,7 +25,7 @@
 }
 
 .game-card .empty.icon {
-	font-size: 58px;
+	font-size: 59px;
 }
 
 .game-card .main.circular.image {
@@ -103,7 +103,7 @@
 		font-size: 35px;
 	}
 	.game-card .empty.icon {
-		font-size: 33px;
+		font-size: 35px;
 	}
 	.game-card .sub.icon {
 		font-size: 8px !important;

@@ -13,6 +13,7 @@ const GameListController = props => {
 		games,
 		postGame,
 		joinGame,
+		deleteGame,
 		gameState,
 		setGameState,
 		mine,
@@ -45,6 +46,7 @@ const GameListController = props => {
 				game={selectedGame}
 				setGame={setSelectedGame}
 				joinGame={joinGame}
+				deleteGame={deleteGame}
 			/>
 			<NewGameModal
 				open={openNew}

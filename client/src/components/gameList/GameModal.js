@@ -11,7 +11,15 @@ import {
 import Card from "../Card";
 import "../../styles/gameModal.css";
 
-const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
+const GameModal = ({
+	history,
+	open,
+	setOpen,
+	game,
+	setGame,
+	joinGame,
+	deleteGame
+}) => {
 	const { user } = useContext(UserContext);
 	const [active, setActive] = useState("");
 
@@ -45,6 +53,18 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 				setActive("");
 				console.log(e);
 			}
+		}
+	};
+
+	const onDelete = async () => {
+		try {
+			setActive("active");
+			await deleteGame(game.id);
+			setActive("");
+			setOpen(false);
+		} catch (e) {
+			setActive("");
+			console.log(e);
 		}
 	};
 
@@ -150,44 +170,64 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame }) => {
 								style={{ margin: "0px 8% 8px 8%" }}
 							></div>
 							<div
-								className="grid two column row"
-								style={{ padding: "0px 4vw" }}
+								className="grid equal width row"
+								style={{ padding: "0px 6vw" }}
 							>
-								<div className="grid column">
-									<button
-										className="ui basic compact button"
-										onClick={onWatch}
+								<div className="grid column zero-padding">
+									<div
+										className="ui buttons"
 										style={{ width: "100%" }}
-										disabled={
-											!game.whitePlayer._user ||
-											!game.blackPlayer._user
-										}
 									>
-										{checkIfPlaying() ? (
-											<>
-												<i className="play icon"></i>
-												Play
-											</>
-										) : (
-											<>
-												<i className="eye icon"></i>
-												Watch
-											</>
-										)}
-									</button>
-								</div>
-								<div className="grid column">
-									<button
-										className="ui basic compact button"
-										style={{ width: "100%" }}
-										disabled={
-											!game.whitePlayer._user ||
-											!game.blackPlayer._user
-										}
-									>
-										<i className="star icon"></i>
-										Save
-									</button>
+										<button
+											className="ui basic compact button"
+											onClick={onWatch}
+											style={{
+												width: "50%",
+												padding: "5px 10px"
+											}}
+											disabled={
+												!game.whitePlayer._user ||
+												!game.blackPlayer._user
+											}
+										>
+											<i
+												className={`${
+													checkIfPlaying()
+														? "play"
+														: "eye"
+												} icon`}
+											></i>
+											<span
+												style={{ fontWeight: "bold" }}
+											>
+												To game
+											</span>
+										</button>
+
+										<button
+											className="ui basic compact button"
+											style={{
+												width: "50%",
+												padding: "5px 10px"
+											}}
+											onClick={onDelete}
+											disabled={
+												!user ||
+												(!user.superAdmin &&
+													(game.host !== user.id ||
+														game.state !== "NEW"))
+											}
+										>
+											<i className="trash alternate outline icon"></i>
+											<span
+												style={{
+													fontWeight: "bold"
+												}}
+											>
+												Delete
+											</span>
+										</button>
+									</div>
 								</div>
 							</div>
 							<div

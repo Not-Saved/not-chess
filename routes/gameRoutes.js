@@ -8,7 +8,7 @@ const Game = mongoose.model("games");
 module.exports = app => {
 	app.get("/api/games", async (req, res) => {
 		try {
-			const { pageSize = 1000, page = 1 } = req.query;
+			const { pageSize = 100, page = 1 } = req.query;
 			let query = {};
 			if (req.query.state) {
 				query = { state: { $in: req.query.state } };
@@ -28,8 +28,7 @@ module.exports = app => {
 				.limit(pageSize)
 				.sort({ lastUpdated: -1 })
 				.populate("whitePlayer._user")
-				.populate("blackPlayer._user")
-				.populate("winner._user");
+				.populate("blackPlayer._user");
 			res.send(games);
 		} catch (e) {
 			res.send(e);
@@ -52,7 +51,10 @@ module.exports = app => {
 		try {
 			const color =
 				req.query.color === "b" ? "blackPlayer" : "whitePlayer";
-			let game = new Game({ [color]: { _user: req.user.id } });
+			let game = new Game({
+				[color]: { _user: req.user.id },
+				host: req.user.id
+			});
 
 			game = await game.save();
 			game = await Game.populate(game, `${color}._user`);
@@ -60,13 +62,6 @@ module.exports = app => {
 		} catch (e) {
 			res.send(e);
 		}
-	});
-
-	app.post("/api/crazy", requireLogin, (req, res) => {
-		for (let index = 0; index < 200; index++) {
-			new Game({ whitePlayer: { _user: req.user.id } }).save();
-		}
-		res.send("Done");
 	});
 
 	app.post("/api/games/:id", requireLogin, gamesLimit, async (req, res) => {
@@ -97,6 +92,23 @@ module.exports = app => {
 			res.send(game);
 		} catch (e) {
 			res.status(401).send(e);
+		}
+	});
+
+	app.delete("/api/games/:id", requireLogin, async (req, res) => {
+		try {
+			let game = await Game.findOne({ _id: req.params.id });
+			console.log(req.user.id);
+			if (
+				(String(game.host) === req.user.id && game.state === "NEW") ||
+				req.user.superAdmin
+			) {
+				await Game.deleteOne({ _id: req.params.id });
+				res.send({});
+			}
+			throw "Can't delete!";
+		} catch (e) {
+			res.status(400).send(e);
 		}
 	});
 };

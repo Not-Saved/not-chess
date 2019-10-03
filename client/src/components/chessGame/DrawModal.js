@@ -34,10 +34,7 @@ const DrawModal = ({ history, open, setOpen, game }) => {
 							</div>
 						</h2>
 					</div>
-					<div
-						style={{ position: "absolute", top: 31, left: 24 }}
-						className="back"
-					>
+					<div className="back">
 						<h3
 							className="ui header"
 							onClick={() => history.push("/games")}

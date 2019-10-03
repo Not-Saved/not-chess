@@ -27,6 +27,12 @@
 	margin: 5px 0px 0px 0px;
 }
 
+.back {
+	position: absolute;
+	top: 34px;
+	left: 25px;
+}
+
 .back .ui.header {
 	font-size: 16px;
 }
@@ -64,12 +70,21 @@
 	.back .ui.header {
 		font-size: 15px;
 	}
+	.back {
+		top: 35px;
+		left: 25px;
+	}
 }
 
 @media screen and (max-height: 400px) {
 	.win.modal {
 		height: 95vh;
 		width: 70vw;
+	}
+
+	.back {
+		top: 33px;
+		left: 24px;
 	}
 
 	.main.layout .ui.header .circular.image {

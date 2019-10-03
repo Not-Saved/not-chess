@@ -1,5 +1,6 @@
 import React from "react";
 import Chess from "chess.js";
+import { Sidebar } from "semantic-ui-react";
 
 import ChessBoard from "./ChessBoard";
 import Player from "./Player";
@@ -10,9 +11,12 @@ const ChessGame = ({
 	playerField = "whitePlayer",
 	playingColor,
 	active,
+	sidebarOpen,
+	setSidebarOpen,
 	...rest
 }) => {
 	const chessJsGame = new Chess(game.fen);
+
 	const renderCorners = () => {
 		const otherPlayerField =
 			playerField === "whitePlayer" ? "blackPlayer" : "whitePlayer";
@@ -44,27 +48,56 @@ const ChessGame = ({
 		);
 	};
 
-	return (
-		<div
-			style={{ height: "100%", position: "relative" }}
-			className="chess-game"
-		>
-			{renderCorners()}
-			<div style={{ height: "100%" }} className="animate">
-				<div
-					className={`ui ${active} dimmer`}
-					style={{ zIndex: 9, backgroundColor: "#00000000" }}
-				>
-					<div className="ui big loader"></div>
-				</div>
-				<ChessBoard
-					chessJsGame={chessJsGame}
-					playerField={playerField}
-					playingColor={playingColor}
-					{...rest}
-				/>
+	const renderLoader = () => {
+		return (
+			<div
+				className={`ui ${active} dimmer`}
+				style={{ zIndex: 9, backgroundColor: "#00000000" }}
+			>
+				<div className="ui big loader"></div>
 			</div>
-		</div>
+		);
+	};
+
+	return (
+		<Sidebar.Pushable>
+			<Sidebar
+				animation="overlay"
+				direction="right"
+				icon="labeled"
+				onHide={() => setSidebarOpen(false)}
+				visible={sidebarOpen}
+				width="thin"
+				style={{ backgroundColor: "rgba(0,0,0,0.95)" }}
+			>
+				{game.moves.map(move => {
+					return (
+						<div key={move.san} style={{ color: "white" }}>
+							{move.san}
+						</div>
+					);
+				})}
+			</Sidebar>
+
+			<Sidebar.Pusher
+				dimmed={sidebarOpen}
+				style={{ height: "100%" }}
+				className="chess-game"
+			>
+				<div style={{ height: "100%" }}>
+					{renderCorners()}
+					<div style={{ height: "100%" }}>
+						{renderLoader()}
+						<ChessBoard
+							chessJsGame={chessJsGame}
+							playerField={playerField}
+							playingColor={playingColor}
+							{...rest}
+						/>
+					</div>
+				</div>
+			</Sidebar.Pusher>
+		</Sidebar.Pushable>
 	);
 };
 
