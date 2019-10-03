@@ -16,6 +16,7 @@ const UserSetup = ({
 	postUser
 }) => {
 	const [active, setActive] = useState("");
+	const [focused, setFocused] = useState(false);
 
 	const renderInfo = () => {
 		return (
@@ -58,6 +59,8 @@ const UserSetup = ({
 						<Popup
 							trigger={
 								<Input
+									onFocus={() => setFocused(true)}
+									onBlur={() => setFocused(false)}
 									type="text"
 									name="userName"
 									placeholder="Username"
@@ -122,7 +125,7 @@ const UserSetup = ({
 		);
 	};
 
-	if (window.innerHeight < 260) {
+	if (false) {
 		return (
 			<div className="foreground" style={{ textAlign: "center" }}>
 				<div>{renderInfo()}</div>

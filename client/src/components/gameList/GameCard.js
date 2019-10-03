@@ -232,7 +232,7 @@ const GameCard = ({ game, user, onClick }) => {
 	};
 
 	return (
-		<Card>
+		<Card style={{ marginTop: 12 }}>
 			<div
 				className="game-card"
 				style={{ position: "relative", cursor: "pointer" }}
