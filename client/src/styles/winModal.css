@@ -29,7 +29,7 @@
 
 .back {
 	position: absolute;
-	top: 34px;
+	top: 23px;
 	left: 25px;
 }
 
@@ -71,7 +71,7 @@
 		font-size: 15px;
 	}
 	.back {
-		top: 35px;
+		top: 24px;
 		left: 25px;
 	}
 }
