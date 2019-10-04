@@ -11,7 +11,7 @@ export default function useChessGame(id) {
 			method: "get",
 			url: `/games/${id}`
 		});
-		if (subscribed) setGame(response.data);
+		if (subscribed.current) setGame(response.data);
 	}, [setGame, id]);
 
 	const makeMove = useCallback(

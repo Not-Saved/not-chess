@@ -13,7 +13,9 @@ export default function useGames({ initGameState = [], initMine = false }) {
 			url: "/games",
 			params: { state: gameState, mine: mine }
 		});
-		if (subscribed.current) setGames(response.data);
+		if (subscribed.current) {
+			setGames(response.data);
+		}
 	}, [gameState, mine]);
 
 	const postGame = useCallback(
@@ -51,6 +53,7 @@ export default function useGames({ initGameState = [], initMine = false }) {
 	);
 
 	useEffect(() => {
+		subscribed.current = true;
 		setGames(null);
 		getGames();
 		return () => (subscribed.current = false);
