@@ -1,0 +1,41 @@
+.login {
+	width: 400px;
+}
+
+.login .content {
+	padding: 15px;
+}
+
+.login .ui.header {
+	margin: 0px;
+}
+
+.login .ui.header .content .sub.header {
+	margin: 0px 40px;
+}
+
+.login .content .ui.divider {
+	margin: 11px;
+}
+
+.login .ui.header .sub.header {
+	margin: 0px 5px;
+}
+
+@media screen and (max-width: 450px) {
+	.login {
+		width: 90vw;
+	}
+
+	.login .ui.header {
+		font-size: 28px;
+	}
+
+	.login .ui.header .sub.header {
+		font-size: 14px;
+	}
+
+	.login .ui.button {
+		font-size: 15px;
+	}
+}

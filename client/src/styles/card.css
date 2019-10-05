@@ -1,26 +1,3 @@
-.nc-card {
-	display: flex;
-	width: 100%;
-	background-color: white;
-	border: 1px solid #d4d4d5;
-	border-radius: 0px !important;
-	margin: 0px 0px 0px 0px;
-}
-
-.nc-corners {
-	width: 100%;
-	margin: 10px;
-	padding: 5px 0px;
-
-	background: linear-gradient(to right, #d4d4d5 1px, transparent 0px) 0 0,
-		linear-gradient(to bottom, #d4d4d5 1px, transparent 0px) 0 0,
-		linear-gradient(to left, #d4d4d5 1px, transparent 0px) 100% 100%,
-		linear-gradient(to top, #d4d4d5 1px, transparent 0px) 100% 100%;
-
-	background-repeat: no-repeat;
-	background-size: 100px 33px;
-}
-
 .angled.corners {
 	background: linear-gradient(to left, #d4d4d5 2px, transparent 0px) 100% 0,
 		linear-gradient(to bottom, #d4d4d5 2px, transparent 0px) 100% 0,
@@ -29,22 +6,4 @@
 
 	background-repeat: no-repeat;
 	background-size: 100px 33px;
-}
-
-.game.modal .nc-corners {
-	width: 100%;
-	margin: 10px;
-	padding: 5px 2px;
-
-	background: linear-gradient(to right, #d4d4d5 1px, transparent 0px) 0 0,
-		linear-gradient(to bottom, #d4d4d5 1px, transparent 0px) 0 0,
-		linear-gradient(to left, #d4d4d5 1px, transparent 0px) 100% 100%,
-		linear-gradient(to top, #d4d4d5 1px, transparent 0px) 100% 100%,
-		linear-gradient(to right, #d4d4d5 1px, transparent 0px) 0% 100%,
-		linear-gradient(to bottom, #d4d4d5 1px, transparent 0px) 100% 0,
-		linear-gradient(to left, #d4d4d5 1px, transparent 0px) 100% 0%,
-		linear-gradient(to top, #d4d4d5 1px, transparent 0px) 0% 100%;
-
-	background-repeat: no-repeat;
-	background-size: 20% 12%;
 }

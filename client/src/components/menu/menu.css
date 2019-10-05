@@ -1,0 +1,40 @@
+.menu.container {
+	position: fixed;
+	top: 0px;
+	height: 50px;
+	width: 100%;
+	z-index: 10;
+	background-color: white;
+}
+
+.menu {
+	font-size: 0px !important;
+	height: 100%;
+}
+
+.menu .item {
+	font-size: 20px;
+	padding: 12px !important;
+	cursor: pointer;
+}
+
+.menu .item .text {
+	font-size: 16px !important;
+	font-weight: bold;
+}
+
+.menu .item .icon {
+	font-size: 25px !important;
+	padding: 0px 5px !important;
+}
+
+.menu img {
+	height: 35px;
+	margin: 0px 13px;
+}
+
+@media only screen and (max-width: 580px) {
+	.menu .item .text {
+		display: none;
+	}
+}

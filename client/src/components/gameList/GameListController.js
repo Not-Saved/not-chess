@@ -8,7 +8,7 @@ import useGames from "util/useGames";
 import Loading from "components/Loading";
 import Empty from "./Empty";
 
-const GameListController = props => {
+const GameListController = () => {
 	const {
 		games,
 		postGame,
@@ -33,7 +33,7 @@ const GameListController = props => {
 			return <GameList data={games} openModal={openModal} />;
 		}
 		if (games && !games.length) {
-			return <Empty />;
+			return <Empty text="No games found" />;
 		}
 		return <Loading />;
 	};
@@ -48,11 +48,7 @@ const GameListController = props => {
 				joinGame={joinGame}
 				deleteGame={deleteGame}
 			/>
-			<NewGameModal
-				open={openNew}
-				setOpen={setOpenNew}
-				postGame={postGame}
-			/>
+			<NewGameModal open={openNew} setOpen={setOpenNew} postGame={postGame} />
 			{renderGames()}
 			<GameListFooter
 				setOpen={setOpenNew}

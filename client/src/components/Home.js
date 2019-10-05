@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 
 import { UserContext } from "context";
+
 import Card from "components/Card";
-import "styles/home.css";
 import Loading from "./Loading";
+
+import "./home.css";
 
 const Home = () => {
 	const { user } = useContext(UserContext);
@@ -11,17 +13,15 @@ const Home = () => {
 		return <Loading />;
 	}
 	return (
-		<div className="main page container">
-			<div className="main page content">
+		<div className="flex center full height">
+			<div className="home">
 				<Card>
-					<div style={{ padding: 15, marginTop: 9 }}>
+					<div className="content">
 						<h1 className="ui icon header">
-							<i className="	settings icon"></i>
+							<i className="settings icon"></i>
 							<div className="content">
 								Welcome back!
-								<div className="sub header">
-									Work in progress...
-								</div>
+								<div className="sub header">Work in progress...</div>
 							</div>
 						</h1>
 					</div>

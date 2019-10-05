@@ -26,11 +26,7 @@ const GameList = ({ data, openModal }) => {
 		if (index === data.length - 1) myStyle = { marginBottom: "12px" };
 		return (
 			<div key={index} style={{ ...style, ...myStyle }}>
-				<GameCard
-					game={game}
-					user={user}
-					onClick={e => openModal(e, game)}
-				/>
+				<GameCard game={game} user={user} onClick={e => openModal(e, game)} />
 			</div>
 		);
 	};
@@ -44,7 +40,7 @@ const GameList = ({ data, openModal }) => {
 						width={width}
 						height={height}
 						itemSize={cardHeight}
-						className="List scrolling"
+						className="List scrollbar hidden"
 						overscanCount={3}
 					>
 						{row}

@@ -1,0 +1,39 @@
+.main.footer {
+	position: fixed;
+	display: flex;
+	align-items: center;
+
+	height: 40px;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+
+	background-color: white;
+	box-shadow: 1px 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+	z-index: 10;
+}
+
+.main.footer .content .default {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 0px 10px;
+}
+
+.main.footer .content .default .ui.header {
+	position: relative;
+	top: 2px;
+
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+}
+
+.main.footer .content .default .ui.header i {
+	font-size: 26px;
+	margin-left: 3px;
+}
+
+.main.footer .content .default a {
+	color: rgb(0, 0, 0, 0.87);
+}

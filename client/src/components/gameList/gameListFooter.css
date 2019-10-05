@@ -23,6 +23,15 @@
 	justify-self: right;
 }
 
+.game.list.footer .grid .item button {
+	font-weight: bold;
+	font-size: 15px !important;
+}
+
+.game.list.footer .grid .item button i {
+	padding-right: 15px;
+}
+
 @media screen and (max-width: 700px) {
 	.game.list.footer .grid .left.item {
 		justify-self: center;

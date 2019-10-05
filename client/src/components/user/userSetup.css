@@ -1,0 +1,58 @@
+.user.setup {
+	width: 400px;
+}
+
+.user.setup .content {
+	padding: 15px 15px 10px 15px;
+	position: relative;
+}
+
+.user.setup .content .ui.dimmer {
+	z-index: 9;
+}
+
+.user.setup .content .ui.header {
+	margin: 0px;
+}
+
+.user.setup .content .ui.header .text {
+	margin-bottom: 5px;
+}
+
+.user.setup .content .ui.header .sub.header {
+	margin: 0px 20px;
+}
+
+.user.setup .content .ui.divider {
+	margin: 10px;
+}
+
+.user.setup .content img {
+	height: 69px;
+	width: 69px;
+}
+
+.user.setup .content .ui.horizontal.list .item.right {
+	height: 100% !important;
+	width: 60%;
+}
+
+.user.setup .content .ui.horizontal.list .item.right input {
+	font-size: 14px;
+	width: 100%;
+}
+
+.error.popup::before {
+	background-color: #fff6f6 !important;
+}
+
+.error.popup {
+	background-color: #fff6f6 !important;
+	color: #9f3a38;
+}
+
+@media screen and (max-width: 450px) {
+	.user.setup {
+		width: 90vw;
+	}
+}

@@ -1,0 +1,14 @@
+.home {
+	width: 400px;
+}
+
+.home .content {
+	padding: 15px;
+	margin-top: 9px;
+}
+
+@media screen and (max-width: 450px) {
+	.home {
+		width: 90vw;
+	}
+}

@@ -1,12 +1,9 @@
 import React from "react";
 
-import Card from "../Card";
-import {
-	getGameStateString,
-	getGameStateIcon,
-	getTimeSinceUpdated
-} from "../../util";
-import "../../styles/gameCard.css";
+import { getGameStateString, getGameStateIcon, getTimeSinceUpdated } from "util/index";
+import Card from "components/Card";
+
+import "./gameCard.css";
 
 const GameCard = ({ game, user, onClick }) => {
 	const getUserPlayer = () => {
@@ -31,31 +28,26 @@ const GameCard = ({ game, user, onClick }) => {
 		return (
 			<div className="bottom left angle">
 				<i className="clock icon" />
-				<span className="sub text">
-					{getTimeSinceUpdated(game.lastUpdated)}
-				</span>
+				<span className="sub text">{getTimeSinceUpdated(game.lastUpdated)}</span>
 			</div>
 		);
 	};
 
 	const renderFooter = () => {
 		return (
-			<div className="footer">
+			<div className="game card footer">
+				<div className="ui divider" style={{ margin: "8px 15px" }}></div>
 				<div
-					className="ui divider"
-					style={{ margin: "8px 15px" }}
-				></div>
-				<div
-					className="ui four column center aligned grid zero-margin nc-font-size"
+					className="ui four column center aligned grid zero margin nc-font-size"
 					style={{ padding: "5px 0px" }}
 				>
-					<div className="column zero-padding">
+					<div className="column zero padding">
 						<div>
 							<i className="hashtag sub icon" />
 							<span className="sub text">{game.gameId}</span>
 						</div>
 					</div>
-					<div className="column zero-padding">
+					<div className="column zero padding">
 						<div>
 							<i className="calendar sub icon" />
 							<span className="sub text">
@@ -63,7 +55,7 @@ const GameCard = ({ game, user, onClick }) => {
 							</span>
 						</div>
 					</div>
-					<div className="column zero-padding">
+					<div className="column zero padding">
 						<div>
 							<i className="clock sub icon" />
 							<span className="sub text">
@@ -71,13 +63,9 @@ const GameCard = ({ game, user, onClick }) => {
 							</span>
 						</div>
 					</div>
-					<div className="column zero-padding">
+					<div className="column zero padding">
 						<div>
-							<i
-								className={`${getGameStateIcon(
-									game.state
-								)} sub icon`}
-							/>
+							<i className={`${getGameStateIcon(game.state)} sub icon`} />
 							<span className="sub text">
 								{getGameStateString(game.state)}
 							</span>
@@ -92,30 +80,46 @@ const GameCard = ({ game, user, onClick }) => {
 		const userPlayer = getUserPlayer();
 		const colorString = color === "b" ? "Black" : "White";
 
-		const playerHeader = direction => (
-			<div
-				className={`ten wide column ${direction} aligned player`}
-				style={{
-					padding:
-						direction === "left"
-							? "0px 0px 0px 5px"
-							: "0px 5px 0px 0px"
-				}}
-			>
-				<h2 className="ui header">
-					<div className="player">
-						<span className="name">{player._user.userName}</span>
-						<div className="sub header">
-							<span>{colorString}</span>
+		const isPlayIconVisible =
+			userPlayer &&
+			userPlayer.color === color &&
+			userPlayer.color === game.turn &&
+			game.state !== "NEW"
+				? "visible"
+				: "hidden";
+
+		const isMyIconVisible =
+			userPlayer && userPlayer.color === color ? "visible" : "hidden";
+
+		const playerHeader = () => {
+			if (player._user) {
+				return (
+					<h2 className="ui header">
+						<div className="player">
+							<span className="name">{player._user.userName}</span>
+							<div className="sub header">
+								<span>{colorString}</span>
+							</div>
 						</div>
-					</div>
-				</h2>
-			</div>
-		);
+					</h2>
+				);
+			} else {
+				return (
+					<h2 className="ui grey header">
+						<div className="player">
+							<span className="name">Join</span>
+							<div className="sub header">
+								<span>{colorString}</span>
+							</div>
+						</div>
+					</h2>
+				);
+			}
+		};
 
 		const icon = () => {
-			return (
-				<div className="six wide center aligned column zero-padding">
+			if (player._user) {
+				return (
 					<i className="big icons">
 						<img
 							src={`/${player._user.icon}`}
@@ -124,137 +128,59 @@ const GameCard = ({ game, user, onClick }) => {
 						/>
 						<i
 							className="play bottom left corner turn icon"
-							style={{
-								visibility:
-									userPlayer &&
-									userPlayer.color === color &&
-									userPlayer.color === game.turn &&
-									game.state !== "NEW"
-										? "visible"
-										: "hidden"
-							}}
+							style={{ visibility: isPlayIconVisible }}
 						></i>
 						<i
 							className="circle bottom right corner my icon"
-							style={{
-								visibility:
-									userPlayer && userPlayer.color === color
-										? "visible"
-										: "hidden"
-							}}
+							style={{ visibility: isMyIconVisible }}
 						></i>
 					</i>
-				</div>
-			);
+				);
+			} else {
+				return (
+					<div className="flex center">
+						<i className="big user circle empty fitted icon" />
+					</div>
+				);
+			}
 		};
 
 		if (color === "w") {
-			if (player._user) {
-				return (
-					<div className="ui middle aligned grid zero-margin">
+			return (
+				<div className="ui middle aligned grid zero margin padding">
+					<div className="ten wide column right aligned player">
 						{playerHeader("right")}
+					</div>
+					<div className="six wide center aligned column zero padding">
 						{icon("left")}
 					</div>
-				);
-			} else {
-				return (
-					<div className="ui middle aligned grid zero-margin">
-						<div
-							className={`ten wide column right aligned player`}
-							style={{ padding: "0px 5px 0px 0px" }}
-						>
-							<h2 className="ui grey header">
-								<div className="player">
-									<span className="name">Join</span>
-									<div className="sub header">
-										<span>{colorString}</span>
-									</div>
-								</div>
-							</h2>
-						</div>
-						<div className="six wide center aligned column zero-padding">
-							<div
-								style={{
-									display: "flex",
-									justifyContent: "center",
-									alignItems: "center"
-								}}
-							>
-								<i
-									className={`big user circle empty fitted icon`}
-								/>
-							</div>
-						</div>
-					</div>
-				);
-			}
+				</div>
+			);
 		} else {
-			if (player._user) {
-				return (
-					<div className="ui middle aligned grid zero-margin">
+			return (
+				<div className="ui middle aligned grid zero margin padding">
+					<div className="six wide center aligned column zero padding">
 						{icon("right")}
+					</div>
+					<div className="ten wide column left aligned player">
 						{playerHeader("left")}
 					</div>
-				);
-			} else {
-				return (
-					<div className="ui middle aligned grid zero-margin">
-						<div className="six wide center aligned column zero-padding">
-							<div
-								style={{
-									display: "flex",
-									justifyContent: "center",
-									alignItems: "center"
-								}}
-							>
-								<i
-									className={`big user circle empty fitted icon`}
-								/>
-							</div>
-						</div>
-						<div
-							className={`ten wide column left aligned player`}
-							style={{ padding: "0px 0px 0px 5px" }}
-						>
-							<h2 className="ui grey header">
-								<div className="player">
-									<span className="name">Join</span>
-									<div className="sub header">
-										<span>{colorString}</span>
-									</div>
-								</div>
-							</h2>
-						</div>
-					</div>
-				);
-			}
+				</div>
+			);
 		}
 	};
 
 	return (
 		<Card style={{ marginTop: 12 }}>
-			<div
-				className="game-card"
-				style={{ position: "relative", cursor: "pointer" }}
-				onClick={onClick}
-			>
+			<div className="game card clickable" onClick={onClick}>
 				<div style={{ position: "relative" }}>
 					{renderTopRight()}
 					{renderBottomLeft()}
-					<div
-						className="ui two column grid zero-margin"
-						style={{ padding: "10px" }}
-					>
-						<div
-							className="middle aligned column"
-							style={{ padding: "0px 1em 0px 0px" }}
-						>
+					<div className="ui equal width grid zero margin">
+						<div className="middle aligned white-player column">
 							{renderPlayer(game.whitePlayer, "w")}
 						</div>
-						<div
-							className="middle aligned column"
-							style={{ padding: "0px 0px 0px 1em" }}
-						>
+						<div className="middle aligned black-player column">
 							{renderPlayer(game.blackPlayer, "b")}
 						</div>
 					</div>

@@ -1,54 +1,78 @@
-.game-card .player {
+.game.card {
+	position: relative;
+}
+
+.game.card .grid {
+	padding: 10px;
+}
+
+.game.card .grid .white-player {
+	padding: 0px 1em 0px 0px;
+}
+
+.game.card .grid .black-player {
+	padding: 0px 0px 0px 1em;
+}
+
+.game.card .grid .white-player.column .grid .player.column {
+	padding: 0px 5px 0px 0px;
+}
+
+.game.card .grid .black-player.column .grid .player.column {
+	padding: 0px 0px 0px 5px;
+}
+
+.game.card .player {
 	font-size: 24px !important;
 }
 
-.game-card .player .sub.header {
+.game.card .player .sub.header {
 	font-size: 15px !important;
 	font-weight: bold;
 }
 
-.game-card .icons .corner.turn.icon {
+.game.card .icons .corner.turn.icon {
 	font-size: 14px !important;
 }
-.game-card .icons .corner.my.icon {
+.game.card .icons .corner.my.icon {
 	font-size: 13px !important;
 }
 
-.game-card .sub.text {
+.game.card .sub.text {
 	font-size: 15px !important;
 	font-weight: bold;
 	color: rgba(0, 0, 0, 0.6);
 }
 
-.game-card .sub.icon {
+.game.card .sub.icon {
 	color: rgba(0, 0, 0, 0.6);
 }
 
-.game-card .empty.icon {
+.game.card .empty.icon {
 	font-size: 59px;
 }
 
-.game-card .main.circular.image {
+.game.card .main.circular.image {
 	height: 60px;
 	width: 60px;
 }
 
-.game-card .top.right.angle {
+.game.card .top.right.angle {
 	position: absolute;
 	display: none;
 	z-index: 10;
 }
 
-.game-card .bottom.left.angle {
+.game.card .bottom.left.angle {
 	display: none;
 }
 
 @media only screen and (max-height: 750px) {
-	.game-card .footer {
+	.game.card .game.card.footer {
 		display: none;
 	}
 
-	.game-card .bottom.left.angle {
+	.game.card .bottom.left.angle {
 		font-size: 16px !important;
 		display: inherit;
 		position: absolute;
@@ -56,17 +80,17 @@
 		bottom: -13px;
 	}
 
-	.game-card .bottom.left.angle .sub.text {
+	.game.card .bottom.left.angle .sub.text {
 		font-size: 13px !important;
 		color: black !important;
 	}
 
-	.game-card .bottom.left.angle .icon {
+	.game.card .bottom.left.angle .icon {
 		font-size: 13px !important;
 		color: black !important;
 	}
 
-	.game-card .top.right.angle {
+	.game.card .top.right.angle {
 		font-size: 14px !important;
 		display: inherit;
 		position: absolute;
@@ -76,49 +100,49 @@
 }
 
 @media only screen and (max-width: 580px) {
-	.game-card .player {
+	.game.card .player {
 		font-size: 15px !important;
 	}
 
-	.game-card .player .sub.header {
+	.game.card .player .sub.header {
 		position: relative;
 		bottom: 6px;
 		font-size: 10px !important;
 	}
 
-	.game-card .sub.text {
+	.game.card .sub.text {
 		font-size: 11px !important;
 	}
 
-	.game-card .icons .corner.turn.icon {
+	.game.card .icons .corner.turn.icon {
 		font-size: 8px !important;
 	}
-	.game-card .icons .corner.my.icon {
+	.game.card .icons .corner.my.icon {
 		font-size: 7px !important;
 	}
 
-	.game-card .main.circular.image {
+	.game.card .main.circular.image {
 		height: 35px;
 		width: 35px;
 		font-size: 35px;
 	}
-	.game-card .empty.icon {
+	.game.card .empty.icon {
 		font-size: 35px;
 	}
-	.game-card .sub.icon {
+	.game.card .sub.icon {
 		font-size: 8px !important;
 	}
-	.game-card .eleven.wide.column {
+	.game.card .eleven.wide.column {
 		padding: 4px 10px;
 	}
 
-	.game-card .top.right.angle {
+	.game.card .top.right.angle {
 		font-size: 9px !important;
 		top: -8px;
 		right: -2px;
 	}
 
-	.game-card .bottom.left.angle {
+	.game.card .bottom.left.angle {
 		font-size: 8px !important;
 		display: inherit;
 		position: absolute;
@@ -126,15 +150,15 @@
 		bottom: -10px;
 	}
 
-	.game-card .bottom.left.angle .icon {
+	.game.card .bottom.left.angle .icon {
 		font-size: 9px !important;
 	}
 
-	.game-card .bottom.left.angle .sub.text {
+	.game.card .bottom.left.angle .sub.text {
 		font-size: 9px !important;
 	}
 
-	.game-card .footer {
+	.game.card .footer {
 		display: none;
 	}
 }

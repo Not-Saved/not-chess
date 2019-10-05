@@ -1,29 +1,19 @@
 import React from "react";
 
+import "./userIcons.css";
+
 const UserIcons = ({ onClick }) => {
 	return (
-		<div
-			style={{
-				display: "inline-grid",
-				gridTemplateColumns: "repeat(4, 50px)",
-				gridTemplateRows: "repeat(4, 50px)"
-			}}
-		>
+		<div className="user icons grid">
 			{icons.map(icon => (
 				<img
 					src={`/${icon}`}
-					className="ui circular image"
+					className="ui circular image clickable"
 					key={icon}
-					value={icon}
 					name="icon"
+					value={icon}
 					onClick={onClick}
 					alt=""
-					style={{
-						height: 45,
-						width: 45,
-						margin: "0px 2px",
-						cursor: "pointer"
-					}}
 				/>
 			))}
 		</div>

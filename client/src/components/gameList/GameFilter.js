@@ -4,8 +4,8 @@ import { Popup } from "semantic-ui-react";
 const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 	const renderTrigger = (
 		<button className="ui basic compact fluid button">
-			<i className="filter icon" style={{ paddingRight: 15 }}></i>
-			<span style={{ fontWeight: "bold" }}>Filter</span>
+			<i className="filter icon"></i>
+			Filter
 		</button>
 	);
 
@@ -50,10 +50,7 @@ const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 				>
 					GAME STATE
 				</h3>
-				<div
-					className="ui divider"
-					style={{ margin: "7px -5px 7px -5px" }}
-				></div>
+				<div className="ui divider" style={{ margin: "7px -5px 7px -5px" }}></div>
 				<div className="item">
 					<div
 						className={`ui large fluid ${mineActive()} label clickable`}
@@ -63,10 +60,7 @@ const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 						My games
 					</div>
 				</div>
-				<div
-					className="ui divider"
-					style={{ margin: "7px -5px 7px -5px" }}
-				></div>
+				<div className="ui divider" style={{ margin: "7px -5px 7px -5px" }}></div>
 				<div className="ui list" style={{ marginTop: 0 }}>
 					<div className="item">
 						<div

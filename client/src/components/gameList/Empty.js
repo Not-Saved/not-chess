@@ -1,17 +1,15 @@
 import React from "react";
 
-const Empty = () => {
+const Empty = ({ text }) => {
 	return (
-		<div className="main page container">
-			<div className="main page content">
-				<h2 className="ui icon header">
-					<i className="coffee icon"></i>
-					<div className="content">
-						Nothing Here
-						<div className="sub header">No games found</div>
-					</div>
-				</h2>
-			</div>
+		<div className="flex center full height width">
+			<h2 className="ui icon header">
+				<i className="coffee icon"></i>
+				<div className="content">
+					Nothing Here
+					<div className="sub header">{text}</div>
+				</div>
+			</h2>
 		</div>
 	);
 };

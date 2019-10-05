@@ -1,0 +1,30 @@
+.user.popup .ui.header {
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.user.popup .ui.header span {
+	position: relative;
+	top: 3px;
+	font-size: 17px;
+	margin: 5px;
+}
+
+.user.popup .ui.header img {
+	height: 29px;
+	width: 29px;
+}
+
+.user.popup .ui.divider {
+	margin: 0px -5px;
+}
+
+.user.popup .content button {
+	text-align: left;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.user.popup .content button i {
+	min-width: 27px !important;
+}

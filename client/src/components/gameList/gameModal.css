@@ -1,0 +1,209 @@
+.game.modal {
+	width: 35vw;
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+.game-modal .main.card .corners {
+	width: 100%;
+	margin: 10px;
+	padding: 5px 2px;
+
+	background: linear-gradient(to right, #d4d4d5 1px, transparent 0px) 0 0,
+		linear-gradient(to bottom, #d4d4d5 1px, transparent 0px) 0 0,
+		linear-gradient(to left, #d4d4d5 1px, transparent 0px) 100% 100%,
+		linear-gradient(to top, #d4d4d5 1px, transparent 0px) 100% 100%,
+		linear-gradient(to right, #d4d4d5 1px, transparent 0px) 0% 100%,
+		linear-gradient(to bottom, #d4d4d5 1px, transparent 0px) 100% 0,
+		linear-gradient(to left, #d4d4d5 1px, transparent 0px) 100% 0%,
+		linear-gradient(to top, #d4d4d5 1px, transparent 0px) 0% 100%;
+
+	background-repeat: no-repeat;
+	background-size: 20% 12%;
+}
+
+.game.modal .main.grid {
+	margin: -10px;
+}
+
+.game.modal .sub.grid {
+	margin: 0px 0px;
+	padding: 0;
+}
+
+.game.modal .ui.first.divider {
+	margin: 0px 8% 8px 8%;
+}
+
+.game.modal .ui.second.divider {
+	margin: 8px 14px 6px 14px;
+}
+
+.game.modal .ui.third.divider {
+	margin: 5px 15px;
+}
+
+.game.modal .column.b {
+	padding: 0px 5% 0px 0px;
+}
+
+.game.modal .column.w {
+	padding: 0px 0px 0px 5%;
+}
+
+.game.modal .first.row {
+	padding: 7px;
+}
+
+.game.modal .second.row {
+	padding: 0px 6vw;
+}
+
+.game.modal .second.row .ui.buttons {
+	width: 100%;
+}
+
+.game.modal .second.row .ui.buttons button {
+	width: 50%;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
+.game.modal .third.row {
+	position: relative;
+	padding: 0px;
+}
+
+.game.modal .fourth.row .column {
+	padding: 7px 8px 0px 8px;
+}
+
+.game.modal img {
+	height: 80px;
+	width: 80px;
+}
+
+.game.modal .flex.center {
+	height: 90px;
+}
+
+.game.modal .player.icon {
+	font-size: 0.85em !important;
+	margin: 0;
+	line-height: 90px;
+}
+
+.game.modal .icon.container {
+	height: 83px;
+}
+
+.game.modal .header {
+	font-size: 1.6em;
+}
+
+.game.modal .empty.header {
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.game.modal .header .sub.header {
+	font-size: 0.6em;
+	font-weight: bold;
+}
+
+.game.modal .ui.icon.header {
+	margin-bottom: 0px;
+}
+
+.game.modal .big.icon {
+	font-size: 1em;
+}
+
+.game.modal .sub.text {
+	line-height: 28px !important;
+	font-size: 0.55em;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.game.modal .sub.icon {
+	font-size: 0.65em !important;
+	color: rgba(0, 0, 0, 0.6) !important;
+	margin-bottom: 0px;
+}
+
+@media screen and (max-width: 1300px) {
+	.game.modal {
+		width: 60vw;
+	}
+
+	.game.modal img {
+		height: 74px;
+		width: 74px;
+	}
+
+	.game.modal .flex.center {
+		height: 80px;
+	}
+
+	.game.modal .player.icon {
+		font-size: 70px !important;
+		line-height: 80px;
+	}
+
+	.game.modal .icon.container {
+		height: 74px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.game.modal {
+		width: 90vw;
+	}
+
+	.game.modal .sub.text {
+		font-size: 0.6em !important;
+	}
+
+	.game.modal .sub.icon {
+		font-size: 0.75em !important;
+		margin-bottom: 0px;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.game.modal {
+		width: 90vw;
+	}
+
+	.game.modal img {
+		height: 50px;
+		width: 50px;
+	}
+
+	.game.modal .flex.center {
+		height: 55px;
+	}
+
+	.game.modal .header {
+		font-size: 1.1em;
+	}
+
+	.game.modal .header .sub.header {
+		font-size: 0.6em;
+	}
+
+	.game.modal .player.icon {
+		font-size: 48px !important;
+		line-height: 55px;
+	}
+
+	.game.modal .icon.container {
+		height: 48px;
+	}
+
+	.game.modal .empty.header {
+		height: 30px;
+	}
+}

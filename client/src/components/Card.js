@@ -1,10 +1,10 @@
 import React from "react";
-import "../styles/card.css";
+import "./card.css";
 
-const Card = ({ children, className = "", style, cornerStyle }) => {
+const Card = ({ children, className = "", style = {}, innerStyle = {} }) => {
 	return (
-		<div className={`nc-card ${className}`} style={style}>
-			<div className="nc-corners" style={cornerStyle}>
+		<div className={`${className} main card`} style={style}>
+			<div className="corners" style={innerStyle}>
 				{children}
 			</div>
 		</div>

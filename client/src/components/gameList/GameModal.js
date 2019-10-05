@@ -3,42 +3,33 @@ import { withRouter } from "react-router-dom";
 import { Modal } from "semantic-ui-react";
 
 import { UserContext } from "context";
-import {
-	getGameStateString,
-	getGameStateIcon,
-	getTimeSinceUpdated
-} from "../../util";
+import { getGameStateString, getGameStateIcon, getTimeSinceUpdated } from "util/index";
 import Card from "../Card";
-import "../../styles/gameModal.css";
 
-const GameModal = ({
-	history,
-	open,
-	setOpen,
-	game,
-	setGame,
-	joinGame,
-	deleteGame
-}) => {
+import "./gameModal.css";
+
+const GameModal = ({ history, open, setOpen, game, setGame, joinGame, deleteGame }) => {
 	const { user } = useContext(UserContext);
 	const [active, setActive] = useState("");
 
 	const checkIfPlaying = () => {
-		let player = null;
-		if (!user) return Boolean(player);
-		if (game.whitePlayer._user && game.whitePlayer._user.id === user.id)
-			player = game.whitePlayer;
-		if (game.blackPlayer._user && game.blackPlayer._user.id === user.id)
-			player = game.blackPlayer;
-		return Boolean(player);
+		if (!user) {
+			return false;
+		} else if (game.whitePlayer._user && game.whitePlayer._user.id === user.id) {
+			return Boolean(game.whitePlayer);
+		} else if (game.blackPlayer._user && game.blackPlayer._user.id === user.id) {
+			return Boolean(game.blackPlayer);
+		} else {
+			return false;
+		}
 	};
 
 	const onClose = () => {
 		setOpen(false);
 		setGame(null);
 	};
-	const onWatch = e => {
-		e.stopPropagation();
+
+	const onWatch = () => {
 		history.push(`/game/${game.id}`);
 	};
 
@@ -50,8 +41,8 @@ const GameModal = ({
 				setActive("");
 				history.push(`/game/${game.id}`);
 			} catch (e) {
+				console.error(e);
 				setActive("");
-				console.log(e);
 			}
 		}
 	};
@@ -63,8 +54,8 @@ const GameModal = ({
 			setActive("");
 			setOpen(false);
 		} catch (e) {
+			console.error(e);
 			setActive("");
-			console.log(e);
 		}
 	};
 
@@ -72,26 +63,18 @@ const GameModal = ({
 		const player = game[playerField];
 		const playing = checkIfPlaying();
 		const color = player.color === "w" ? "White" : "Black";
-		const padding =
-			player.color === "w" ? "0px 0px 0px 5%" : "0px 5% 0px 0px";
-		const cursor =
-			user && user.setUp && !player._user && !playing ? "pointer" : "";
+
+		const cursor = user && user.setUp && !player._user && !playing ? "clickable" : "";
 		const onClick = player._user ? null : () => onJoin();
 
 		const renderIcon = () => {
 			if (player._user) {
 				return (
-					<div
-						className="player icon"
-						style={{
-							display: "flex",
-							justifyContent: "center"
-						}}
-					>
+					<div className="flex center">
 						<img
 							src={`/${player._user.icon}`}
 							className="ui circular image"
-							alt={""}
+							alt=""
 						/>
 					</div>
 				);
@@ -120,12 +103,8 @@ const GameModal = ({
 		};
 
 		return (
-			<div className="grid seven wide column" style={{ padding }}>
-				<h2
-					className="ui icon header"
-					onClick={onClick}
-					style={{ cursor }}
-				>
+			<div className={`grid seven wide column ${player.color}`}>
+				<h2 className={`ui icon header ${cursor}`} onClick={onClick}>
 					{renderIcon()}
 					<div className="content">
 						{renderText()}
@@ -137,131 +116,68 @@ const GameModal = ({
 	};
 
 	if (game) {
+		const toGameButtonIcon = checkIfPlaying() ? "play" : "eye";
+		const toGameButtonDisabled = !game.whitePlayer._user || !game.blackPlayer._user;
+		const deleteButtonDisabled =
+			!user ||
+			(!user.superAdmin && (game.host !== user.id || game.state !== "NEW"));
+
 		return (
 			<Modal
 				closeOnDimmerClick
 				basic
 				onClose={onClose}
 				open={open}
-				className="nc-game-modal game modal"
+				className="game-modal game modal"
 			>
-				<Card className="game modal card">
-					<div style={{ position: "relative" }}>
-						<div
-							className={`ui ${active} inverted dimmer`}
-							style={{ padding: 25 }}
-						>
+				<Card className="game modal">
+					<div className="content" style={{ position: "relative" }}>
+						<div className={`ui ${active} inverted dimmer`}>
 							<div className="ui loader"></div>
 						</div>
-						<div
-							className="ui center aligned grid"
-							style={{ margin: "0px" }}
-						>
-							<div className="grid row" style={{ padding: 7 }}>
+						<div className="ui center aligned main grid">
+							<div className="grid first row">
 								<h2 className="ui header">
 									<i className="hashtag big icon"></i>
-									<div className="content">
-										{`${game.gameId}`}
-									</div>
+									<div className="content">{`${game.gameId}`}</div>
 								</h2>
 							</div>
-							<div
-								className="ui divider"
-								style={{ margin: "0px 8% 8px 8%" }}
-							></div>
-							<div
-								className="grid equal width row"
-								style={{ padding: "0px 6vw" }}
-							>
-								<div className="grid column zero-padding">
-									<div
-										className="ui buttons"
-										style={{ width: "100%" }}
-									>
+							<div className="ui first divider"></div>
+							<div className="grid equal width center aligned second row">
+								<div className="grid column zero padding">
+									<div className="ui buttons">
 										<button
 											className="ui basic compact button"
 											onClick={onWatch}
-											style={{
-												width: "50%",
-												padding: "5px 10px"
-											}}
-											disabled={
-												!game.whitePlayer._user ||
-												!game.blackPlayer._user
-											}
+											disabled={toGameButtonDisabled}
 										>
-											<i
-												className={`${
-													checkIfPlaying()
-														? "play"
-														: "eye"
-												} icon`}
-											></i>
-											<span
-												style={{ fontWeight: "bold" }}
-											>
-												To game
-											</span>
+											<i className={`${toGameButtonIcon} icon`}></i>
+											<span>To game</span>
 										</button>
 
 										<button
 											className="ui basic compact button"
-											style={{
-												width: "50%",
-												padding: "5px 10px"
-											}}
 											onClick={onDelete}
-											disabled={
-												!user ||
-												(!user.superAdmin &&
-													(game.host !== user.id ||
-														game.state !== "NEW"))
-											}
+											disabled={deleteButtonDisabled}
 										>
 											<i className="trash alternate outline icon"></i>
-											<span
-												style={{
-													fontWeight: "bold"
-												}}
-											>
-												Delete
-											</span>
+											<span>Delete</span>
 										</button>
 									</div>
 								</div>
 							</div>
-							<div
-								className="ui divider"
-								style={{ margin: "8px 14px 14px 14px" }}
-							></div>
-							<div
-								className="grid three column center aligned row "
-								style={{ position: "relative", padding: 0 }}
-							>
+							<div className="ui second divider"></div>
+							<div className="grid three column center aligned third row ">
 								{renderPlayer("whitePlayer")}
-								<div
-									className="grid two wide column"
-									style={{ padding: 0 }}
-								>
-									<div className="ui vertical divider">
-										VS
-									</div>
+								<div className="grid two wide column zero padding">
+									<div className="ui vertical divider">VS</div>
 								</div>
 								{renderPlayer("blackPlayer")}
 							</div>
-							<div
-								className="ui divider"
-								style={{ margin: "5px 15px" }}
-							></div>
-							<div
-								className="ui center aligned internally celled grid"
-								style={{ margin: "0px 0px", padding: 0 }}
-							>
-								<div className="grid three column row">
-									<div
-										className="grid column"
-										style={{ padding: "7px 8px 0px 8px" }}
-									>
+							<div className="ui third divider"></div>
+							<div className="ui center aligned internally celled sub grid">
+								<div className="grid three column fourth row">
+									<div className="grid column">
 										<h5 className="ui tiny icon header">
 											<i className="calendar sub fitted icon"></i>
 											<div className="sub text content">
@@ -271,23 +187,15 @@ const GameModal = ({
 											</div>
 										</h5>
 									</div>
-									<div
-										className="grid column"
-										style={{ padding: "7px 8px 0px 8px" }}
-									>
+									<div className="grid column">
 										<h5 className="ui tiny icon header">
 											<i className="clock sub fitted icon"></i>
 											<div className="sub text content">
-												{getTimeSinceUpdated(
-													game.lastUpdated
-												)}
+												{getTimeSinceUpdated(game.lastUpdated)}
 											</div>
 										</h5>
 									</div>
-									<div
-										className="grid column"
-										style={{ padding: "7px 8px 0px 8px" }}
-									>
+									<div className="grid column">
 										<h5 className="ui tiny icon header">
 											<i
 												className={`${getGameStateIcon(
