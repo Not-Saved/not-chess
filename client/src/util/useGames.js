@@ -3,7 +3,7 @@ import { notChess } from "../api";
 
 export default function useGames({
 	initGameState = ["NEW", "IN_PROGRESS"],
-	initMine = false
+	initMine = null
 }) {
 	const subscribed = useRef(false);
 	const [games, setGames] = useState(null);
@@ -61,13 +61,13 @@ export default function useGames({
 	useEffect(() => {
 		const { storageGameState, storageMine } = getStorageValues();
 		storageGameState && setGameState(storageGameState);
-		storageMine && setMine(storageMine);
+		setMine(storageMine || false);
 		subscribed.current = true;
 		return () => (subscribed.current = false);
 	}, []);
 
 	useEffect(() => {
-		return () => setStorageValues(gameState, mine);
+		setStorageValues(gameState, mine);
 	}, [gameState, mine]);
 
 	return {
