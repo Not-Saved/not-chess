@@ -49,8 +49,7 @@ module.exports = app => {
 
 	app.post("/api/games", requireLogin, gamesLimit, async (req, res) => {
 		try {
-			const color =
-				req.query.color === "b" ? "blackPlayer" : "whitePlayer";
+			const color = req.query.color === "b" ? "blackPlayer" : "whitePlayer";
 			let game = new Game({
 				[color]: { _user: req.user.id },
 				host: req.user.id
@@ -78,9 +77,7 @@ module.exports = app => {
 				throw "Already participating in game!";
 			}
 
-			const color = game.whitePlayer._user
-				? "blackPlayer"
-				: "whitePlayer";
+			const color = game.whitePlayer._user ? "blackPlayer" : "whitePlayer";
 			game[color]["_user"] = req.user.id;
 			game.state = "IN_PROGRESS";
 			game.lastUpdated = Date.now();
@@ -98,15 +95,14 @@ module.exports = app => {
 	app.delete("/api/games/:id", requireLogin, async (req, res) => {
 		try {
 			let game = await Game.findOne({ _id: req.params.id });
-			console.log(req.user.id);
 			if (
-				(String(game.host) === req.user.id && game.state === "NEW") ||
-				req.user.superAdmin
+				(String(game.host) !== req.user.id || game.state !== "NEW") &&
+				!req.user.superAdmin
 			) {
-				await Game.deleteOne({ _id: req.params.id });
-				res.send({});
+				throw "Can't delete!";
 			}
-			throw "Can't delete!";
+			await Game.deleteOne({ _id: req.params.id });
+			res.send({});
 		} catch (e) {
 			res.status(400).send(e);
 		}

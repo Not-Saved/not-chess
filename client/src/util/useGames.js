@@ -10,7 +10,7 @@ export default function useGames({
 	const [gameState, setGameState] = useState(initGameState);
 	const [mine, setMine] = useState(initMine);
 
-	const getGames = useCallback(async (gameState, mine) => {
+	const getGames = useCallback(async () => {
 		subscribed.current && setGames(null);
 		const response = await notChess({
 			method: "get",
@@ -18,7 +18,7 @@ export default function useGames({
 			params: { state: gameState, mine: mine }
 		});
 		subscribed.current && setGames(response.data);
-	}, []);
+	}, [gameState, mine]);
 
 	const postGame = useCallback(
 		async color => {
@@ -55,8 +55,8 @@ export default function useGames({
 	);
 
 	useEffect(() => {
-		subscribed.current && getGames(gameState, mine);
-	}, [gameState, mine, getGames]);
+		subscribed.current && getGames();
+	}, [getGames]);
 
 	useEffect(() => {
 		const { storageGameState, storageMine } = getStorageValues();
