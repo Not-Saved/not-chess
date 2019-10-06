@@ -1,0 +1,17 @@
+.game.filter .ui.header {
+	margin-bottom: 0px;
+	text-align: center;
+	font-size: 17px;
+}
+
+.game.filter .ui.divider {
+	margin: 7px -5px 7px -5px;
+}
+
+.game.filter .ui.list {
+	margin-top: 0px;
+}
+
+.game.filter .item .ui.label i {
+	min-width: 20px;
+}

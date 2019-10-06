@@ -34,19 +34,18 @@ const Square = ({
 	let pieceHighlightVisible = pieceHighlight ? "visible" : "hidden";
 	let squareColor = (square[0] + square[1]) % 2 ? "nc-black" : "nc-white";
 	let pieceColor = piece && piece.color === "b" ? "nc-black" : "nc-white";
+
 	const renderPiece = () => {
 		if (piece) {
+			let isClickable =
+				!firstClick && playingColor === piece.color && turn === piece.color
+					? "clickable"
+					: "";
 			return (
 				<div
-					className={`nc-piece ${pieceColor}`}
+					className={`nc-piece ${pieceColor} ${isClickable}`}
 					style={{
-						position: "absolute",
-						cursor:
-							!firstClick &&
-							playingColor === piece.color &&
-							turn === piece.color
-								? "pointer"
-								: null
+						position: "absolute"
 					}}
 				>
 					{getPiece(piece)}

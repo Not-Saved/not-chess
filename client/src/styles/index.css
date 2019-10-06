@@ -22,6 +22,10 @@
 	width: 100%;
 }
 
+.window.height {
+	height: 100vh;
+}
+
 .scrollbar.hidden {
 	-ms-overflow-style: none;
 	scrollbar-width: none;

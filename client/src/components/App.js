@@ -5,6 +5,7 @@ import { UserContext } from "context";
 import useCurrentUser from "../util/useCurrentUser";
 import useWindowDimentions from "../util/useWindowsDimensions";
 
+import Loading from "./Loading";
 import Menu from "./menu/Menu";
 import Footer from "./Footer";
 import Home from "./Home";
@@ -29,7 +30,12 @@ const App = () => {
 
 	const containerClassName = width > 480 ? "ui container" : "";
 
-	if (!userChecked) return null;
+	if (!userChecked)
+		return (
+			<div className="window height background">
+				<Loading />
+			</div>
+		);
 	return (
 		<BrowserRouter>
 			<UserContext.Provider

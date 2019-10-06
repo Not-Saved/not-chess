@@ -1,22 +1,24 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { notChess } from "../api";
 
-export default function useGames({ initGameState = [], initMine = false }) {
-	const subscribed = useRef(true);
+export default function useGames({
+	initGameState = ["NEW", "IN_PROGRESS"],
+	initMine = false
+}) {
+	const subscribed = useRef(false);
 	const [games, setGames] = useState(null);
 	const [gameState, setGameState] = useState(initGameState);
 	const [mine, setMine] = useState(initMine);
 
-	const getGames = useCallback(async () => {
+	const getGames = useCallback(async (gameState, mine) => {
+		subscribed.current && setGames(null);
 		const response = await notChess({
 			method: "get",
 			url: "/games",
 			params: { state: gameState, mine: mine }
 		});
-		if (subscribed.current) {
-			setGames(response.data);
-		}
-	}, [gameState, mine]);
+		subscribed.current && setGames(response.data);
+	}, []);
 
 	const postGame = useCallback(
 		async color => {
@@ -53,11 +55,20 @@ export default function useGames({ initGameState = [], initMine = false }) {
 	);
 
 	useEffect(() => {
+		subscribed.current && getGames(gameState, mine);
+	}, [gameState, mine, getGames]);
+
+	useEffect(() => {
+		const { storageGameState, storageMine } = getStorageValues();
+		storageGameState && setGameState(storageGameState);
+		storageMine && setMine(storageMine);
 		subscribed.current = true;
-		setGames(null);
-		getGames();
 		return () => (subscribed.current = false);
-	}, [getGames, subscribed]);
+	}, []);
+
+	useEffect(() => {
+		return () => setStorageValues(gameState, mine);
+	}, [gameState, mine]);
 
 	return {
 		games,
@@ -71,3 +82,17 @@ export default function useGames({ initGameState = [], initMine = false }) {
 		setMine
 	};
 }
+
+const getStorageValues = () => {
+	let storageGameState = sessionStorage.getItem("gameState");
+	storageGameState = JSON.parse(storageGameState);
+	let storageMine = sessionStorage.getItem("mine");
+	storageMine = JSON.parse(storageMine);
+
+	return { storageGameState, storageMine };
+};
+
+const setStorageValues = (gameState, mine) => {
+	sessionStorage.setItem("gameState", JSON.stringify(gameState));
+	sessionStorage.setItem("mine", mine);
+};

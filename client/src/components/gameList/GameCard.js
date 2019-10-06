@@ -84,7 +84,7 @@ const GameCard = ({ game, user, onClick }) => {
 			userPlayer &&
 			userPlayer.color === color &&
 			userPlayer.color === game.turn &&
-			game.state !== "NEW"
+			game.state === "IN_PROGRESS"
 				? "visible"
 				: "hidden";
 

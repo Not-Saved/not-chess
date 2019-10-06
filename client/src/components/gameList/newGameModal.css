@@ -1,0 +1,103 @@
+.new-game-modal .main.card .corners {
+	width: 100%;
+	margin: 10px;
+	padding: 5px 2px;
+
+	background: linear-gradient(to right, #d4d4d5 1px, transparent 0px) 0 0,
+		linear-gradient(to bottom, #d4d4d5 1px, transparent 0px) 0 0,
+		linear-gradient(to left, #d4d4d5 1px, transparent 0px) 100% 100%,
+		linear-gradient(to top, #d4d4d5 1px, transparent 0px) 100% 100%,
+		linear-gradient(to right, #d4d4d5 1px, transparent 0px) 0% 100%,
+		linear-gradient(to bottom, #d4d4d5 1px, transparent 0px) 100% 0,
+		linear-gradient(to left, #d4d4d5 1px, transparent 0px) 100% 0%,
+		linear-gradient(to top, #d4d4d5 1px, transparent 0px) 0% 100%;
+
+	background-repeat: no-repeat;
+	background-size: 20% 12%;
+}
+
+.new.game.modal {
+	width: 25vw;
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+.new.game.modal .ui.grid#first-grid {
+	margin: -8px;
+}
+
+.new.game.modal .ui.grid #first-row {
+	margin: 0px;
+	margin-top: 2px;
+	padding: 0px;
+}
+
+.new.game.modal .ui.grid #first-row .ui.header {
+	font-size: 30px;
+}
+
+.new.game.modal .ui.grid #second-row {
+	padding: 0px;
+	color: grey;
+	font-weight: bold;
+}
+
+.new.game.modal .ui.grid .ui.divider#first-divider {
+	margin: 6px 20px;
+}
+
+.new.game.modal .ui.grid #third-row {
+	padding: 5px;
+}
+
+.new.game.modal .ui.grid #third-row i#outer {
+	font-size: 80px;
+}
+
+.new.game.modal .ui.grid #third-row i#inner {
+	font-size: 44px;
+}
+
+.new.game.modal .ui.grid .ui.divider#second-divider {
+	margin: 5px 10%;
+}
+
+.new.game.modal .ui.grid #fourth-row {
+	padding: 0px;
+}
+
+.new.game.modal .ui.grid #fourth-row .item {
+	width: 90px;
+	text-align: center;
+}
+
+.new.game.modal .ui.grid .ui.divider#third-divider {
+	margin: 5px 20px;
+}
+
+.new.game.modal .ui.grid #fifth-row {
+	padding: 3px 0px 0px 0px;
+	text-align: center;
+}
+
+.new.game.modal .ui.grid #fifth-row button {
+	margin: 0px;
+}
+
+@media screen and (max-width: 1200px) {
+	.new.game.modal {
+		width: 40vw;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.new.game.modal {
+		width: 60vw;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.new.game.modal {
+		width: 90vw;
+	}
+}

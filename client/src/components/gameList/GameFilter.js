@@ -1,6 +1,8 @@
 import React from "react";
 import { Popup } from "semantic-ui-react";
 
+import "./gameFilter.css";
+
 const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 	const renderTrigger = (
 		<button className="ui basic compact fluid button">
@@ -9,11 +11,11 @@ const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 		</button>
 	);
 
-	const selected = state => {
+	const gameStateSelected = state => {
 		return gameState.includes(state) ? "basic green" : "basic";
 	};
 
-	const mineActive = () => {
+	const mineSelected = () => {
 		return mine ? "basic green" : "basic";
 	};
 
@@ -21,7 +23,7 @@ const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 		setMine(!mine);
 	};
 
-	const onclick = state => {
+	const toggleGameState = state => {
 		if (gameState.includes(state)) {
 			setGameState(gameState.filter(el => el !== state));
 		} else {
@@ -39,82 +41,57 @@ const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 				flip: { behavior: ["bottom-start", "bottom-end"] }
 			}}
 		>
-			<div>
-				<h3
-					className="ui header"
-					style={{
-						marginBottom: 0,
-						textAlign: "center",
-						fontSize: 17
-					}}
-				>
-					GAME STATE
-				</h3>
-				<div className="ui divider" style={{ margin: "7px -5px 7px -5px" }}></div>
+			<div className="game filter">
+				<h3 className="ui header">GAME STATE</h3>
+				<div className="ui divider"></div>
 				<div className="item">
 					<div
-						className={`ui large fluid ${mineActive()} label clickable`}
+						className={`ui large fluid label clickable ${mineSelected()}`}
 						onClick={toggleMine}
 					>
-						<i className="user icon" style={{ minWidth: 20 }}></i>
+						<i className="user icon"></i>
 						My games
 					</div>
 				</div>
-				<div className="ui divider" style={{ margin: "7px -5px 7px -5px" }}></div>
-				<div className="ui list" style={{ marginTop: 0 }}>
+				<div className="ui divider"></div>
+				<div className="ui list">
 					<div className="item">
 						<div
-							className={`ui large fluid ${selected(
-								"NEW"
-							)} label clickable`}
-							onClick={() => onclick("NEW")}
+							className={`ui large fluid label clickable 
+							${gameStateSelected("NEW")}`}
+							onClick={() => toggleGameState("NEW")}
 						>
-							<i
-								className="hourglass start icon"
-								style={{ minWidth: 20 }}
-							></i>
+							<i className="hourglass start icon"></i>
 							New
 						</div>
 					</div>
 					<div className="item">
 						<div
-							className={`ui large fluid ${selected(
-								"IN_PROGRESS"
-							)} label clickable`}
-							onClick={() => onclick("IN_PROGRESS")}
+							className={`ui large fluid label clickable 
+							${gameStateSelected("IN_PROGRESS")}`}
+							onClick={() => toggleGameState("IN_PROGRESS")}
 						>
-							<i
-								className="hourglass half icon"
-								style={{ minWidth: 20 }}
-							></i>
+							<i className="hourglass half icon"></i>
 							In progress
 						</div>
 					</div>
 					<div className="item">
 						<div
-							className={`ui large fluid ${selected(
-								"CHECKMATE"
-							)} label clickable`}
-							onClick={() => onclick("CHECKMATE")}
+							className={`ui large fluid label clickable 
+							${gameStateSelected("CHECKMATE")}`}
+							onClick={() => toggleGameState("CHECKMATE")}
 						>
-							<i
-								className="hourglass end icon"
-								style={{ minWidth: 20 }}
-							></i>
+							<i className="hourglass end icon"></i>
 							Checkmate
 						</div>
 					</div>
 					<div className="item">
 						<div
-							className={`ui large fluid ${selected(
-								"DRAW"
-							)} label clickable`}
-							onClick={() => onclick("DRAW")}
+							className={`ui large fluid label clickable
+							 ${gameStateSelected("DRAW")}`}
+							onClick={() => toggleGameState("DRAW")}
 						>
-							<i
-								className="handshake end icon"
-								style={{ minWidth: 20 }}
-							></i>
+							<i className="handshake end icon"></i>
 							Draw
 						</div>
 					</div>

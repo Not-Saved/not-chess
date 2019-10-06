@@ -21,10 +21,6 @@
 }
 
 @media screen and (max-width: 990px), (max-height: 600px) {
-	.chess-game .bottom.right {
-		bottom: 53px;
-	}
-
 	.chess-game .top.right {
 		right: 14px;
 		font-size: 1.2em;

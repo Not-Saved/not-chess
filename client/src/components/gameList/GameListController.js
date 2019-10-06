@@ -18,7 +18,7 @@ const GameListController = () => {
 		setGameState,
 		mine,
 		setMine
-	} = useGames({ initGameState: ["NEW", "IN_PROGRESS"] });
+	} = useGames({});
 	const [open, setOpen] = useState(false);
 	const [openNew, setOpenNew] = useState(false);
 	const [selectedGame, setSelectedGame] = useState(null);

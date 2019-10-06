@@ -70,7 +70,7 @@ const GameModal = ({ history, open, setOpen, game, setGame, joinGame, deleteGame
 		const renderIcon = () => {
 			if (player._user) {
 				return (
-					<div className="flex center">
+					<div className="flex center player">
 						<img
 							src={`/${player._user.icon}`}
 							className="ui circular image"
