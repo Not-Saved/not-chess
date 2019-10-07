@@ -13,7 +13,7 @@ const ChessGameController = ({ match: { params } }) => {
 	const [winOpen, setWinOpen] = useState(false);
 	const [drawOpen, setDrawOpen] = useState(false);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
-	const [active, setActive] = useState("");
+	const [loading, setLoading] = useState("");
 	const { game, makeMove } = useChessGame(params.id);
 	const { user } = useContext(UserContext);
 
@@ -26,9 +26,9 @@ const ChessGameController = ({ match: { params } }) => {
 	}, [game]);
 
 	const onMove = async move => {
-		setActive("active");
+		setLoading("active");
 		await makeMove(move);
-		setActive(false);
+		setLoading(false);
 	};
 
 	const findPlayer = () => {
@@ -55,7 +55,7 @@ const ChessGameController = ({ match: { params } }) => {
 					onMove={onMove}
 					playerField={playerField}
 					playingColor={playingColor}
-					active={active}
+					active={loading}
 					sidebarOpen={sidebarOpen}
 					setSidebarOpen={setSidebarOpen}
 				/>
@@ -69,10 +69,7 @@ const ChessGameController = ({ match: { params } }) => {
 			<WinModal open={winOpen} setOpen={setWinOpen} game={game} />
 			<DrawModal open={drawOpen} setOpen={setDrawOpen} game={game} />
 			{renderChessGame()}
-			<ChessGameFooter
-				sidebarOpen={sidebarOpen}
-				setSidebarOpen={setSidebarOpen}
-			/>
+			<ChessGameFooter sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 		</>
 	);
 };

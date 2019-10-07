@@ -25,4 +25,5 @@
 
 .chess.game.footer .ui.button {
 	color: rgb(0, 0, 0, 0.87) !important;
+	font-weight: bold;
 }

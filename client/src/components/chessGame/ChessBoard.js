@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Chess from "chess.js";
 
 import Square from "./Square";
-import "../../styles/chessBoard.css";
+import "./chessBoard.css";
 
 const ChessBoard = ({ chessJsGame, onMove, playingColor, playerField }) => {
 	const [firstClick, setFirstClick] = useState(null);
@@ -84,10 +84,7 @@ const ChessBoard = ({ chessJsGame, onMove, playingColor, playerField }) => {
 				style={{ transform: `rotate(${rotation}deg)` }}
 			>
 				<div className="nc-corner-border">
-					<div
-						className="nc-chessgrid"
-						style={{ position: "relative" }}
-					>
+					<div className="nc-chessgrid" style={{ position: "relative" }}>
 						{renderSquares()}
 					</div>
 				</div>

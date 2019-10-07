@@ -5,6 +5,14 @@
 	align-content: center;
 }
 
+.player .left.text {
+	margin-left: 7px;
+}
+
+.player .right.text {
+	margin-right: 7px;
+}
+
 .player .secondary.flexbox {
 	display: flex;
 	justify-content: center;

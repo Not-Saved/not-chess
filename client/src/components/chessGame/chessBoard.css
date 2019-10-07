@@ -118,7 +118,7 @@
 	@media screen and (max-width: 440px) {
 		:root {
 			--nc-square-size: 10.3vw;
-			--nc-piece-size: 8.2vw;
+			--nc-piece-size: 7.8vw;
 		}
 	}
 }

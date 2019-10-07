@@ -13,6 +13,7 @@ import Login from "./Login";
 import GameListController from "./gameList/GameListController";
 import ChessGameController from "./chessGame/ChessGameController";
 import UserSetupController from "./user/UserSetupController";
+import UserListController from "./userList/UserListController";
 
 import "./app.css";
 
@@ -32,7 +33,7 @@ const App = () => {
 
 	if (!userChecked)
 		return (
-			<div className="window height background">
+			<div className="app window height background">
 				<Loading />
 			</div>
 		);
@@ -51,6 +52,7 @@ const App = () => {
 					<Route path="/user/settings" render={() => <UserSetupController />} />
 					<Route path="/games" render={() => <GameListController />} />
 					<Route path="/game/:id" render={() => <ChessGameController />} />
+					<Route path="/leaderboard" render={() => <UserListController />} />
 				</div>
 				<Footer />
 			</UserContext.Provider>

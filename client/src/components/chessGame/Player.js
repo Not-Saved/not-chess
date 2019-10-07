@@ -1,10 +1,10 @@
 import React from "react";
-import "../../styles/player.css";
+
+import "./player.css";
 
 const Player = ({ position, turn, player, winner }) => {
-	let visibility = "hidden";
 	let icon = "play";
-
+	let visibility = "hidden";
 	if (winner) {
 		turn = null;
 		visibility = player.color === winner.color ? "visible" : "hidden";
@@ -15,7 +15,7 @@ const Player = ({ position, turn, player, winner }) => {
 	if (position === "up") {
 		return (
 			<div className="player">
-				<div className="main flexbox">
+				<div className="main flexbox left">
 					<i className="icons">
 						<img
 							src={`/${player._user.icon}`}
@@ -28,19 +28,15 @@ const Player = ({ position, turn, player, winner }) => {
 						/>
 					</i>
 
-					<div className="text" style={{ marginLeft: 7 }}>
-						{player._user.userName}
-					</div>
+					<div className="left text">{player._user.userName}</div>
 				</div>
 			</div>
 		);
 	} else {
 		return (
 			<div className="player">
-				<div className="main flexbox">
-					<div className="text" style={{ marginRight: 7 }}>
-						{player._user.userName}
-					</div>
+				<div className="main flexbox right">
+					<div className="right text">{player._user.userName}</div>
 					<i className="icons">
 						<img
 							src={`/${player._user.icon}`}

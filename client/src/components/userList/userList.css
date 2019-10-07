@@ -1,0 +1,224 @@
+.user.list .card.grid {
+	display: grid;
+	grid-template-columns: 20% repeat(5, 1fr);
+	height: 60px;
+	padding: 3px 0px;
+}
+
+.user.list .card.grid.mobile {
+	display: grid;
+	grid-template-columns: 30% repeat(3, 1fr);
+	height: 100%;
+	padding: 0px 0px;
+}
+
+.user.list .scrolling {
+	overflow: auto;
+	height: calc(100vh - 155px);
+	max-height: calc(100vh - 155px);
+}
+
+.user.list .item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.user.list .header .header.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: row;
+}
+
+.user.list .header {
+	margin: 12px 0px 0px 0px;
+	text-align: center;
+	font-size: 35px;
+}
+
+.user.list .header .icon {
+	margin-right: 10px;
+}
+
+.user.list .ui.divider {
+	margin: 3px -15px 0px -15px;
+}
+
+.user.list .card.grid .item:nth-last-child(n + 2) {
+	border-right: 1px solid #d4d4d5;
+}
+
+.user.list .header.grid .sub.item label {
+	text-align: center;
+	font-size: 14px;
+	padding: 5px 8px;
+	width: 89px;
+	font-weight: bold;
+	color: grey;
+}
+
+.user.list .player.name h2 {
+	position: relative;
+	width: 100%;
+}
+
+.user.list .player.name img {
+	height: 62px;
+	width: 62px;
+}
+
+.user.list .player.name .container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.user.list .player.name .text {
+	position: absolute;
+	text-align: center;
+	top: 37px;
+	width: 100%;
+}
+
+.user.list .player.name .text label {
+	text-align: center;
+	font-size: 14px;
+	padding: 4px 7px;
+}
+
+.user.list .item.stat {
+	position: relative;
+}
+
+.user.list .item.stat .type {
+	position: absolute;
+	text-align: center;
+	top: 52px;
+	width: 100%;
+}
+
+.user.list .item.stat .type label {
+	text-align: center;
+	font-size: 14px;
+	padding: 4px 7px;
+	width: 89px;
+}
+
+.user.list .item.stat .container .ui.header {
+	font-size: 30px;
+	margin: 0px;
+}
+
+.score.card {
+	margin: 15px 0px 0px 0px;
+}
+
+@media screen and (max-width: 990px) {
+	.user.list .player.name .text {
+		top: 47px;
+	}
+	.user.list .ui.divider {
+		margin: 0px;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.user.list .item.stat .type label {
+		text-align: center;
+		font-size: 12px;
+		padding: 4px 7px;
+		width: 79px;
+	}
+
+	.user.list .scrolling {
+		overflow: auto;
+		height: calc(100vh - 130px);
+		max-height: calc(100vh - 130px);
+	}
+
+	.user.list .player.name img {
+		height: 52px;
+		width: 52px;
+	}
+
+	.user.list .player.name .text label {
+		text-align: center;
+		font-size: 12px;
+		padding: 4px 7px;
+	}
+
+	.user.list .player.name .text {
+		top: 33px;
+	}
+
+	.user.list .item.stat .type {
+		top: 38px;
+	}
+
+	.user.list .item.stat .container .ui.header {
+		font-size: 26px;
+	}
+
+	.user.list .header {
+		margin: 7px 0px 0px 0px;
+		font-size: 29px;
+	}
+
+	.user.list .header .icon {
+		font-size: 28px;
+	}
+
+	.user.list .main.card .corners {
+		background-size: 19% 28px;
+		padding: 5px 0px;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.score.card {
+		margin: 12px 0px 0px 0px;
+	}
+
+	.user.list .item.stat .type label {
+		text-align: center;
+		font-size: 10px;
+		padding: 2px 6px;
+		width: 70%;
+	}
+
+	.user.list .player.name .text label {
+		text-align: center;
+		font-size: 10px;
+		padding: 2px 6px;
+	}
+
+	.user.list .player.name img {
+		height: 40px;
+		width: 40px;
+	}
+
+	.user.list .item.stat .container .ui.header {
+		font-size: 20px;
+	}
+
+	.user.list .player.name .text {
+		top: 24px;
+	}
+
+	.user.list .item.stat .type {
+		top: 27px;
+	}
+
+	.user.list .header {
+		margin: 7px 0px 0px 0px;
+		font-size: 25px;
+	}
+
+	.user.list .header .icon {
+		font-size: 24px;
+		margin-right: 10px;
+	}
+}

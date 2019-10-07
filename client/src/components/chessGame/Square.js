@@ -1,22 +1,5 @@
 import React from "react";
 
-const getPiece = piece => {
-	switch (piece.type) {
-		case "r":
-			return <span>&#9820;</span>;
-		case "n":
-			return <span>&#9822;</span>;
-		case "b":
-			return <span>&#9821;</span>;
-		case "q":
-			return <span>&#9819;</span>;
-		case "k":
-			return <span>&#9818;</span>;
-		default:
-			return <span>&#9823;</span>;
-	}
-};
-
 const Square = ({
 	square,
 	piece,
@@ -62,20 +45,16 @@ const Square = ({
 		>
 			{renderPiece()}
 			<div
-				className={`nc-piece ${moveHighlightColor} nc-move-highlight`}
+				className={`nc-piece ${moveHighlightColor} nc-move-highlight full height width`}
 				style={{
 					position: "absolute",
-					height: "100%",
-					width: "100%",
 					visibility: moveHighlightVisible
 				}}
 			></div>
 			<div
-				className={`nc-piece ${pieceColor} nc-piece-highlight`}
+				className={`nc-piece ${pieceColor} nc-piece-highlight full height width`}
 				style={{
 					position: "absolute",
-					height: "100%",
-					width: "100%",
 					visibility: pieceHighlightVisible
 				}}
 			></div>
@@ -84,3 +63,20 @@ const Square = ({
 };
 
 export default Square;
+
+const getPiece = piece => {
+	switch (piece.type) {
+		case "r":
+			return <span>&#9820;</span>;
+		case "n":
+			return <span>&#9822;</span>;
+		case "b":
+			return <span>&#9821;</span>;
+		case "q":
+			return <span>&#9819;</span>;
+		case "k":
+			return <span>&#9818;</span>;
+		default:
+			return <span>&#9823;</span>;
+	}
+};

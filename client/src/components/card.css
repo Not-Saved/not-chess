@@ -20,3 +20,10 @@
 	background-repeat: no-repeat;
 	background-size: 100px 33px;
 }
+
+@media screen and (max-width: 750px) {
+	.main.card .corners {
+		background-size: 25% 28px;
+		padding: 2px;
+	}
+}

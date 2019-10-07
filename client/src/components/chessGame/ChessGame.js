@@ -4,7 +4,7 @@ import { Sidebar } from "semantic-ui-react";
 
 import ChessBoard from "./ChessBoard";
 import Player from "./Player";
-import "../../styles/chessGame.css";
+import "./chessGame.css";
 
 const ChessGame = ({
 	game,

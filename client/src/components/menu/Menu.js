@@ -70,6 +70,11 @@ const Menu = ({ location, history }) => {
 					<span className="text">Games</span>
 				</Link>
 
+				<Link to="/leaderboard" className={`${isActive("/leaderboard")} item`}>
+					<i className="trophy fitted icon"></i>
+					<span className="text">Leaderboard</span>
+				</Link>
+
 				<div className="right menu">{renderRightItem()}</div>
 			</div>
 		</div>
