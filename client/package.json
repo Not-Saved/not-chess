@@ -5,9 +5,9 @@
 	"dependencies": {
 		"axios": "^0.19.0",
 		"chess.js": "github:jhlywa/chess.js",
-		"react": "^16.9.0",
-		"react-dom": "^16.9.0",
-		"react-router-dom": "^5.0.1",
+		"react": "^16.11.0",
+		"react-dom": "^16.11.0",
+		"react-router-dom": "^5.1.2",
 		"react-scripts": "3.1.1",
 		"react-virtualized-auto-sizer": "^1.0.2",
 		"react-window": "^1.8.5",
