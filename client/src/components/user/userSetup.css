@@ -42,11 +42,11 @@
 	width: 100%;
 }
 
-.error.popup::before {
+.error.ui.popup::before {
 	background-color: #fff6f6 !important;
 }
 
-.error.popup {
+.error.ui.popup {
 	background-color: #fff6f6 !important;
 	color: #9f3a38;
 }

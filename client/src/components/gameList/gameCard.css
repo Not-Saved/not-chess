@@ -6,19 +6,19 @@
 	padding: 10px;
 }
 
-.game.card .grid .white-player {
+.game.card .ui.grid .white-player {
 	padding: 0px 1em 0px 0px;
 }
 
-.game.card .grid .black-player {
+.game.card .ui.grid .black-player {
 	padding: 0px 0px 0px 1em;
 }
 
-.game.card .grid .white-player.column .grid .player.column {
+.game.card .ui.grid .white-player.column .grid .player.column {
 	padding: 0px 5px 0px 0px;
 }
 
-.game.card .grid .black-player.column .grid .player.column {
+.game.card .ui.grid .black-player.column .grid .player.column {
 	padding: 0px 0px 0px 5px;
 }
 
@@ -76,8 +76,8 @@
 		font-size: 16px !important;
 		display: inherit;
 		position: absolute;
-		left: -5px;
-		bottom: -13px;
+		left: -3px;
+		bottom: -11px;
 	}
 
 	.game.card .bottom.left.angle .sub.text {
@@ -94,8 +94,8 @@
 		font-size: 14px !important;
 		display: inherit;
 		position: absolute;
-		right: -4px;
-		top: -11px;
+		right: -2px;
+		top: -9px;
 	}
 }
 
@@ -138,16 +138,16 @@
 
 	.game.card .top.right.angle {
 		font-size: 9px !important;
-		top: -8px;
-		right: -2px;
+		top: -6px;
+		right: -4px;
 	}
 
 	.game.card .bottom.left.angle {
 		font-size: 8px !important;
 		display: inherit;
 		position: absolute;
-		left: -3px;
-		bottom: -10px;
+		left: -5px;
+		bottom: -8px;
 	}
 
 	.game.card .bottom.left.angle .icon {
