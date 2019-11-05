@@ -21,20 +21,20 @@ const UserIcons = ({ onClick }) => {
 };
 
 const icons = [
-	"patrick.png",
-	"eve.png",
+	"patrick.jpg",
+	"eve.jpg",
 	"jenny.jpg",
 	"joe.jpg",
-	"mark.png",
-	"kristy.png",
-	"molly.png",
-	"matthew.png",
+	"mark.jpg",
+	"kristy.jpg",
+	"molly.jpg",
+	"matthew.jpg",
 	"daniel.jpg",
-	"elyse.png",
+	"elyse.jpg",
 	"elliot.jpg",
 	"helen.jpg",
 	"nan.jpg",
-	"rachel.png",
+	"rachel.jpg",
 	"steve.jpg",
 	"stevie.jpg"
 ];
