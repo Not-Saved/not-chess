@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const mongoose = require("mongoose");
 const autoIncrement = require("mongoose-auto-increment");
+const compression = require("compression");
 
 mongoose.plugin(require("./util/mongoosePlugins"));
 mongoose.connect(keys.mongoURI, { useFindAndModify: false });
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use(cookieSession({ maxAge: 30 * 24 * 60 * 60 * 1000, keys: [keys.cookieKey] }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(compression());
 
 require("./routes/authRoutes")(app);
 require("./routes/usersRoutes")(app);
