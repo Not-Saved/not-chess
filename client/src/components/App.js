@@ -8,6 +8,7 @@ import useWindowDimentions from "../util/useWindowsDimensions";
 import Loading from "./Loading";
 import Menu from "./menu/Menu";
 import Footer from "./Footer";
+import Empty from "./gameList/Empty";
 
 import "./app.css";
 
@@ -65,6 +66,7 @@ const App = () => {
 								path="/leaderboard"
 								render={() => <UserListController />}
 							/>
+							<Route render={() => <Empty />} />
 						</Switch>
 					</Suspense>
 				</div>

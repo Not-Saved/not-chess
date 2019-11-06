@@ -22,10 +22,4 @@ export default function useRedirect(location, history) {
 			}
 		}
 	}, [location, history, user]);
-
-	useEffect(() => {
-		if (!user) {
-			history.push("/login");
-		}
-	}, [history, user]);
 }
