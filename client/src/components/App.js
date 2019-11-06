@@ -31,19 +31,9 @@ const App = () => {
 		})();
 	}, [getUser]);
 
-	const containerClassName = width > 480 ? "ui container" : "";
-
-	if (!userChecked)
+	function renderMainContent() {
 		return (
-			<div className="app window height background">
-				<Loading />
-			</div>
-		);
-	return (
-		<BrowserRouter>
-			<UserContext.Provider
-				value={{ user, postUser, getUser, logout, validateUser }}
-			>
+			<>
 				<Menu />
 				<div
 					className={`app background ${containerClassName}`}
@@ -71,9 +61,36 @@ const App = () => {
 					</Suspense>
 				</div>
 				<Footer />
+			</>
+		);
+	}
+
+	function renderFullscreenLoading() {
+		return (
+			<div className="app window height background">
+				<Loading />
+			</div>
+		);
+	}
+
+	const containerClassName = width > 480 ? "ui container" : "";
+
+	if (!userChecked) {
+		return renderFullscreenLoading();
+	} else {
+		return (
+			<UserContext.Provider
+				value={{ user, postUser, getUser, logout, validateUser }}
+			>
+				<BrowserRouter>
+					<Switch>
+						<Route path="/auth" render={renderFullscreenLoading} />
+						<Route render={renderMainContent} />
+					</Switch>
+				</BrowserRouter>
 			</UserContext.Provider>
-		</BrowserRouter>
-	);
+		);
+	}
 };
 
 export default App;

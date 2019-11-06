@@ -40,6 +40,8 @@ export function register(config) {
 			if (isAuthRoute()) {
 				console.log("unregistering service worker for admin route");
 				unregister();
+				console.log("reloading");
+				window.location.reload();
 				return false;
 			}
 			if (isLocalhost) {
