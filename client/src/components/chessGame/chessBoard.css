@@ -1,10 +1,3 @@
-:root {
-	--nc-square-size: 8vh;
-	--nc-piece-size: 6vh;
-	--nc-black: 175, 49, 66;
-	--nc-white: 57, 113, 158;
-}
-
 .nc-chessgrid {
 	display: inline-grid;
 	grid-template-columns: repeat(8, var(--nc-square-size));

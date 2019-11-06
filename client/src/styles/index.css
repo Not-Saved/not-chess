@@ -2,6 +2,13 @@
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+:root {
+	--nc-square-size: 8vh;
+	--nc-piece-size: 6vh;
+	--nc-black: 175, 49, 66;
+	--nc-white: 57, 113, 158;
+}
+
 .zero.margin {
 	margin: 0px !important;
 }

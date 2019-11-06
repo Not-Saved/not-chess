@@ -14,6 +14,7 @@ const NewGameModal = ({ open, setOpen, postGame }) => {
 
 	const iconColor = () => {
 		const style = getComputedStyle(document.body);
+
 		return color === "b"
 			? `rgb(${style.getPropertyValue("--nc-black")})`
 			: `rgb(${style.getPropertyValue("--nc-white")})`;
