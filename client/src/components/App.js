@@ -66,7 +66,6 @@ const App = () => {
 								path="/leaderboard"
 								render={() => <UserListController />}
 							/>
-							<Route path="/auth" render={() => <Loading />} />
 							<Route render={() => <Empty />} />
 						</Switch>
 					</Suspense>
