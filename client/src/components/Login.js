@@ -11,7 +11,7 @@ const Login = () => {
 	const { user } = useContext(UserContext);
 
 	const onGoogleClick = () => {
-		window.location.href = "/auth/google";
+		window.location.replace("/auth/google");
 	};
 
 	if (!user) {
