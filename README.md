@@ -1,2 +1,2 @@
 # not-chess
-Fullstack chess web application with NodeJs/Express and backend ReactJs frontend
+Fullstack chess web application with NodeJs/Express, backend ReactJs frontend, MongoDB database
