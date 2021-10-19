@@ -11,7 +11,7 @@ const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 		</button>
 	);
 
-	const gameStateSelected = state => {
+	const gameStateSelected = (state) => {
 		return gameState.includes(state) ? "basic green" : "basic";
 	};
 
@@ -23,9 +23,9 @@ const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 		setMine(!mine);
 	};
 
-	const toggleGameState = state => {
+	const toggleGameState = (state) => {
 		if (gameState.includes(state)) {
-			setGameState(gameState.filter(el => el !== state));
+			setGameState(gameState.filter((el) => el !== state));
 		} else {
 			setGameState([...gameState, state]);
 		}
@@ -36,19 +36,16 @@ const GameFilter = ({ gameState, setGameState, mine, setMine }) => {
 			trigger={renderTrigger}
 			on="click"
 			position="top center"
-			offset="0px,-8px"
+			offset={[3, -8]}
 			popperModifiers={{
-				flip: { behavior: ["bottom-start", "bottom-end"] }
+				flip: { behavior: ["bottom-start", "bottom-end"] },
 			}}
 		>
 			<div className="game filter">
 				<h3 className="ui header">GAME STATE</h3>
 				<div className="ui divider"></div>
 				<div className="item">
-					<div
-						className={`ui large fluid label clickable ${mineSelected()}`}
-						onClick={toggleMine}
-					>
+					<div className={`ui large fluid label clickable ${mineSelected()}`} onClick={toggleMine}>
 						<i className="user icon"></i>
 						My games
 					</div>

@@ -26,10 +26,7 @@ const UserPopup = ({ history, user, onLogout }) => {
 				<div className="ui divider"></div>
 				<div className="content">
 					<div>
-						<button
-							className="ui fluid basic button"
-							onClick={onUserSettingsClick}
-						>
+						<button className="ui fluid basic button" onClick={onUserSettingsClick}>
 							<i className="user fitted icon"></i>
 							Settings
 						</button>
@@ -56,7 +53,7 @@ const UserPopup = ({ history, user, onLogout }) => {
 	return (
 		<Popup
 			position="top right"
-			offset="-11px,-18px"
+			offset={[-11, -18]}
 			hoverable
 			content={renderContent()}
 			trigger={renderTrigger()}

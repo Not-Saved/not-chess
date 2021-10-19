@@ -6,15 +6,7 @@ import Card from "components/Card";
 import UserIcons from "./UserIcons";
 import "./userSetup.css";
 
-const UserSetup = ({
-	history,
-	values,
-	errors,
-	dirty,
-	validating,
-	onChange,
-	postUser
-}) => {
+const UserSetup = ({ history, values, errors, dirty, validating, onChange, postUser }) => {
 	const [active, setActive] = useState("");
 
 	const onSubmit = async () => {
@@ -22,7 +14,7 @@ const UserSetup = ({
 			setActive("active");
 			await postUser({
 				userName: values.userName,
-				icon: values.icon
+				icon: values.icon,
 			});
 			setActive("");
 			history.push("/");
@@ -53,24 +45,18 @@ const UserSetup = ({
 						position={popupPosition}
 						hoverable
 						on={"click"}
-						trigger={
-							<img
-								src={`/${values.icon}`}
-								className="ui circular image clickable"
-								alt=""
-							/>
-						}
+						trigger={<img src={`/${values.icon}`} className="ui circular image clickable" alt="" />}
 						popperDependencies={[window.innerHeight]}
 						style={{ zIndex: 1901 }}
 					>
-						<UserIcons onClick={e => onChange(e)} />
+						<UserIcons onClick={(e) => onChange(e)} />
 					</Popup>
 				</div>
 				<div className="right item">
 					<Popup
 						className="error popup"
 						position="bottom left"
-						offset="0px,-7px"
+						offset={[0, -7]}
 						trigger={
 							<Input
 								type="text"
